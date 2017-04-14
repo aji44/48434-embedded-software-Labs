@@ -1,6 +1,6 @@
 # 48434-embedded-software-Labs
-NOTES:
-48434 Embedded Software > Lab1:
+
+## 48434 Embedded Software > Lab1:
 
   Please refer to the Lab1 PDF
   Status          : Complete
@@ -8,7 +8,7 @@ NOTES:
   Processor       : MK70FN1M0VMJ12
   Microcontroller : Freescale Tower
   
-48434 Embedded Software > Lab2:
+## 48434 Embedded Software > Lab2:
 
   Please refer to the Lab2 PDF
   Status          : Incomplete
