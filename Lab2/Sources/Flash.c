@@ -39,12 +39,12 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
   {
 	case 1:
 	  uint8_t mask = 0x80; //10000000
-
 	  uint8_t pos;
-	  for(pos = 0x00; pos < 0x07; pos += 0x01) {
+
+	  for(pos = 0x00; pos < 0x08; pos += 0x01) {
 		  if(phrase & mask) {
 			  variable = FLASH_DATA_START + pos; //address of unallocated flash memory
-			  phrase = ~(phrase & mask); //update the phrase
+			  phrase = (phrase ^ mask); //update the phrase
 			  return true;
 		  }
 		  mask = mask >> 1;
@@ -52,10 +52,11 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 	  return false;
 	  break;
 	case 2:
+		//NEEDS FIXING
 	  uint8_t mask = 0xC0; //11000000
 
 	  uint8_t pos;
-	  for(pos = 0x00; pos < 0x07; pos += 0x02) {
+	  for(pos = 0x00; pos < 0x08; pos += 0x02) {
 		  if(phrase & mask) {
 			  variable = FLASH_DATA_START + pos; //address of unallocated flash memory
 			  phrase = ~(phrase & mask); //update the phrase
@@ -73,7 +74,7 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 	  break;
   }
 
-
+/*
 //  if(phrase & mask){
 //	  variable = FLASH_DATA_START;
 //
@@ -93,7 +94,7 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 //	  for(mask = 0x80; mask > 0x1; mask >> 1) {
 //
 //	  }
-
+*/
 }
 
 /*! @brief Writes a 32-bit number to Flash.
