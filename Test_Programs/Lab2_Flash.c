@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #define FLASH_DATA_START 0x00080000LU
+#define FLASH_DATA_END   0x00080007LU
 
 int phrase = 0xFF; /* represents the 8bytes of space in flash memory - Find better name for this...*/
 
@@ -8,17 +9,62 @@ int Flash_AllocateVar1(); /* 8bytes on any address */
 int Flash_AllocateVar2(); /* 16bytes only on even address */
 int Flash_AllocateVar4(); /* 16bytes only on address divisible by 4 i.e. 80000 or 80004 */
 
+int Flash_AllocateVar(int size);
+
 void test_1();
 void test_2();
 void test_3();
 void test_4();
 void test_5();
+void test_6();
+void test_7();
 
 int main(void)
 {
-	test_5();
+	test_7();
+	/* 
+	change between :
+	test_1();
+	test_2();
+	etc..
+	*/
 
 	return 0;
+}
+
+int Flash_AllocateVar(int size)
+{
+	int mask;
+	int pos;
+	int retVal;
+
+	switch(size)
+	{
+		case 1:
+		mask = 0x80; /* 10000000 */
+
+		break;
+
+		case 2:
+		mask = 0xC0; /* 11000000 */
+
+		break;
+
+		case 4:
+		mask = 0xF0; /* 11110000 */
+		break;
+	}
+
+	for(pos = FLASH_DATA_START; pos < (FLASH_DATA_END+1); pos += size) {
+		if(mask == (phrase & mask)) {
+			retVal = pos; 
+			phrase = (phrase ^ mask);
+			return retVal;
+		}
+		mask = mask >> size;
+		/*printf("Mask - %04x\n", mask);*/
+	}
+	return -1;
 }
 
 int Flash_AllocateVar1()
@@ -203,4 +249,50 @@ void test_5()
 	printf("Allocated? (%04x) \n", out); /*7 should succeed*/
 	out = Flash_AllocateVar1();
 	printf("Allocated? (%04x) \n", out); /*8 should fail, no more room*/
+}
+
+void test_6()
+{
+	int out;
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out); /* should fail */
+}
+
+void test_7()
+{
+	int out;
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(2);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(2);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(2);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(4);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out);
+	out = Flash_AllocateVar(1);
+	printf("Allocated? (%04x) \n", out); /* should fail */
 }
