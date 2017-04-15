@@ -15,8 +15,6 @@ uint8_t phrase = 0xFF; //11111111
  */
 bool Flash_Init(void)
 {
-
-
   return true;
 }
 
@@ -35,66 +33,32 @@ bool Flash_Init(void)
  */
 bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 {
-  switch(size)
-  {
-	case 1:
-	  uint8_t mask = 0x80; //10000000
-	  uint8_t pos;
+	int mask;
+	int addressPos;
+	int retVal;
 
-	  for(pos = 0x00; pos < 0x08; pos += 0x01) {
-		  if(phrase & mask) {
-			  variable = FLASH_DATA_START + pos; //address of unallocated flash memory
-			  phrase = (phrase ^ mask); //update the phrase
-			  return true;
-		  }
-		  mask = mask >> 1;
-	  }
-	  return false;
-	  break;
-	case 2:
-		//NEEDS FIXING
-	  uint8_t mask = 0xC0; //11000000
+	switch(size)
+	{
+		case 1:
+		mask = 0x80; /* 10000000 */
+		break;
+		case 2:
+		mask = 0xC0; /* 11000000 */
+		break;
+		case 4:
+		mask = 0xF0; /* 11110000 */
+		break;
+	}
 
-	  uint8_t pos;
-	  for(pos = 0x00; pos < 0x08; pos += 0x02) {
-		  if(phrase & mask) {
-			  variable = FLASH_DATA_START + pos; //address of unallocated flash memory
-			  phrase = ~(phrase & mask); //update the phrase
-			  return true;
-		  }
-		  mask = mask >> 2;
-	  }
-	  return false;
-	  break;
-	case 4:
-
-	  break;
-	case 8:
-
-	  break;
-  }
-
-/*
-//  if(phrase & mask){
-//	  variable = FLASH_DATA_START;
-//
-//	  return true;
-//  }
-//  mask = mask >> 1;
-//  if(phrase & mask){
-//	  variable = FLASH_DATA_START + 1;
-//	  return true;
-//  }
-//  mask = mask >> 1;
-//  if(phrase & mask){
-//	  variable = FLASH_DATA_START + 2;
-//	  return true;
-//  }
-//
-//	  for(mask = 0x80; mask > 0x1; mask >> 1) {
-//
-//	  }
-*/
+	for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size) {
+		if(mask == (phrase & mask)) {
+			*variable = addressPos; 
+			phrase = (phrase ^ mask);
+			return true;
+		}
+		mask = mask >> size;
+	}
+	return false;
 }
 
 /*! @brief Writes a 32-bit number to Flash.
@@ -142,4 +106,67 @@ bool Flash_Erase(void)
 {
 
 }
+
+
+// switch(size)
+//   {
+// 	case 1:
+// 	  uint8_t mask = 0x80; //10000000
+// 	  uint8_t pos;
+
+// 	  for(pos = 0x00; pos < 0x08; pos += 0x01) {
+// 		  if(phrase & mask) {
+// 			  variable = FLASH_DATA_START + pos; //address of unallocated flash memory
+// 			  phrase = (phrase ^ mask); //update the phrase
+// 			  return true;
+// 		  }
+// 		  mask = mask >> 1;
+// 	  }
+// 	  return false;
+// 	  break;
+// 	case 2:
+// 		//NEEDS FIXING
+// 	  uint8_t mask = 0xC0; //11000000
+
+// 	  uint8_t pos;
+// 	  for(pos = 0x00; pos < 0x08; pos += 0x02) {
+// 		  if(phrase & mask) {
+// 			  variable = FLASH_DATA_START + pos; //address of unallocated flash memory
+// 			  phrase = ~(phrase & mask); //update the phrase
+// 			  return true;
+// 		  }
+// 		  mask = mask >> 2;
+// 	  }
+// 	  return false;
+// 	  break;
+// 	case 4:
+
+// 	  break;
+// 	case 8:
+
+// 	  break;
+//   }
+
+
+//  if(phrase & mask){
+//	  variable = FLASH_DATA_START;
+//
+//	  return true;
+//  }
+//  mask = mask >> 1;
+//  if(phrase & mask){
+//	  variable = FLASH_DATA_START + 1;
+//	  return true;
+//  }
+//  mask = mask >> 1;
+//  if(phrase & mask){
+//	  variable = FLASH_DATA_START + 2;
+//	  return true;
+//  }
+//
+//	  for(mask = 0x80; mask > 0x1; mask >> 1) {
+//
+//	  }
+
+
 
