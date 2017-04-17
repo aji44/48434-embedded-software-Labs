@@ -10,7 +10,7 @@
 #include "MK70F12.h"
 
 static bool LaunchCommand(TFCCOB* commonCommandObject);
-static bool WritePhrase(const uint64union_t phrase); //const uint32_t address, 
+static bool WritePhrase(const uint32_t address, const uint64union_t phrase);
 static bool ReadPhrase(uint64_t * const phrase);
 static void WaitCCIF(void);
 static void SetCCIF(void);
@@ -57,9 +57,9 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 		break;
 	}
 
-	for(addressPos = FLASH_START; addressPos < (FLASH_END+1); addressPos += size) {
+	for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size) {
 		if(mask == (phrase & mask)) {
-			*variable = (void *) addressPos; 
+			*variable = addressPos; 
 			phrase = (phrase ^ mask);
 			return true;
 		}
@@ -77,20 +77,7 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
  */
 bool Flash_Write32(volatile uint32_t* const address, const uint32_t data)
 {
-	uint32_t index = address - FLASH_START;
-	if (index > FLASH_END || index < FLASH_START)
-	{
-		return false;
-	}
-	uint64_t newPhrase;
-	ReadPhrase(&newPhrase);
-	uint32_t *psuedoArray = (uint32_t *) &newPhrase; //splits into 8 byte segments
-	psuedoArray[index] = data;
-	WritePhrase(newPhrase);
-	return true;
-
-	/*
-	uint8_t index = *address - FLASH_START;
+	uint8_t index = address - FLASH_DATA_START;
 	uint64_t mask = 0xFFFFFFFF00000000U
 	uint64_t newPhrase = 0x0000000000000000U
 
@@ -115,7 +102,6 @@ bool Flash_Write32(volatile uint32_t* const address, const uint32_t data)
 	
 	WritePhrase(newPhrase);
 	return true;
-	*/
 }
 
 /*! @brief Writes a 16-bit number to Flash.
@@ -127,43 +113,31 @@ bool Flash_Write32(volatile uint32_t* const address, const uint32_t data)
  */
 bool Flash_Write16(volatile uint16_t* const address, const uint16_t data)
 {
-	uint16_t index = address - FLASH_START;
-	if (index > FLASH_END || index < FLASH_START)
-	{
-		return false;
+	uint8_t index = address - FLASH_DATA_START;
+	uint64_t mask = 0xFFFF000000000000U
+	uint64_t newPhrase = 0x0000000000000000U
+
+	uint64_t currentPhrase;
+	ReadPhrase(&currentPhrase);
+
+	uint16_t tempPhrase[4];
+
+	uint8_t i;
+	for(i = 0; i < 8; i += 2) {
+		if(i = index) {
+			tempPhrase[i] = data;
+		} else {
+			tempPhrase[i] = ((currentPhrase & data) >> (64-(16*(i+1))));
+		}
+		mask = mask >> 16;
 	}
-	uint64_t newPhrase;
-	ReadPhrase(&newPhrase);
-	uint16_t *psuedoArray = (uint16_t *) &newPhrase; //splits into 8 byte segments
-	psuedoArray[index] = data;
+
+	for(i = 0; i < 8; i += 2) {
+		newPhrase = newPhrase | tempPhrase[i];
+	}
+	
 	WritePhrase(newPhrase);
 	return true;
-
-	// uint8_t index = *address - FLASH_START;
-	// uint64_t mask = 0xFFFF000000000000U
-	// uint64_t newPhrase = 0x0000000000000000U
-
-	// uint64_t currentPhrase;
-	// ReadPhrase(&currentPhrase);
-
-	// uint16_t tempPhrase[4];
-
-	// uint8_t i;
-	// for(i = 0; i < 8; i += 2) {
-	// 	if(i = index) {
-	// 		tempPhrase[i] = data;
-	// 	} else {
-	// 		tempPhrase[i] = ((currentPhrase & data) >> (64-(16*(i+1))));
-	// 	}
-	// 	mask = mask >> 16;
-	// }
-
-	// for(i = 0; i < 8; i += 2) {
-	// 	newPhrase = newPhrase | tempPhrase[i];
-	// }
-	
-	// WritePhrase(newPhrase);
-	// return true;
 }
 
 /*! @brief Writes an 8-bit number to Flash.
@@ -175,20 +149,7 @@ bool Flash_Write16(volatile uint16_t* const address, const uint16_t data)
  */
 bool Flash_Write8(volatile uint8_t* const address, const uint8_t data)
 {
-	uint8_t index = address - FLASH_START;
-	if (index > FLASH_END || index < FLASH_START)
-	{
-		return false;
-	}
-	uint64_t newPhrase;
-	ReadPhrase(&newPhrase);
-	uint8_t *psuedoArray = (uint8_t *) &newPhrase; //splits into 8 byte segments
-	psuedoArray[index] = data;
-	WritePhrase(newPhrase);
-	return true;
-	
-	/*
-	uint8_t index = *address - FLASH_START;
+	uint8_t index = address - FLASH_DATA_START;
 	uint64_t mask = 0xFF00000000000000U
 	uint64_t newPhrase = 0x0000000000000000U
 
@@ -212,50 +173,59 @@ bool Flash_Write8(volatile uint8_t* const address, const uint8_t data)
 	}
 	
 	WritePhrase(newPhrase);
-	return true;*/
+	return true;
 }
 
 //P 789 and P806
-bool WritePhrase(const uint64_t phrase) //const uint32_t address, 
+bool WritePhrase(const uint64union_t phrase) //const uint32_t address, 
 {
-	WaitCCIF();
+	uint32_8union_t flashStart;
+
+	uint32union_t word_Hi;
+	uint32union_t word_Lo;
+
+	uint16union_t halfword_1; //16 bytes
+	uint16union_t halfword_2;
+	uint16union_t halfword_3;
+	uint16union_t halfword_4;
+
+	WaitCCIFReady();
 
 	if(!Flash_Erase())
 	{
 		return false;
 	}
 
-	/*
-
-	uint32_8union_t flashStart;
-	flashStart.l = FLASH_START;
-
+	flashStart.l = FLASH_DATA_START;
 	FTFE_FCCOB0 = FLASH_CMD_PGM8; // defines the FTFE command to write
 	FTFE_FCCOB1 = flashStart.s.b; // sets flash address[23:16] to 128
 	FTFE_FCCOB2 = flashStart.s.c; // sets flash address[15:8] to 0
 	FTFE_FCCOB3 = (flashStart.s.d & 0xF8);
 
-	*/
-	
-	uint8_t *bytes = (uint8_t *) &phrase;
+	word_Hi = phrase.Hi;
+	word_Lo = phrase.Lo;
 
-	//Big Endian sorted
-	FTFE_FCCOB7 = bytes[0];
-	FTFE_FCCOB6 = bytes[1];
-	FTFE_FCCOB5 = bytes[2];
-	FTFE_FCCOB4 = bytes[3];
-	FTFE_FCCOBB = bytes[4];
-	FTFE_FCCOBA = bytes[5];
-	FTFE_FCCOB9 = bytes[6];
-	FTFE_FCCOB8 = bytes[7];
-	
+	halfword_1 = word_Hi.Hi
+	halfword_2 = word_Hi.Lo
+	halfword_3 = word_Lo.Hi
+	halfword_4 = word_Lo.Lo
+
+	//Big Endian Sorted- is this Correct?
+	FTFE_FCCOB4 = halfword_3.Hi
+	FTFE_FCCOB5 = halfword_3.Lo
+	FTFE_FCCOB6 = halfword_4.Hi 
+	FTFE_FCCOB7 = halfword_4.Lo 
+	FTFE_FCCOB8 = halfword_2.Hi
+	FTFE_FCCOB9 = halfword_2.Lo
+	FTFE_FCCOBA = halfword_1.Hi
+	FTFE_FCCOBB = halfword_1.Lo
+
 	SetCCIF(); //Initiates the command
-	WaitCCIF();
 
 	return true;
 }
 
-/*! @brief Reads the phrase starting from FLASH_START
+/*! @brief Reads the phrase starting from FLASH_DATA_START
  *	
  *	@param returns pointer to phrase
  *  @return bool - TRUE if the the phrase was read
@@ -263,8 +233,8 @@ bool WritePhrase(const uint64_t phrase) //const uint32_t address,
  */
 bool ReadPhrase(uint64_t * const phrase)
 {
-	WaitCCIF();
-	*phrase = _FP(FLASH_START);
+	WaitCCIFReady();
+	*phrase = _FP(FLASH_DATA_START);
 	return true;
 }
 
@@ -275,10 +245,6 @@ bool ReadPhrase(uint64_t * const phrase)
  */
 bool Flash_Erase(void)
 {
-<<<<<<< HEAD
-	WaitCCIF();
-	FTFE_FCCOB0 = 0x09; //Command to erase flash sector
-=======
 	//WaitCCIFReady();
 	//FTFE_FCCOB0 = 0x09; //Command to erase flash sector
 	//return true; //Later on, need to check error flags
@@ -304,7 +270,6 @@ bool Flash_Erase(void)
   // // Only do this if you want the allocation to clear too.
   // //	memset(allocationMap, 0, FLASH_DATA_SIZE);
   // return HandleErrorRegisters(); pg 783/784 K70 manual
->>>>>>> 82c13f6b3e746ab1652d5f67a759bbe8e5df9c3b
 	return true; //Later on, need to check error flags
 }
 
@@ -318,66 +283,6 @@ void WaitCCIF(void)
 
 void SetCCIF(void)
 {
-<<<<<<< HEAD
-	FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
-}
-
-
-
-/*
-bool WritePhrase(const uint64union_t phrase) //const uint32_t address, 
-{
-	uint32_8union_t flashStart; //notes: no uint32_8union_t in our types.h
-
-	uint32union_t word_Hi;
-	uint32union_t word_Lo;
-
-	uint16union_t halfword_1; //16 bytes
-	uint16union_t halfword_2;
-	uint16union_t halfword_3;
-	uint16union_t halfword_4;
-
-	WaitCCIF();
-
-	if(!Flash_Erase())
-	{
-		return false;
-	}
-
-	flashStart.l = FLASH_START;
-	FTFE_FCCOB0 = FLASH_CMD_PGM8; // defines the FTFE command to write
-	FTFE_FCCOB1 = flashStart.s.b; // sets flash address[23:16] to 128
-	FTFE_FCCOB2 = flashStart.s.c; // sets flash address[15:8] to 0
-	FTFE_FCCOB3 = (flashStart.s.d & 0xF8);
-
-	//need to fi this up: no uint64uniont etc..
-	
-	word_Hi = phrase.Hi;
-	word_Lo = phrase.Lo;
-
-	halfword_1 = word_Hi.Hi
-	halfword_2 = word_Hi.Lo
-	halfword_3 = word_Lo.Hi
-	halfword_4 = word_Lo.Lo
-
-	//Big Endian Sorted- is this Correct?
-	FTFE_FCCOB4 = halfword_3.Hi
-	FTFE_FCCOB5 = halfword_3.Lo
-	FTFE_FCCOB6 = halfword_4.Hi 
-	FTFE_FCCOB7 = halfword_4.Lo 
-	FTFE_FCCOB8 = halfword_2.Hi
-	FTFE_FCCOB9 = halfword_2.Lo
-	FTFE_FCCOBA = halfword_1.Hi
-	FTFE_FCCOBB = halfword_1.Lo
-
-	SetCCIF(); //Initiates the command
-	WaitCCIF();
-	return true;
-}
-
-
-*/
-=======
 	//All required FCCOBx registers are written, so launch the command
   // This line is occurred ACCERR.
   //  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;
@@ -391,4 +296,3 @@ bool WritePhrase(const uint64union_t phrase) //const uint32_t address,
 	//wait for flash module start up
     WaitCCIF();
 }
->>>>>>> 82c13f6b3e746ab1652d5f67a759bbe8e5df9c3b
