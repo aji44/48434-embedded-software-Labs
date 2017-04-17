@@ -8,32 +8,32 @@
 #include "types.h"
 #include "Flash.h"
 #include "MK70F12.h"
+#include <string.h>
 
 #define FCMD_ERASE_SEC 0x09LU
 #define FCMD_PGM_PHRASE 0x07LU
 
 typedef union
 {
-	uint32_t l;
+  uint32_t a;
+
   struct
   {
-    uint8_t 0_7;
-    uint8_t 8_15;
-    uint8_t 16_23;
-    uint8_t null;
+	uint8_t a0;
+	uint8_t a8;
+	uint8_t a16;
+	uint8_t null;
   } ADR;
+
 } FCCOB_ADR_t;
 
 //static bool LaunchCommand(TFCCOB* commonCommandObject); //?
-static bool WritePhrase(const uint64union_t phrase);
-static bool ReadPhrase(uint64_t * const phrase);
+static bool WritePhrase(const uint64_t phrase);
+//static bool ReadPhrase(uint64_t * const phrase);
 static void WaitCCIF(void);
 static void SetCCIF(void);
 
 uint8_t phrase_alloc = 0xFF; //Represents the 8 bytes in flash memory and whether they have been allocated
-
-//Erase Sector
-#define FLASH_CMD_ERSSCR 0x09LU
 
 /*! @brief Enables the Flash module.
  *
@@ -61,31 +61,31 @@ bool Flash_Init(void)
  */
 bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 {
-	int mask;
-	int addressPos;
+  int mask;
+  int addressPos;
 
-	switch(size)
-	{
-		case 1:
-		mask = 0x80; /* 10000000 */
-		break;
-		case 2:
-		mask = 0xC0; /* 11000000 */
-		break;
-		case 4:
-		mask = 0xF0; /* 11110000 */
-		break;
-	}
+  switch(size)
+  {
+	case 1:
+	  mask = 0x80; /* 10000000 */
+	  break;
+	case 2:
+	  mask = 0xC0; /* 11000000 */
+	  break;
+	case 4:
+	  mask = 0xF0; /* 11110000 */
+	  break;
+  }
 
-	for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size) {
-		if(mask == (phrase_alloc & mask)) {
-			*variable = addressPos; 
-			phrase_alloc = (phrase_alloc ^ mask);
-			return true;
-		}
-		mask = mask >> size;
-	}
-	return false;
+  for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size) {
+	  if(mask == (phrase_alloc & mask)) {
+		  *variable = (void *) addressPos;
+		  phrase_alloc = (phrase_alloc ^ mask);
+		  return true;
+	  }
+	  mask = mask >> size;
+  }
+  return false;
 }
 
 /*! @brief Writes a 32-bit number to Flash.
@@ -97,17 +97,16 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
  */
 bool Flash_Write32(volatile uint32_t* const address, const uint32_t data)
 {
-	uint32_t index = address - FLASH_START;
-	if (index > FLASH_END || index < FLASH_START)
-	{
-		return false;
-	}
-	uint64_t newPhrase;
-	ReadPhrase(&newPhrase);
-	uint32_t *psuedoArray = (uint32_t *) &newPhrase; //splits into 8 byte segments
-	psuedoArray[index] = data;
-	WritePhrase(newPhrase);
-	return true;
+  size_t index = ((size_t) address - FLASH_DATA_START);
+  if (index < 0 || index > 4) return false;
+  if (index % 4 != 0) return false;
+  index /= 4;
+  uint64_t newPhrase;
+  ReadPhrase(&newPhrase);
+  uint32_t *psuedoArray = (uint32_t *) &newPhrase; //splits into 8 byte segments
+  psuedoArray[index] = data;
+  WritePhrase(newPhrase);
+  return true;
 }
 
 /*! @brief Writes a 16-bit number to Flash.
@@ -119,17 +118,16 @@ bool Flash_Write32(volatile uint32_t* const address, const uint32_t data)
  */
 bool Flash_Write16(volatile uint16_t* const address, const uint16_t data)
 {
-	uint16_t index = address - FLASH_START;
-	if (index > FLASH_END || index < FLASH_START)
-	{
-		return false;
-	}
-	uint64_t newPhrase;
-	ReadPhrase(&newPhrase);
-	uint16_t *psuedoArray = (uint16_t *) &newPhrase; //splits into 8 byte segments
-	psuedoArray[index] = data;
-	WritePhrase(newPhrase);
-	return true;
+  size_t index = ((size_t) address - FLASH_DATA_START);
+  if (index < 0 || index > 4) return false;
+  if (index % 2 != 0) return false;
+  index /= 2;
+  uint64_t newPhrase;
+  ReadPhrase(&newPhrase);
+  uint16_t *psuedoArray = (uint16_t *) &newPhrase; //splits into 8 byte segments
+  psuedoArray[index] = data;
+  WritePhrase(newPhrase);
+  return true;
 }
 
 /*! @brief Writes an 8-bit number to Flash.
@@ -141,53 +139,53 @@ bool Flash_Write16(volatile uint16_t* const address, const uint16_t data)
  */
 bool Flash_Write8(volatile uint8_t* const address, const uint8_t data)
 {
-	uint8_t index = address - FLASH_START;
-	if (index > FLASH_END || index < FLASH_START)
+  size_t index = ((size_t) address - FLASH_DATA_START);
+  if (index > 7 || index < 0)
 	{
-		return false;
+	  return false;
 	}
-	uint64_t newPhrase;
-	ReadPhrase(&newPhrase);
-	uint8_t *psuedoArray = (uint8_t *) &newPhrase; //splits into 8 byte segments
-	psuedoArray[index] = data;
+  uint64_t newPhrase;
+  ReadPhrase(&newPhrase);
+  uint8_t *psuedoArray = (uint8_t *) &newPhrase; //splits into 8 byte segments
+  psuedoArray[index] = data;
 
-	WritePhrase(newPhrase);
-	return true;
+  WritePhrase(newPhrase);
+  return true;
 }
 
 //P 789 and P806
-bool WritePhrase(const uint64union_t phrase) //const uint32_t address, 
+bool WritePhrase(const uint64_t phrase) //const uint32_t address,
 {
-	uint8_t *bytes = (uint8_t *) &phrase;
-	FCCOB_ADR_t; fccob;
+  uint8_t *bytes = (uint8_t *) &phrase;
+  FCCOB_ADR_t fccob;
 
-	WaitCCIF();
+  WaitCCIF();
 
-	if(!Flash_Erase())
+  if(!Flash_Erase())
 	{
-		return false;
+	  return false;
 	}
 
-	fccob.ADR = FLASH_DATA_START;
-	FTFE_FCCOB0 = FCMD_PGM_PHRASE 	// defines the FTFE command to write
-	FTFE_FCCOB1 = fccob.ADR.16_23; 	// sets flash address[23:16] to 128
-	FTFE_FCCOB2 = fccob.ADR.8_15; 	// sets flash address[15:8] to 0
-	FTFE_FCCOB3 = fccob.ADR.0_7; 		//(fccob.0_7 & 0xF8); ?
+  fccob.a = FLASH_DATA_START;
+  FTFE_FCCOB0 = FCMD_PGM_PHRASE; 	// defines the FTFE command to write
+  FTFE_FCCOB1 = fccob.ADR.a16; 	// sets flash address[23:16] to 128
+  FTFE_FCCOB2 = fccob.ADR.a8; 	// sets flash address[15:8] to 0
+  FTFE_FCCOB3 = fccob.ADR.a0; 		//(fccob.0_7 & 0xF8); ?
 
-	//Switched/Sorted for Big Endian
-	FTFE_FCCOB4 = bytes[3];
-	FTFE_FCCOB5 = bytes[2];
-	FTFE_FCCOB6 = bytes[1];
-	FTFE_FCCOB7 = bytes[0];
-	FTFE_FCCOB8 = bytes[7];
-	FTFE_FCCOB9 = bytes[6];
-	FTFE_FCCOBA = bytes[5];
-	FTFE_FCCOBB = bytes[4];
-	
-	SetCCIF(); //Initiates the command
-	WaitCCIF();
+  //Switched/Sorted for Big Endian
+  FTFE_FCCOB4 = bytes[3];
+  FTFE_FCCOB5 = bytes[2];
+  FTFE_FCCOB6 = bytes[1];
+  FTFE_FCCOB7 = bytes[0];
+  FTFE_FCCOB8 = bytes[7];
+  FTFE_FCCOB9 = bytes[6];
+  FTFE_FCCOBA = bytes[5];
+  FTFE_FCCOBB = bytes[4];
 
-	return true;
+  SetCCIF(); //Initiates the command
+  WaitCCIF();
+
+  return true;
 }
 
 /*! @brief Reads the phrase starting from FLASH_DATA_START
@@ -198,9 +196,9 @@ bool WritePhrase(const uint64union_t phrase) //const uint32_t address,
  */
 bool ReadPhrase(uint64_t * const phrase)
 {
-	WaitCCIF();
-	*phrase = _FP(FLASH_DATA_START);
-	return true;
+  WaitCCIF();
+  *phrase = _FP(FLASH_DATA_START);
+  return true;
 }
 
 /*! @brief Erases the entire Flash sector.
@@ -210,15 +208,16 @@ bool ReadPhrase(uint64_t * const phrase)
  */
 bool Flash_Erase(void)
 {
-	FCCOB_ADR_t; fccob;
+  FCCOB_ADR_t fccob;
 
-	WaitCCIF();
+  phrase_alloc = 0xFF;
+  WaitCCIF();
 
-	fccob.ADR = FLASH_DATA_START;
-	FTFE_FCCOB0 = FCMD_ERASE_SEC 	// defines the FTFE command to write
-	FTFE_FCCOB1 = fccob.ADR.16_23; 	// sets flash address[23:16] to 128
-	FTFE_FCCOB2 = fccob.ADR.8_15; 	// sets flash address[15:8] to 0
-	FTFE_FCCOB3 = fccob.ADR.0_7;
+  fccob.a = FLASH_DATA_START;
+  FTFE_FCCOB0 = FCMD_ERASE_SEC; 	// defines the FTFE command to write
+  FTFE_FCCOB1 = fccob.ADR.a16; 	// sets flash address[23:16] to 128
+  FTFE_FCCOB2 = fccob.ADR.a8; 	// sets flash address[15:8] to 0
+  FTFE_FCCOB3 = fccob.ADR.a0;
 
   SetCCIF();
   WaitCCIF();
@@ -226,27 +225,27 @@ bool Flash_Erase(void)
   // // Only do this if you want the allocation to clear too.
   // //	memset(allocationMap, 0, FLASH_DATA_SIZE);
   // return HandleErrorRegisters(); pg 783/784 K70 manual
-	return true; //Later on, need to check error flags
+  return true; //Later on, need to check error flags
 }
 
 void WaitCCIF(void)
 {
-	//(https://community.nxp.com/thread/329360)
-    //wait for the command to complete.
-	while (!(FTFE_FSTAT & FTFE_FSTAT_CCIF_MASK));
-	//this waits until CCIF register is set to 1
+  //(https://community.nxp.com/thread/329360)
+  //wait for the command to complete.
+  while (!(FTFE_FSTAT & FTFE_FSTAT_CCIF_MASK));
+  //this waits until CCIF register is set to 1
 }
 
 void SetCCIF(void)
 {
-	FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
+  FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
 }
-	//All required FCCOBx registers are written, so launch the command
-  // This line is occurred ACCERR.
-  //  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;
-  /*pg 807 K70 Manual*/
-  // Before launching a command, the ACCERR and FPVIOL bits in the FSTAT register
-  // must be zero and the CCIF flag must read 1 to verify that any previous command has
-  // completed. If CCIF is zero, the previous command execution is still active, a new
-  // command write sequence cannot be started, and all writes to the FCCOB registers are
-  // ignored.
+//All required FCCOBx registers are written, so launch the command
+// This line is occurred ACCERR.
+//  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;
+/*pg 807 K70 Manual*/
+// Before launching a command, the ACCERR and FPVIOL bits in the FSTAT register
+// must be zero and the CCIF flag must read 1 to verify that any previous command has
+// completed. If CCIF is zero, the previous command execution is still active, a new
+// command write sequence cannot be started, and all writes to the FCCOB registers are
+// ignored.

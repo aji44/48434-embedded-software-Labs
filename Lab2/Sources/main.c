@@ -34,35 +34,132 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-
+#include "Flash.h"
 #include "LEDs.h"
-
+#include "packet.h"
+#include "types.h"
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
   /* Write your local variable definition here */
+  uint32_t BaudRate = 115200; //38400
+  uint32_t ModuleClock = CPU_BUS_CLK_HZ;
 
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-
-  //const uint32_t baudRate = 115200;
-  //const uint32_t moduleClock = CPU_BUS_CLK_HZ; //?
-
-  //Packet_Init(baudRate, moduleClk);
+  Packet_Init(BaudRate, ModuleClock);
 
   LEDs_Init();
   const TLED colour = LED_ORANGE;
   LEDs_On(colour);
 
+  uint32_t randomsh = 0xaaaaaaaa;
+  uint32_t randomsh2 = 0xbbbbbbbb;
+  uint32_t randomsh3 = 0xcccccccc;
 
   for (;;)
-  {
-  }
+	{
+	  volatile uint32_t *NvTowerNb;
+	  	  volatile uint32_t *NvTowerNb2;
+	  	  volatile uint32_t *NvTowerNb3;
+	  	  bool allocated1 = Flash_AllocateVar((volatile void **)&NvTowerNb, sizeof(*NvTowerNb));
+	  	  bool allocated2 = Flash_AllocateVar((volatile void **)&NvTowerNb2, sizeof(*NvTowerNb2));
+	  	  bool allocated3 = Flash_AllocateVar((volatile void **)&NvTowerNb3, sizeof(*NvTowerNb3));
+
+	  	  bool success1;
+	  	  bool success2;
+	  	  bool success3;
+
+	  	  if(allocated1){
+	  		  success1 = Flash_Write32((uint32_t *) NvTowerNb, randomsh);
+	  		  if(success1){
+	  			  uint64_t newPhrase;
+	  			  ReadPhrase(&newPhrase);
+	  		  }
+	  	  }
+
+	  	  if(allocated2){
+	  		  success2 = Flash_Write32((uint32_t *) NvTowerNb2, randomsh2);
+	  		  if(success2){
+	  			  uint64_t newPhrase;
+	  			  ReadPhrase(&newPhrase);
+	  		  }
+	  	  }
+
+	  	  if(allocated3){
+	  		  success3 = Flash_Write32((uint32_t *) NvTowerNb3, randomsh3);
+	  		  if(success3){
+	  			  uint64_t newPhrase;
+	  			  ReadPhrase(&newPhrase);
+	  		  }
+	  	  }
+
+	  	  Flash_Erase();
+	  	  uint64_t newPhrase;
+	  	  ReadPhrase(&newPhrase);
+	}
+
+  /* Test1 16 bit
+volatile uint16union_t *NvTowerNb;
+	  volatile uint16union_t *NvTowerNb2;
+	  volatile uint16union_t *NvTowerNb3;
+	  Flash_AllocateVar((volatile void **)&NvTowerNb, sizeof(*NvTowerNb));
+	  Flash_AllocateVar((volatile void **)&NvTowerNb2, sizeof(*NvTowerNb2));
+	  Flash_AllocateVar((volatile void **)&NvTowerNb3, sizeof(*NvTowerNb3));
+
+	  bool success = Flash_Write16((uint16_t *) NvTowerNb, randomsh);
+	  if(success)
+		{
+		  uint64_t newPhrase;
+		  ReadPhrase(&newPhrase);
+		}
+	  success = Flash_Write16((uint16_t *) NvTowerNb2, randomsh2);
+	  if(success)
+		{
+		  uint64_t newPhrase;
+		  ReadPhrase(&newPhrase);
+		}
+	  success = Flash_Write16((uint16_t *) NvTowerNb3, randomsh3);
+	  if(success)
+		{
+		  uint64_t newPhrase;
+		  ReadPhrase(&newPhrase);
+		}
+   */
+
+
+  /* Test2 8bit
+ volatile uint8_t *NvTowerNb;
+	  volatile uint8_t *NvTowerNb2;
+	  volatile uint8_t *NvTowerNb3;
+	  Flash_AllocateVar((volatile void **)&NvTowerNb, sizeof(*NvTowerNb));
+	  Flash_AllocateVar((volatile void **)&NvTowerNb2, sizeof(*NvTowerNb2));
+	  Flash_AllocateVar((volatile void **)&NvTowerNb3, sizeof(*NvTowerNb3));
+
+	  bool success = Flash_Write8((uint8_t *) NvTowerNb, randomsh);
+	  if(success)
+		{
+		  uint64_t newPhrase;
+		  ReadPhrase(&newPhrase);
+		}
+	  success = Flash_Write8((uint8_t *) NvTowerNb2, randomsh2);
+	  if(success)
+		{
+		  uint64_t newPhrase;
+		  ReadPhrase(&newPhrase);
+		}
+	  success = Flash_Write8((uint8_t *) NvTowerNb3, randomsh3);
+	  if(success)
+		{
+		  uint64_t newPhrase;
+		  ReadPhrase(&newPhrase);
+		}
+   */
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
