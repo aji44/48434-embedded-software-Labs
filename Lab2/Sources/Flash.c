@@ -9,13 +9,28 @@
 #include "Flash.h"
 #include "MK70F12.h"
 
-static bool LaunchCommand(TFCCOB* commonCommandObject);
-static bool WritePhrase(const uint32_t address, const uint64union_t phrase);
+#define FCMD_ERASE_SEC 0x09LU
+#define FCMD_PGM_PHRASE 0x07LU
+
+typedef union
+{
+	uint32_t l;
+  struct
+  {
+    uint8_t 0_7;
+    uint8_t 8_15;
+    uint8_t 16_23;
+    uint8_t null;
+  } ADR;
+} FCCOB_ADR_t;
+
+//static bool LaunchCommand(TFCCOB* commonCommandObject); //?
+static bool WritePhrase(const uint64union_t phrase);
 static bool ReadPhrase(uint64_t * const phrase);
 static void WaitCCIF(void);
 static void SetCCIF(void);
 
-uint8_t phrase = 0xFF; //11111111
+uint8_t phrase_alloc = 0xFF; //Represents the 8 bytes in flash memory and whether they have been allocated
 
 /*! @brief Enables the Flash module.
  *
@@ -58,9 +73,9 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 	}
 
 	for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size) {
-		if(mask == (phrase & mask)) {
+		if(mask == (phrase_alloc & mask)) {
 			*variable = addressPos; 
-			phrase = (phrase ^ mask);
+			phrase_alloc = (phrase_alloc ^ mask);
 			return true;
 		}
 		mask = mask >> size;
@@ -138,48 +153,34 @@ bool Flash_Write8(volatile uint8_t* const address, const uint8_t data)
 //P 789 and P806
 bool WritePhrase(const uint64union_t phrase) //const uint32_t address, 
 {
-	uint32_8union_t flashStart;
+	uint8_t *bytes = (uint8_t *) &phrase;
+	FCCOB_ADR_t; fccob;
 
-	uint32union_t word_Hi;
-	uint32union_t word_Lo;
-
-	uint16union_t halfword_1; //16 bytes
-	uint16union_t halfword_2;
-	uint16union_t halfword_3;
-	uint16union_t halfword_4;
-
-	WaitCCIFReady();
+	WaitCCIF();
 
 	if(!Flash_Erase())
 	{
 		return false;
 	}
 
-	flashStart.l = FLASH_DATA_START;
-	FTFE_FCCOB0 = FLASH_CMD_PGM8; // defines the FTFE command to write
-	FTFE_FCCOB1 = flashStart.s.b; // sets flash address[23:16] to 128
-	FTFE_FCCOB2 = flashStart.s.c; // sets flash address[15:8] to 0
-	FTFE_FCCOB3 = (flashStart.s.d & 0xF8);
+	fccob.ADR = FLASH_DATA_START;
+	FTFE_FCCOB0 = FCMD_PGM_PHRASE 	// defines the FTFE command to write
+	FTFE_FCCOB1 = fccob.ADR.16_23; 	// sets flash address[23:16] to 128
+	FTFE_FCCOB2 = fccob.ADR.8_15; 	// sets flash address[15:8] to 0
+	FTFE_FCCOB3 = fccob.ADR.0_7; 		//(fccob.0_7 & 0xF8); ?
 
-	word_Hi = phrase.Hi;
-	word_Lo = phrase.Lo;
-
-	halfword_1 = word_Hi.Hi
-	halfword_2 = word_Hi.Lo
-	halfword_3 = word_Lo.Hi
-	halfword_4 = word_Lo.Lo
-
-	//Big Endian Sorted- is this Correct?
-	FTFE_FCCOB4 = halfword_3.Hi
-	FTFE_FCCOB5 = halfword_3.Lo
-	FTFE_FCCOB6 = halfword_4.Hi 
-	FTFE_FCCOB7 = halfword_4.Lo 
-	FTFE_FCCOB8 = halfword_2.Hi
-	FTFE_FCCOB9 = halfword_2.Lo
-	FTFE_FCCOBA = halfword_1.Hi
-	FTFE_FCCOBB = halfword_1.Lo
-
+	//Switched/Sorted for Big Endian
+	FTFE_FCCOB4 = bytes[3];
+	FTFE_FCCOB5 = bytes[2];
+	FTFE_FCCOB6 = bytes[1];
+	FTFE_FCCOB7 = bytes[0];
+	FTFE_FCCOB8 = bytes[7];
+	FTFE_FCCOB9 = bytes[6];
+	FTFE_FCCOBA = bytes[5];
+	FTFE_FCCOBB = bytes[4];
+	
 	SetCCIF(); //Initiates the command
+	WaitCCIF();
 
 	return true;
 }
@@ -204,28 +205,19 @@ bool ReadPhrase(uint64_t * const phrase)
  */
 bool Flash_Erase(void)
 {
-	//WaitCCIFReady();
-	//FTFE_FCCOB0 = 0x09; //Command to erase flash sector
-	//return true; //Later on, need to check error flags
-	
+	FCCOB_ADR_t; fccob;
+
 	WaitCCIF();
-	//FTFE_FCCOB0 = 0x09; //Command to erase flash sector
-	
-	uint32_8union_t flash_start; //types.h - union to efficiently access bytes of long integer
 
-  WaitCCIF();
-  uint32_8union_t flash_start; //types.h - union to efficiently access bytes of long integer
-
-  flash_start.1 = FLASH_DATA_START; //FLASH_DATA_START 0x00080000LU
-  FTFE_FCCOB0 = FLASH_CMD_ERSSCR;
-  //FTFE_FCCOBO - Flash Common Command Object Registers (pg 782 K70 Manual Memory map)
-  //ERSSCR- Erase flash sector command-The Erase Flash Sector operation erases all
-  //addresses in a flash sector.
-  FTFE_FCCOB1 = flashStart.s.b; // types.h sets flash address[23:16] to 128
-  FTFE_FCCOB2 = flashStart.s.c; // types.h sets flash address[15:8] to 0
-  FTFE_FCCOB3 = (flashStart.s.d & 0xF0); //types.h  sets flash address[7:0] to 0
+	fccob.ADR = FLASH_DATA_START;
+	FTFE_FCCOB0 = FCMD_ERASE_SEC 	// defines the FTFE command to write
+	FTFE_FCCOB1 = fccob.ADR.16_23; 	// sets flash address[23:16] to 128
+	FTFE_FCCOB2 = fccob.ADR.8_15; 	// sets flash address[15:8] to 0
+	FTFE_FCCOB3 = fccob.ADR.0_7;
 
   SetCCIF();
+  WaitCCIF();
+
   // // Only do this if you want the allocation to clear too.
   // //	memset(allocationMap, 0, FLASH_DATA_SIZE);
   // return HandleErrorRegisters(); pg 783/784 K70 manual
