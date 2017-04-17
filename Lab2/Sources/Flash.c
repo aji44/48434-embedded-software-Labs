@@ -17,12 +17,17 @@ static void SetCCIF(void);
 
 uint8_t phrase = 0xFF; //11111111
 
+//Erase Sector
+#define FLASH_CMD_ERSSCR 0x09LU
+
 /*! @brief Enables the Flash module.
  *
  *  @return bool - TRUE if the Flash was setup successfully.
  */
 bool Flash_Init(void)
 {
+  SIM_SCGC3 |= SIM_SCGC3_NFC_MASK;  	/* !Initialize the Flash Clock  */
+  WaitCCIF();
   return true;
 }
 
@@ -192,7 +197,7 @@ bool WritePhrase(const uint64union_t phrase) //const uint32_t address,
  */
 bool ReadPhrase(uint64_t * const phrase)
 {
-	WaitCCIFReady();
+	WaitCCIF();
 	*phrase = _FP(FLASH_DATA_START);
 	return true;
 }
