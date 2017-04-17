@@ -275,18 +275,50 @@ bool ReadPhrase(uint64_t * const phrase)
  */
 bool Flash_Erase(void)
 {
+<<<<<<< HEAD
 	WaitCCIF();
 	FTFE_FCCOB0 = 0x09; //Command to erase flash sector
+=======
+	//WaitCCIFReady();
+	//FTFE_FCCOB0 = 0x09; //Command to erase flash sector
+	//return true; //Later on, need to check error flags
+	
+	WaitCCIF();
+	//FTFE_FCCOB0 = 0x09; //Command to erase flash sector
+	
+	uint32_8union_t flash_start; //types.h - union to efficiently access bytes of long integer
+
+  WaitCCIF();
+  uint32_8union_t flash_start; //types.h - union to efficiently access bytes of long integer
+
+  flash_start.1 = FLASH_DATA_START; //FLASH_DATA_START 0x00080000LU
+  FTFE_FCCOB0 = FLASH_CMD_ERSSCR;
+  //FTFE_FCCOBO - Flash Common Command Object Registers (pg 782 K70 Manual Memory map)
+  //ERSSCR- Erase flash sector command-The Erase Flash Sector operation erases all
+  //addresses in a flash sector.
+  FTFE_FCCOB1 = flashStart.s.b; // types.h sets flash address[23:16] to 128
+  FTFE_FCCOB2 = flashStart.s.c; // types.h sets flash address[15:8] to 0
+  FTFE_FCCOB3 = (flashStart.s.d & 0xF0); //types.h  sets flash address[7:0] to 0
+
+  SetCCIF();
+  // // Only do this if you want the allocation to clear too.
+  // //	memset(allocationMap, 0, FLASH_DATA_SIZE);
+  // return HandleErrorRegisters(); pg 783/784 K70 manual
+>>>>>>> 82c13f6b3e746ab1652d5f67a759bbe8e5df9c3b
 	return true; //Later on, need to check error flags
 }
 
 void WaitCCIF(void)
 {
+	//(https://community.nxp.com/thread/329360)
+    //wait for the command to complete.
 	while (!(FTFE_FSTAT & FTFE_FSTAT_CCIF_MASK));
+	//this waits until CCIF register is set to 1
 }
 
 void SetCCIF(void)
 {
+<<<<<<< HEAD
 	FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
 }
 
@@ -345,3 +377,18 @@ bool WritePhrase(const uint64union_t phrase) //const uint32_t address,
 
 
 */
+=======
+	//All required FCCOBx registers are written, so launch the command
+  // This line is occurred ACCERR.
+  //  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;
+  /*pg 807 K70 Manual*/
+  // Before launching a command, the ACCERR and FPVIOL bits in the FSTAT register
+  // must be zero and the CCIF flag must read 1 to verify that any previous command has
+  // completed. If CCIF is zero, the previous command execution is still active, a new
+  // command write sequence cannot be started, and all writes to the FCCOB registers are
+  // ignored.
+    FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
+	//wait for flash module start up
+    WaitCCIF();
+}
+>>>>>>> 82c13f6b3e746ab1652d5f67a759bbe8e5df9c3b
