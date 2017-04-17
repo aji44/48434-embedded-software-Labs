@@ -52,56 +52,32 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-  Packet_Init(BaudRate, ModuleClock);
-
-  LEDs_Init();
-  const TLED colour = LED_ORANGE;
-  LEDs_On(colour);
-
-  uint32_t randomsh = 0xaaaaaaaa;
-  uint32_t randomsh2 = 0xbbbbbbbb;
-  uint32_t randomsh3 = 0xcccccccc;
+  bool packetStatus = Packet_Init(BaudRate, ModuleClock);
+  bool flashStatus  = Flash_Init();
+  bool ledStatus 	  = LEDs_Init();
+  if(!(startup_packet & startup_flash & startup_led))
+  {
+  	const TLED colour = LED_ORANGE;
+  	LEDs_On(colour);
+  	/*
+		startup packet
+		special tower version
+		tower number
+		tower mode
+  	*/
+  }
 
   for (;;)
 	{
-	  volatile uint32_t *NvTowerNb;
-	  	  volatile uint32_t *NvTowerNb2;
-	  	  volatile uint32_t *NvTowerNb3;
-	  	  bool allocated1 = Flash_AllocateVar((volatile void **)&NvTowerNb, sizeof(*NvTowerNb));
-	  	  bool allocated2 = Flash_AllocateVar((volatile void **)&NvTowerNb2, sizeof(*NvTowerNb2));
-	  	  bool allocated3 = Flash_AllocateVar((volatile void **)&NvTowerNb3, sizeof(*NvTowerNb3));
+		//Check if there is a packet in the retrieved data
+			if (Packet_Get())
+			{
+				Packet_Handle();
+				LEDs_Toggle(LED_BLUE);
+			}
 
-	  	  bool success1;
-	  	  bool success2;
-	  	  bool success3;
-
-	  	  if(allocated1){
-	  		  success1 = Flash_Write32((uint32_t *) NvTowerNb, randomsh);
-	  		  if(success1){
-	  			  uint64_t newPhrase;
-	  			  ReadPhrase(&newPhrase);
-	  		  }
-	  	  }
-
-	  	  if(allocated2){
-	  		  success2 = Flash_Write32((uint32_t *) NvTowerNb2, randomsh2);
-	  		  if(success2){
-	  			  uint64_t newPhrase;
-	  			  ReadPhrase(&newPhrase);
-	  		  }
-	  	  }
-
-	  	  if(allocated3){
-	  		  success3 = Flash_Write32((uint32_t *) NvTowerNb3, randomsh3);
-	  		  if(success3){
-	  			  uint64_t newPhrase;
-	  			  ReadPhrase(&newPhrase);
-	  		  }
-	  	  }
-
-	  	  Flash_Erase();
-	  	  uint64_t newPhrase;
-	  	  ReadPhrase(&newPhrase);
+			//Checks whether the RDRF or TDRE flags are set and retrieves/transmits data
+			UART_Poll();
 	}
 
   /* Test1 16 bit
@@ -160,6 +136,53 @@ volatile uint16union_t *NvTowerNb;
 		  ReadPhrase(&newPhrase);
 		}
    */
+
+
+	/* test 3 32 bit
+
+	uint32_t randomsh = 0xaaaaaaaa;
+  uint32_t randomsh2 = 0xbbbbbbbb;
+  uint32_t randomsh3 = 0xcccccccc;
+
+	  volatile uint32_t *NvTowerNb;
+	  	  volatile uint32_t *NvTowerNb2;
+	  	  volatile uint32_t *NvTowerNb3;
+	  	  bool allocated1 = Flash_AllocateVar((volatile void **)&NvTowerNb, sizeof(*NvTowerNb));
+	  	  bool allocated2 = Flash_AllocateVar((volatile void **)&NvTowerNb2, sizeof(*NvTowerNb2));
+	  	  bool allocated3 = Flash_AllocateVar((volatile void **)&NvTowerNb3, sizeof(*NvTowerNb3));
+
+	  	  bool success1;
+	  	  bool success2;
+	  	  bool success3;
+
+	  	  if(allocated1){
+	  		  success1 = Flash_Write32((uint32_t *) NvTowerNb, randomsh);
+	  		  if(success1){
+	  			  uint64_t newPhrase;
+	  			  ReadPhrase(&newPhrase);
+	  		  }
+	  	  }
+
+	  	  if(allocated2){
+	  		  success2 = Flash_Write32((uint32_t *) NvTowerNb2, randomsh2);
+	  		  if(success2){
+	  			  uint64_t newPhrase;
+	  			  ReadPhrase(&newPhrase);
+	  		  }
+	  	  }
+
+	  	  if(allocated3){
+	  		  success3 = Flash_Write32((uint32_t *) NvTowerNb3, randomsh3);
+	  		  if(success3){
+	  			  uint64_t newPhrase;
+	  			  ReadPhrase(&newPhrase);
+	  		  }
+	  	  }
+
+	  	  Flash_Erase();
+	  	  uint64_t newPhrase;
+	  	  ReadPhrase(&newPhrase);
+*/
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
