@@ -67,7 +67,7 @@ bool DataToFlash(void)
 	bool modeAlloc = Flash_AllocateVar((volatile void **) &TowerMode, sizeof(uint16union_t));
 	if(numberAlloc && modeAlloc)
 	{
-		if(TowerNumber->l == OxFFFF)
+		if(TowerNumber->l == 0xFFFF)
 		{
 			Flash_Write16((uint16_t volatile *) TowerNumber, S_ID);
 		}
@@ -129,7 +129,6 @@ bool Packet_Get(void) {
 			  packet_position = 0;
 			  return true; //Return true, complete packet
 			}
-
 		  //The Checksum doesn't match
 		  //Shift the packets down
 		  Packet_Command = Packet_Parameter1;
@@ -196,10 +195,11 @@ void Packet_Handle(void)
 
 	case GET_VERSION:
 	  //Place the Tower Version packet in the TxFIFO
-	  if (Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN))
-		{
-		  error = false;
-		}
+	 //  if (Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN))
+		// {
+		//   error = false;
+		// }
+		error = !Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
 	  break;
 
 	case TOWER_NUMBER:
@@ -208,10 +208,8 @@ void Packet_Handle(void)
 		{
 		  //Sub-Command: Get the Tower Number
 		  //Place the Tower Number packet in the TxFIFO
-		  if (Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi)) //towerNumberLsb, towerNumberMsb))
-			{
-			  error = false;
-			}
+		  error = !Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
+
 		} else if (Packet_Parameter1 == TOWER_NUMBER_SET)
 		  {
 			//Sub-Command: Set the Tower Number
@@ -219,24 +217,51 @@ void Packet_Handle(void)
 			temp.s.Hi = Packet_Parameter3;
 			temp.s.Lo = Packet_Parameter2;
 			error = !Flash_Write16((uint16_t volatile *) TowerNumber, temp.l)
-
-
-			// OLD IMPLEMENTATION
-			// towerNumberLsb = Packet_Parameter2;
-			// towerNumberMsb = Packet_Parameter3;
 		  }
 	  break;
 	case GET_TOWER_MODE:
-
+		if (Packet_Parameter1 == TOWER_MODE_GET)
+		{
+			error = !Packet_Put(TOWER_MODE_COMM, TowerMode->s.Lo, TowerMode->s.Hi);
+		}
+		else if (Packet_Parameter1 == TOWER_MODE_SET)
+		{
+			uint16union_t temp;
+			temp.s.Hi = Packet_Parameter3;
+			temp.s.Lo = Packet_Parameter2;
+			error = !Flash_Write16((uint16_t volatile *) TowerMode, temp.l);
+		}
 	break;
 	case FLASH_PROGRAM_BYTE:
-
+		uint8_t offset = Packet_Parameter1;
+		uint8_t *tempAdr;
+		if(offset > 8) error = true;
+		if(offset == 8) error = !Flash_Erase();
+		else {
+			*tempAdr = (uint8_t *)(FLASH_DATA_START + offset);
+			error = !Flash_Write8((uint8_t volatile *) tempAdr, Packet_Parameter3);
+		}
 	break;
 	case FLASH_READ_BYTE:
+		uint8_t offset = Packet_Parameter1;
+		uint8_t * const byte
 
+		if(offset < 0 || offset > 7) error = true;
+		else {
+			*byte = _FB(FLASH_DATA_START + offset);
+			Packet_Put(TOWER_READ_BYTE_COMM, offset, 0x0, byte);
+		}
 	break;
 	default:
 	  break;
+  }
+
+  if(error)
+  {
+  	//const TLED colour = LED_YELLOW;
+  	LEDs_On(LED_YELLOW);
+  } else {
+  	LEDs_Off(LED_YELLOW);
   }
 
   //Check whether the Acknowledgment bit is set

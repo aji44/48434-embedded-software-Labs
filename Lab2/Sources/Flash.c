@@ -240,6 +240,7 @@ void SetCCIF(void)
 {
   FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
 }
+
 //All required FCCOBx registers are written, so launch the command
 // This line is occurred ACCERR.
 //  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;

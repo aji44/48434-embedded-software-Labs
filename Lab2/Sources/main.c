@@ -60,6 +60,9 @@ int main(void)
   	const TLED colour = LED_ORANGE;
   	LEDs_On(colour);
   	/*
+		store tower number and tower mode in flash
+
+
 		startup packet
 		special tower version
 		tower number
