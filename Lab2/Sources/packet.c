@@ -1,9 +1,3 @@
-/*
- * packet.c
- *
- *  Created on: 25 Mar 2017
- *      Author: 98119910
- */
 /*!
  ** @file packet.c
  ** @project Lab1
@@ -28,6 +22,9 @@
 #include "packet.h"
 #include "UART.h"
 #include "MK70F12.h"
+#include "types.h"
+#include "LEDs.h"
+#include "Flash.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 //uint8_t Packet_Command, 				/*!< The packet's command */
@@ -35,18 +32,21 @@
 //			Packet_Parameter2, 			/*!< The packet's 2nd parameter */
 //			Packet_Parameter3,		 	/*!< The packet's 3rd parameter */
 //			Packet_Checksum; 			/*!< The packet's checksum */
-TPacket Packet;
+//TPacket Packet;
 
 uint8_t packet_position = 0;	//Used to mark the position of incoming bytes
 
 const uint8_t PACKET_ACK_MASK = 0x80u; //Used to mask out the Acknowledgment bit
 
-uint8_t TowerNumberLsb = (SID & 0x00FF); 		//LSB of Tower Number
-uint8_t TowerNumberMsb = (SID & 0xFF00) >> 8; 	//MSB of Tower Number
+// uint8_t TowerNumberLsb = (S_ID & 0x00FF); 		//LSB of Tower Number
+// uint8_t TowerNumberMsb = (S_ID & 0xFF00) >> 8; 	//MSB of Tower Number
 
+static uint16union_t volatile *TowerNumber;
+static uint16union_t volatile *TowerMode;
 /****************************************PRIVATE FUNCTION DECLARATION***********************************/
 
 bool PacketTest(void);
+bool DataToFlash(void);
 
 /****************************************PUBLIC FUNCTION DEFINITION***************************************/
 
@@ -58,7 +58,26 @@ bool PacketTest(void);
  */
 bool Packet_Init(const uint32_t baudRate, const uint32_t moduleClk)
 {
-  return UART_Init(baudRate, moduleClk);
+  return (UART_Init(baudRate, moduleClk) && DataToFlash());
+}
+
+bool DataToFlash(void)
+{
+	bool numberAlloc = Flash_AllocateVar((volatile void **) &TowerNumber, sizeof(uint16union_t));
+	bool modeAlloc = Flash_AllocateVar((volatile void **) &TowerMode, sizeof(uint16union_t));
+	if(numberAlloc && modeAlloc)
+	{
+		if(TowerNumber->l == OxFFFF)
+		{
+			Flash_Write16((uint16_t volatile *) TowerNumber, S_ID);
+		}
+		if(TowerMode->l == 0xFFFF)
+		{
+			Flash_Write16((uint16_t volatile *) TowerMode, 0x1);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*! @brief Attempts to get a packet from the received data.
@@ -159,18 +178,15 @@ void Packet_Handle(void)
   //Mask out the Acknowledgment Bit from the Packet Command so that it can be processed
   switch (Packet_Command & ~PACKET_ACK_MASK)
   {
-
 	case GET_STARTUP_VAL:
 	  //Place the Tower Startup packet in the TxFIFO
 	  if (Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3))
 		{
-
 		  //Place the Tower Version packet in the TxFIFO
 		  if (Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN))
 			{
-
 			  //Place the Tower Number packet in the TxFIFO
-			  if (Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, towerNumberLsb, towerNumberMsb))
+			  if (Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi)) //towerNumberLsb, towerNumberMsb))
 				{
 				  error = false;
 				}
@@ -191,21 +207,34 @@ void Packet_Handle(void)
 	  if (Packet_Parameter1 == TOWER_NUMBER_GET)
 		{
 		  //Sub-Command: Get the Tower Number
-
 		  //Place the Tower Number packet in the TxFIFO
-		  if (Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, towerNumberLsb, towerNumberMsb))
+		  if (Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi)) //towerNumberLsb, towerNumberMsb))
 			{
 			  error = false;
 			}
 		} else if (Packet_Parameter1 == TOWER_NUMBER_SET)
 		  {
 			//Sub-Command: Set the Tower Number
-			towerNumberLsb = Packet_Parameter2;
-			towerNumberMsb = Packet_Parameter3;
-			error = false;
+			uint16union_t temp;
+			temp.s.Hi = Packet_Parameter3;
+			temp.s.Lo = Packet_Parameter2;
+			error = !Flash_Write16((uint16_t volatile *) TowerNumber, temp.l)
+
+
+			// OLD IMPLEMENTATION
+			// towerNumberLsb = Packet_Parameter2;
+			// towerNumberMsb = Packet_Parameter3;
 		  }
 	  break;
+	case GET_TOWER_MODE:
 
+	break;
+	case FLASH_PROGRAM_BYTE:
+
+	break;
+	case FLASH_READ_BYTE:
+
+	break;
 	default:
 	  break;
   }

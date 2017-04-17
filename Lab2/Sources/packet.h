@@ -67,6 +67,12 @@ typedef union
 //Get the version of the tower software
 #define GET_VERSION 0x09
 
+#define GET_TOWER_MODE 0xd
+
+#define FLASH_PROGRAM_BYTE 0x7
+
+#define FLASH_READ_BYTE 0x8
+
 //Get or set the tower number
 #define TOWER_NUMBER 0x0B
 
