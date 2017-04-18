@@ -1,31 +1,17 @@
-/* ###################################################################
-**     Filename    : main.c
-**     Project     : Lab2
-**     Processor   : MK70FN1M0VMJ12
-**     Version     : Driver 01.01
-**     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-07-20, 13:27, # CodeGen: 0
-**     Abstract    :
-**         Main module.
-**         This module contains user's application code.
-**     Settings    :
-**     Contents    :
-**         No public methods
-**
-** ###################################################################*/
-/*!
-** @file main.c
-** @version 2.0
-** @brief
-**         Main module.
-**         This module contains user's application code.
-*/         
+/*! @file <LEDs.c>
+ *
+ *@brief Main function
+ *
+ *@author Corey Stidston & Menka Mehta
+ *@date 2017-04-18
+ *
+ */
+
 /*!
 **  @addtogroup main_module main module documentation
 **  @{
-*/         
+*/
 /* MODULE main */
-
 
 // CPU module - contains low level hardware initialization routines
 #include "Cpu.h"
@@ -65,15 +51,6 @@ int main(void)
   	Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
   	Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
   	Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
-  	/*
-		store tower number and tower mode in flash
-
-
-		startup packet
-		special tower version
-		tower number
-		tower mode
-  	*/
   }
 
   for (;;)

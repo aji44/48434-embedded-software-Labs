@@ -1,16 +1,15 @@
 /*! @file <Flash.c>
-**
-**  @brief implements functions to read, write and erase flash
-**
-**  @author Corey Stidston & Menka Mehta
-**  @date 2017-04-18
-*/
+ *
+ * @brief implements functions to read, write and erase flash
+ *
+ * @author Corey Stidston & Menka Mehta
+ * @date 2017-04-18
+ */
 
 /*!
 **  @addtogroup flash_module Flash module documentation
 **  @{
-+*/
-
+*/
 
 #include "types.h"
 #include "Flash.h"
@@ -34,11 +33,10 @@ typedef union
 
 } FCCOB_ADR_t;
 
-//static bool LaunchCommand(TFCCOB* commonCommandObject); //?
 static bool WritePhrase(const uint64_t phrase);
-//static bool ReadPhrase(uint64_t * const phrase);
 static void WaitCCIF(void);
 static void SetCCIF(void);
+static bool ReadPhrase(uint64_t * const phrase);
 
 uint8_t phrase_alloc = 0xFF; //Represents the 8 bytes in flash memory and whether they have been allocated
 
@@ -160,7 +158,11 @@ bool Flash_Write8(volatile uint8_t* const address, const uint8_t data)
   return true;
 }
 
-//P 789 and P806
+//P 789 and Pg806
+
+ /*!@brief Erases flash and then writes phrase
+ *   @return TRUE if success
+ */
 bool WritePhrase(const uint64_t phrase) //const uint32_t address,
 {
   uint8_t *bytes = (uint8_t *) &phrase;
@@ -235,6 +237,9 @@ bool Flash_Erase(void)
   return true; //Later on, need to check error flags
 }
 
+/*! @brief Wait for the CCIF register to be set to 1.
+ * 
+ */
 void WaitCCIF(void)
 {
   //(https://community.nxp.com/thread/329360)
@@ -243,6 +248,9 @@ void WaitCCIF(void)
   //this waits until CCIF register is set to 1
 }
 
+/*! @brief Set CCIF and the wait for it to be set.
+ * Used to start a flash command and wait for it to complete
+ */
 void SetCCIF(void)
 {
   FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
@@ -257,3 +265,7 @@ void SetCCIF(void)
 // completed. If CCIF is zero, the previous command execution is still active, a new
 // command write sequence cannot be started, and all writes to the FCCOB registers are
 // ignored.
+
+/*!
+** @}
+*/

@@ -1,4 +1,4 @@
-/*! @file
+/*! @file <LEDs.h>
  *
  *  @brief Routines to access the LEDs on the TWR-K70F120M.
  *
@@ -6,6 +6,10 @@
  *
  *  @author PMcL
  *  @date 2015-08-15
+ */
+/*!
+ **@addtogroup cmd_module CMD module documentation
+ **@{
  */
 
 #ifndef LEDS_H
@@ -53,3 +57,6 @@ void LEDs_Off(const TLED color);
 void LEDs_Toggle(const TLED color);
 
 #endif
+/*!
+** @}
+*/

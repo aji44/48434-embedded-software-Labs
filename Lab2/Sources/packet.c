@@ -1,23 +1,21 @@
 /*!
- ** @file packet.c
- ** @project Lab1
- ** @version 1.0
- ** @compiler GNU C Compiler
- ** @processor MK70FN1M0VMJ12
- ** @authors
- ** 	   Corey Stidston 98119910
- ** 	   Menka Mehta 12195032
- ** @brief
- **         packet module.
- **         This module contains the code for managing incoming and outgoing packets
- ** @date 29th March 2017
+ * @file <packet.c>
+ *
+ * @brief
+ *         packet module.
+ *         This module contains the code for managing incoming and outgoing packets
+ *
+ *@author Corey Stidston & Menka Mehta
+ * @date 2017-03-29
  */
 /*!
  **  @addtogroup packet_module packet documentation
  **  @{
  */
-/* MODULE packet */
-
+/*!
+**  @addtogroup packet_module Packet module documentation
+**  @{
+*/
 /****************************************HEADER FILES****************************************************/
 #include "packet.h"
 #include "UART.h"
@@ -27,12 +25,6 @@
 #include "Flash.h"
 
 /****************************************GLOBAL VARS*****************************************************/
-//uint8_t Packet_Command, 				/*!< The packet's command */
-//			Packet_Parameter1, 			/*!< The packet's 1st parameter */
-//			Packet_Parameter2, 			/*!< The packet's 2nd parameter */
-//			Packet_Parameter3,		 	/*!< The packet's 3rd parameter */
-//			Packet_Checksum; 			/*!< The packet's checksum */
-
 TPacket Packet;
 
 uint8_t packet_position = 0;	//Used to mark the position of incoming bytes
@@ -301,7 +293,6 @@ bool PacketTest(void)
   return (calculated_checksum == Packet_Checksum);
 }
 
-/* END packet */
 /*!
  ** @}
  */

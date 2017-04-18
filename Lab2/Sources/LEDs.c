@@ -1,9 +1,15 @@
-/*
- * LEDs.c
+/*! @file <LEDs.c>
  *
- *  Created on: 10 Apr 2017
- *      Author: 98119910
+ *@brief implementations of functions which control the LEDs.
+ *
+ *@author Corey Stidston & Menka Mehta
+ *@date 2017-04-18
+ *
  */
+/*!
+**@ addtogroup led _module LEDs module documentation
+**@{
+*/
 
 #include "LEDs.h"
 #include "MK70F12.h"
@@ -61,5 +67,6 @@ void LEDs_Toggle(const TLED colour)
 {
   GPIOA_PTOR |= colour;
 }
-
-
+/*!
+**@}
+*/

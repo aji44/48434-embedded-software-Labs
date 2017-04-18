@@ -1,4 +1,4 @@
-/*! @file
+/*! @file<Flash.h>
  *
  *  @brief Routines for erasing and writing to the Flash.
  *
@@ -7,6 +7,10 @@
  *  @author PMcL
  *  @date 2015-08-07
  */
+/*!
+**  @addtogroup flash_module Flash module documentation
+**  @{
+*/
 
 #ifndef FLASH_H
 #define FLASH_H
@@ -80,6 +84,7 @@ bool Flash_Write8(volatile uint8_t* const address, const uint8_t data);
  */
 bool Flash_Erase(void);
 
-bool ReadPhrase(uint64_t * const phrase);
-
 #endif
+/*!
+** @}
+*/
