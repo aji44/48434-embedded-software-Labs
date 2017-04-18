@@ -1,4 +1,4 @@
-/*! @file <LEDs.h>
+/*! @file
  *
  *  @brief Routines to access the LEDs on the TWR-K70F120M.
  *
@@ -6,10 +6,6 @@
  *
  *  @author PMcL
  *  @date 2015-08-15
- */
- /*!
- **@addtogroup cmd_module CMD module documentation
- **@{
  */
 
 #ifndef LEDS_H
@@ -34,14 +30,14 @@ typedef enum
  *  @return bool - TRUE if the LEDs were successfully initialized.
  */
 bool LEDs_Init(void);
-
+ 
 /*! @brief Turns an LED on.
  *
  *  @param color The color of the LED to turn on.
  *  @note Assumes that LEDs_Init has been called.
  */
 void LEDs_On(const TLED color);
-
+ 
 /*! @brief Turns off an LED.
  *
  *  @param color THe color of the LED to turn off.
@@ -55,9 +51,5 @@ void LEDs_Off(const TLED color);
  *  @note Assumes that LEDs_Init has been called.
  */
 void LEDs_Toggle(const TLED color);
-
-/*!
-** @}
-*/
 
 #endif

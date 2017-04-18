@@ -1,19 +1,20 @@
 /*! @file <Flash.c>
- *
- *@brief implements functions to read, write and erase flash
- *
- *@author Corey Stidston & Menka Mehta
- *@date 2017-04-18
- */
- /*!
+**
+**  @brief implements functions to read, write and erase flash
+**
+**  @author Corey Stidston & Menka Mehta
+**  @date 2017-04-18
+*/
+
+/*!
 **  @addtogroup flash_module Flash module documentation
 **  @{
-*/
++*/
+
 
 #include "types.h"
 #include "Flash.h"
 #include "MK70F12.h"
-
 #include <string.h>
 
 #define FCMD_ERASE_SEC 0x09LU
@@ -39,8 +40,7 @@ static bool WritePhrase(const uint64_t phrase);
 static void WaitCCIF(void);
 static void SetCCIF(void);
 
-uint8_t phrase_alloc = 0xFF;
-//Represents the 8 bytes in flash memory and whether they have been allocated
+uint8_t phrase_alloc = 0xFF; //Represents the 8 bytes in flash memory and whether they have been allocated
 
 /*! @brief Enables the Flash module.
  *
@@ -48,8 +48,7 @@ uint8_t phrase_alloc = 0xFF;
  */
 bool Flash_Init(void)
 {
-  	/* !Initialize the Flash Clock  */
-  SIM_SCGC3 |= SIM_SCGC3_NFC_MASK;
+  SIM_SCGC3 |= SIM_SCGC3_NFC_MASK;  	/* !Initialize the Flash Clock  */
   WaitCCIF();
   return true;
 }
@@ -161,10 +160,7 @@ bool Flash_Write8(volatile uint8_t* const address, const uint8_t data)
   return true;
 }
 
-//P 789 and Pg806
- /*!@brief Erases flash and then writes phrase
- *   @return TRUE if success
- */
+//P 789 and P806
 bool WritePhrase(const uint64_t phrase) //const uint32_t address,
 {
   uint8_t *bytes = (uint8_t *) &phrase;
@@ -200,7 +196,7 @@ bool WritePhrase(const uint64_t phrase) //const uint32_t address,
 }
 
 /*! @brief Reads the phrase starting from FLASH_DATA_START
- *
+ *	
  *	@param returns pointer to phrase
  *  @return bool - TRUE if the the phrase was read
  *  @note Assumes Flash has been initialized.
@@ -233,14 +229,12 @@ bool Flash_Erase(void)
   SetCCIF();
   WaitCCIF();
 
-  // Errors pg 783/784 K70 manual
-  //Later on, need to check error flags
-  return true;
+  // // Only do this if you want the allocation to clear too.
+  // //	memset(allocationMap, 0, FLASH_DATA_SIZE);
+  // return HandleErrorRegisters(); pg 783/784 K70 manual
+  return true; //Later on, need to check error flags
 }
 
-/* @brief Wait for the CCIF register to be set to 1.
- *
- */
 void WaitCCIF(void)
 {
   //(https://community.nxp.com/thread/329360)
@@ -249,23 +243,17 @@ void WaitCCIF(void)
   //this waits until CCIF register is set to 1
 }
 
-/*! @brief Set CCIF and the wait for it to be set.
- * Used to start a flash command and wait for it to complete
- *
- */
 void SetCCIF(void)
 {
   FTFE_FSTAT |= FTFE_FSTAT_CCIF_MASK;
 }
+
 //All required FCCOBx registers are written, so launch the command
-//  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;This line is occurred ACCERR.
+// This line is occurred ACCERR.
+//  FTFE_FSTAT = FTFE_FSTAT_CCIF_MASK;
 /*pg 807 K70 Manual*/
 // Before launching a command, the ACCERR and FPVIOL bits in the FSTAT register
 // must be zero and the CCIF flag must read 1 to verify that any previous command has
 // completed. If CCIF is zero, the previous command execution is still active, a new
 // command write sequence cannot be started, and all writes to the FCCOB registers are
 // ignored.
-
-/*!
-** @}
-*/

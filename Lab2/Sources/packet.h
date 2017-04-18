@@ -1,4 +1,4 @@
-/*! @file<packet.h>
+/*! @file
  *
  *  @brief Routines to implement packet encoding and decoding for the serial port.
  *
@@ -7,10 +7,7 @@
  *  @author PMcL
  *  @date 2015-07-23
  */
- /*!
- **  @addtogroup packet_module Packet module documentation
- **  @{
- */
+
 #ifndef PACKET_H
 #define PACKET_H
 
@@ -72,6 +69,10 @@ typedef union
 
 #define GET_TOWER_MODE 0xd
 
+#define TOWER_MODE_GET 1
+
+#define TOWER_MODE_SET 2
+
 #define FLASH_PROGRAM_BYTE 0x7
 
 #define FLASH_READ_BYTE 0x8
@@ -86,7 +87,7 @@ typedef union
 #define TOWER_NUMBER_SET 2
 
 //Least significant byte of Student ID
-#define SID 0x13A8
+#define S_ID 0x13A8
 
 /*************************************************TOWER TO PC COMMANDS*************************************************/
 
@@ -110,12 +111,18 @@ typedef union
 #define TOWER_NUMBER_COMM 0x0B
 #define TOWER_NUMBER_PAR1 1
 
+#define TOWER_MODE_COMM 0x0d
+#define TOWER_MODE_PAR1 0x01
+
+#define TOWER_READ_BYTE_COMM 0x08
+
 extern TPacket Packet;
 
 // Acknowledgment bit mask
 extern const uint8_t PACKET_ACK_MASK;
 
-extern uint8_t towerNumberLsb, towerNumberMsb;
+//extern uint8_t towerNumberLsb, towerNumberMsb;
+extern uint16union_t volatile *TowerNumber, *TowerMode;
 
 /*! @brief Initializes the packets by calling the initialization routines of the supporting software modules.
  *
@@ -142,7 +149,4 @@ bool Packet_Put(const uint8_t command, const uint8_t parameter1, const uint8_t p
  *  @return void
  */
 void Packet_Handle(void);
-/*!
- ** @}
- */
 #endif

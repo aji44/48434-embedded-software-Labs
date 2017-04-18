@@ -1,10 +1,11 @@
-/*! @file<FIF0.c>
- *
- *  @brief FIFO buffer function implementations
- *
- *  @author Corey Stidston and Menka Mehta
- *  @date 2017-04-18
- */
+/**! @file<FIF0.c>
+**
+**  @brief FIFO buffer function implementations
+**
+**  @author Corey Stidston and Menka Mehta
+**  @date 2017-04-18
+*/
+
 /*!
 **  @addtogroup fifo_module FIFO module documentation
 **  @{
@@ -70,8 +71,6 @@ bool FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr)
 	}
 	return false;
 }
-
-/* END FIFO */
 /*!
  ** @}
  */
