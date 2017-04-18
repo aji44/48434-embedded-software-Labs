@@ -1,11 +1,17 @@
-/*
- * LEDs.c
+/*! @file <LEDs.c>
  *
- *  Created on: 10 Apr 2017
- *      Author: 98119910
+ *@brief implementations of functions which control the LEDs.
+ *
+ *@author Corey Stidston & Menka Mehta
+ *@date 2017-04-18
+ *
  */
-
+/*!
+**@ addtogroup led _module LEDs module documentation
+**@{
+*/
 #include "LEDs.h"
+
 #include "MK70F12.h"
 
 /*! @brief Sets up the LEDs before first use.
@@ -14,7 +20,7 @@
  */
 bool LEDs_Init(void)
 {
-  SIM_SCGC5 |= SIM_SCGC5_PORTA_MASK;
+  SIM_SCGC5 |= SIM_SCGC5_PORTA_MASK; //turn on: PORTA
 
   GPIOA_PSOR |= (LED_ORANGE | LED_YELLOW | LED_GREEN | LED_BLUE);
 
@@ -61,5 +67,6 @@ void LEDs_Toggle(const TLED colour)
 {
   GPIOA_PTOR |= colour;
 }
-
-
+/*!
+**@}
+*/

@@ -1,38 +1,14 @@
-/* ###################################################################
- **     Filename    : FIFO.c
- **     Project     : Lab1
- **     Processor   : MK70FN1M0VMJ12
- **     Version     : Driver 01.01
- **     Compiler    : GNU C Compiler
- **     Date/Time   : 2015-07-20, 13:27, # CodeGen: 0
- **     Abstract    :
- **         FIFO module.
- **         This module contains the code for the First in First Out
- **         Circular queue.
- **     Settings    :
- **     Contents    :
- **         No public methods
- **
- ** ###################################################################*/
-/*!
- ** @file fifo.c
- ** @project Lab1
- ** @version 1.0
- ** @compiler GNU C Compiler
- ** @processor MK70FN1M0VMJ12
- ** @authors
- ** 	   Corey Stidston 98119910
- ** 	   Menka Mehta 12195032
- ** @brief
- **         FIFO module.
- **         This module contains the code for the First in First Out
- ** @date 29th March 2017
+/*! @file<FIF0.c>
+ *
+ *  @brief FIFO buffer function implementations
+ *
+ *  @author Corey Stidston and Menka Mehta
+ *  @date 2017-04-18
  */
 /*!
- **  @addtogroup FIFO_module fifo documentation
- **  @{
- */
-/* MODULE FIFO */
+**  @addtogroup fifo_module FIFO module documentation
+**  @{
+*/
 
 /****************************************HEADER FILES****************************************************/
 #include "FIFO.h"
@@ -99,4 +75,3 @@ bool FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr)
 /*!
  ** @}
  */
-

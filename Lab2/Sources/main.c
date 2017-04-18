@@ -19,11 +19,11 @@
 ** @brief
 **         Main module.
 **         This module contains user's application code.
-*/         
+*/
 /*!
 **  @addtogroup main_module main module documentation
 **  @{
-*/         
+*/
 /* MODULE main */
 
 
@@ -34,6 +34,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+
 #include "Flash.h"
 #include "LEDs.h"
 #include "packet.h"
@@ -60,9 +61,6 @@ int main(void)
   	const TLED colour = LED_ORANGE;
   	LEDs_On(colour);
   	/*
-		store tower number and tower mode in flash
-
-
 		startup packet
 		special tower version
 		tower number
