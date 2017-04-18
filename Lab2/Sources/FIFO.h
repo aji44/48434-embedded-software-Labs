@@ -1,4 +1,4 @@
-/*! @file
+/*! @file<FIFO.h>
  *
  *  @brief Routines to implement a FIFO buffer.
  *
@@ -6,6 +6,10 @@
  *
  *  @author PMcL
  *  @date 2015-07-23
+ */
+/*!
+ * @addtogroup fifo_module documentation
+ * @{
  */
 
 #ifndef FIFO_H
@@ -52,5 +56,9 @@ bool FIFO_Put(TFIFO * const FIFO, const uint8_t data);
  *  @note Assumes that FIFO_Init has been called.
  */
 bool FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr);
+
+/*!
+ * @}
+ */
 
 #endif

@@ -1,27 +1,15 @@
-/*
- * UART.c
+/*! @file<UART.c>
  *
- *  Created on: 22 Mar 2017
- *      Author: 98119910
+ *  @brief I/O routines for UART communications on the TWR-K70F120M.
+ *
+ *  This contains the functions for operating the UART (serial port).
+ *
+ *  @author Corey Stidston & Menka Mehta
+ *  @date 2017-04-18
  */
 /*!
- ** @file UART.c
- ** @project Lab1
- ** @version 1.0
- ** @compiler GNU C Compiler
- ** @processor MK70FN1M0VMJ12
- ** @authors
- ** 	   Corey Stidston 98119910
- ** 	   Menka Mehta 12195032
- ** @brief
- **         UART module.
- **         This module contains the code for communication between
- **         the PC and Tower.
- ** @date 29th March 2017
- */
-/*!
- **  @addtogroup UART_module packet documentation
- **  @{
+ * @addtogroup UART_module packet documentation
+ * @{
  */
 /* MODULE UART */
 
@@ -122,7 +110,7 @@ void UART_Poll(void)
 	}
 }
 
-/* END UART */
+
 /*!
- ** @}
+ * @}
  */

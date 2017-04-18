@@ -1,4 +1,4 @@
-/*! @file
+/*! @file<UART.h>
  *
  *  @brief I/O routines for UART communications on the TWR-K70F120M.
  *
@@ -7,7 +7,11 @@
  *  @author PMcL
  *  @date 2015-07-23
  */
-
+/*!
+ * @addtogroup UART_module packet documentation
+ * @{
+ */
+//MODULE UART
 #ifndef UART_H
 #define UART_H
 
@@ -21,7 +25,7 @@
  *  @return bool - TRUE if the UART was successfully initialized.
  */
 bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk);
- 
+
 /*! @brief Get a character from the receive FIFO if it is not empty.
  *
  *  @param dataPtr A pointer to memory to store the retrieved byte.
@@ -29,7 +33,7 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk);
  *  @note Assumes that UART_Init has been called.
  */
 bool UART_InChar(uint8_t * const dataPtr);
- 
+
 /*! @brief Put a byte in the transmit FIFO if it is not full.
  *
  *  @param data The byte to be placed in the transmit FIFO.
@@ -44,5 +48,10 @@ bool UART_OutChar(const uint8_t data);
  *  @note Assumes that UART_Init has been called.
  */
 void UART_Poll(void);
+
+
+/*!
+ * @}
+ */
 
 #endif

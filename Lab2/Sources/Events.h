@@ -21,8 +21,8 @@
 **         Put your event handler code here.
 */         
 /*!
-**  @addtogroup Events_module Events module documentation
-**  @{
+*  @addtogroup Events_module Events module documentation
+*  @{
 */         
 
 #ifndef __Events_H
@@ -46,9 +46,10 @@ extern "C" {
 #endif 
 
 #endif 
-/* ifndef __Events_H*/
+//ifndef __Events_H
+
 /*!
-** @}
+* @}
 */
 /*
 ** ###################################################################

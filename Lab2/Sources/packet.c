@@ -1,22 +1,17 @@
 /*!
- ** @file packet.c
- ** @project Lab1
- ** @version 1.0
- ** @compiler GNU C Compiler
- ** @processor MK70FN1M0VMJ12
- ** @authors
- ** 	   Corey Stidston 98119910
- ** 	   Menka Mehta 12195032
- ** @brief
- **         packet module.
- **         This module contains the code for managing incoming and outgoing packets
- ** @date 29th March 2017
+ * @file <packet.c>
+ *
+ * @brief
+ *         packet module.
+ *         This module contains the code for managing incoming and outgoing packets
+ *
+ *@author Corey Stidston & Menka Mehta
+ * @date 2017-03-29
  */
 /*!
- **  @addtogroup packet_module packet documentation
- **  @{
+ * @addtogroup packet_module packet documentation
+ * @{
  */
-/* MODULE packet */
 
 /****************************************HEADER FILES****************************************************/
 #include "packet.h"
@@ -66,6 +61,10 @@ bool Packet_Init(const uint32_t baudRate, const uint32_t moduleClk)
   return (UART_Init(baudRate, moduleClk) && DataToFlash());
 }
 
+/*! @brief send datatoFlash
+ *
+ *  
+ */
 bool DataToFlash(void)
 {
 	bool numberAlloc = Flash_AllocateVar((volatile void **) &TowerNumber, sizeof(uint16union_t));
@@ -294,7 +293,7 @@ bool PacketTest(void)
   return (calculated_checksum == Packet_Checksum);
 }
 
-/* END packet */
+
 /*!
- ** @}
+ * @}
  */

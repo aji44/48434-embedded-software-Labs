@@ -1,4 +1,4 @@
-/*! @file
+/*! @file<Flash.h>
  *
  *  @brief Routines for erasing and writing to the Flash.
  *
@@ -6,6 +6,9 @@
  *
  *  @author PMcL
  *  @date 2015-08-07
+ */
+/*!
+ * @addtogroup flash_module Flash module documentation
  */
 
 #ifndef FLASH_H
@@ -30,7 +33,7 @@
  *  @return bool - TRUE if the Flash was setup successfully.
  */
 bool Flash_Init(void);
- 
+
 /*! @brief Allocates space for a non-volatile variable in the Flash memory.
  *
  *  @param variable is the address of a pointer to a variable that is to be allocated space in Flash memory.
@@ -54,7 +57,7 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size);
  *  @note Assumes Flash has been initialized.
  */
 bool Flash_Write32(volatile uint32_t* const address, const uint32_t data);
- 
+
 /*! @brief Writes a 16-bit number to Flash.
  *
  *  @param address The address of the data.
@@ -81,5 +84,9 @@ bool Flash_Write8(volatile uint8_t* const address, const uint8_t data);
 bool Flash_Erase(void);
 
 bool ReadPhrase(uint64_t * const phrase);
+
+/*!
+ *  @}
+ */
 
 #endif
