@@ -7,10 +7,6 @@
  *  @author PMcL
  *  @date 2015-07-23
  */
-/*!
- **  @addtogroup UART_module packet documentation
- **  @{
- */
 
 #ifndef UART_H
 #define UART_H
@@ -50,6 +46,3 @@ bool UART_OutChar(const uint8_t data);
 void UART_Poll(void);
 
 #endif
-/*!
- ** @}
- */

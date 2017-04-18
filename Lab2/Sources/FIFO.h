@@ -7,10 +7,6 @@
  *  @author PMcL
  *  @date 2015-07-23
  */
-/*!
- **  @addtogroup FIFO_module fifo documentation
- **  @{
- */
 
 #ifndef FIFO_H
 #define FIFO_H

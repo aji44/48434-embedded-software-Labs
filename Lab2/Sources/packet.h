@@ -1,4 +1,4 @@
-/*! @file<packet.h>
+/*! @file
  *
  *  @brief Routines to implement packet encoding and decoding for the serial port.
  *
@@ -6,10 +6,6 @@
  *
  *  @author PMcL
  *  @date 2015-07-23
- */
- /*!
- **  @addtogroup packet_module Packet module documentation
- **  @{
  */
 
 #ifndef PACKET_H
@@ -153,8 +149,4 @@ bool Packet_Put(const uint8_t command, const uint8_t parameter1, const uint8_t p
  *  @return void
  */
 void Packet_Handle(void);
-
 #endif
-/*!
- ** @}
- */

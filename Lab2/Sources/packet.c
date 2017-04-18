@@ -1,21 +1,23 @@
 /*!
- * @file <packet.c>
- *
- * @brief
- *         packet module.
- *         This module contains the code for managing incoming and outgoing packets
- *
- *@author Corey Stidston & Menka Mehta
- * @date 2017-03-29
+ ** @file packet.c
+ ** @project Lab1
+ ** @version 1.0
+ ** @compiler GNU C Compiler
+ ** @processor MK70FN1M0VMJ12
+ ** @authors
+ ** 	   Corey Stidston 98119910
+ ** 	   Menka Mehta 12195032
+ ** @brief
+ **         packet module.
+ **         This module contains the code for managing incoming and outgoing packets
+ ** @date 29th March 2017
  */
 /*!
  **  @addtogroup packet_module packet documentation
  **  @{
  */
-/*!
-**  @addtogroup packet_module Packet module documentation
-**  @{
-*/
+/* MODULE packet */
+
 /****************************************HEADER FILES****************************************************/
 #include "packet.h"
 #include "UART.h"
@@ -25,6 +27,12 @@
 #include "Flash.h"
 
 /****************************************GLOBAL VARS*****************************************************/
+//uint8_t Packet_Command, 				/*!< The packet's command */
+//			Packet_Parameter1, 			/*!< The packet's 1st parameter */
+//			Packet_Parameter2, 			/*!< The packet's 2nd parameter */
+//			Packet_Parameter3,		 	/*!< The packet's 3rd parameter */
+//			Packet_Checksum; 			/*!< The packet's checksum */
+
 TPacket Packet;
 
 uint8_t packet_position = 0;	//Used to mark the position of incoming bytes
@@ -192,10 +200,6 @@ void Packet_Handle(void)
 
 	case GET_VERSION:
 	  //Place the Tower Version packet in the TxFIFO
-	 //  if (Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN))
-		// {
-		//   error = false;
-		// }
 		error = !Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
 	  break;
 
@@ -236,9 +240,6 @@ void Packet_Handle(void)
 			uint8_t *tempAdr = (uint8_t *)(FLASH_DATA_START + Packet_Parameter1);
 			error = !Flash_Write8((uint8_t volatile *) tempAdr, Packet_Parameter3);
 		}
-//		uint64_t newPhrase;
-//		ReadPhrase(&newPhrase);
-
 	break;
 	case FLASH_READ_BYTE:
 		if (Packet_Parameter1 < 0 || Packet_Parameter1 > 7) error = true;
@@ -293,6 +294,7 @@ bool PacketTest(void)
   return (calculated_checksum == Packet_Checksum);
 }
 
+/* END packet */
 /*!
  ** @}
  */
