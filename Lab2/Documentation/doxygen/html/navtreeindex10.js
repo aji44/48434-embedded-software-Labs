@@ -1,5 +1,6 @@
 var NAVTREEINDEX10 =
 {
+"group___c_m_p___register___masks.html#gacfd8aec2de81865d8f5fc0f06d17ba08":[4,0,2,0,0,2252],
 "group___c_m_p___register___masks.html#gad74d8206afe9b7ad009b0a7ac2bbf1cf":[4,0,2,0,0,2266],
 "group___c_m_p___register___masks.html#gad9cbe394311ddbb43945fcdade409c9e":[4,0,2,0,0,2230],
 "group___c_m_p___register___masks.html#gae2f01a26dfcb880ec6dcca859629c743":[4,0,2,0,0,2267],
@@ -248,6 +249,5 @@ var NAVTREEINDEX10 =
 "group___cpu__module.html#ga4fcc1df1d7918b17e6f8af2228b9a1c4":[4,0,0,1,19],
 "group___cpu__module.html#ga532954dc988486bfe48200c796380120":[4,0,0,1,0],
 "group___cpu__module.html#ga5bf3022570d9bb7a0d666f2dd9db6a34":[4,0,0,1,10],
-"group___cpu__module.html#ga64b9007ea0c78e588ed565373bcec805":[4,0,0,1,6],
-"group___cpu__module.html#ga6fe0b841d40421ee48af4a4e01e48ddf":[4,0,0,1,7]
+"group___cpu__module.html#ga64b9007ea0c78e588ed565373bcec805":[4,0,0,1,6]
 };

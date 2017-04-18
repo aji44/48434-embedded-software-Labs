@@ -1,4 +1,4 @@
-/*! @file<FIFO.h>
+/*! @file
  *
  *  @brief Routines to implement a FIFO buffer.
  *
@@ -8,7 +8,7 @@
  *  @date 2015-07-23
  */
 /*!
- * @addtogroup fifo_module documentation
+ * @addtogroup fifo_module FIFO module documentation
  * @{
  */
 

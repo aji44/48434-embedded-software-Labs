@@ -1,4 +1,4 @@
-/*! @file<LEDs.c>
+/*! @file
  *
  * @brief implementations of functions which control the LEDs.
  *
@@ -9,10 +9,12 @@
 /*!
  * @ addtogroup led _module LEDs module documentation
  * @{
-*/
+ */
+/****************************************HEADER FILES****************************************************/
 #include "LEDs.h"
 #include "MK70F12.h"
 
+/****************************************PUBLIC FUNCTION DEFINITION***************************************/
 /*! @brief Sets up the LEDs before first use.
  *
  *  @return bool - TRUE if the LEDs were successfully initialized.
@@ -42,19 +44,19 @@ bool LEDs_Init(void)
  *  @param color The color of the LED to turn on.
  *  @note Assumes that LEDs_Init has been called.
  */
-void LEDs_On(const TLED colour)
+void LEDs_On(const TLED color)
 {
-  GPIOA_PCOR |= colour;
+  GPIOA_PCOR |= color;
 }
 
 /*! @brief Turns off an LED.
  *
- *  @param color THe color of the LED to turn off.
+ *  @param color The color of the LED to turn off.
  *  @note Assumes that LEDs_Init has been called.
  */
-void LEDs_Off(const TLED colour)
+void LEDs_Off(const TLED color)
 {
-  GPIOA_PSOR |= colour;
+  GPIOA_PSOR |= color;
 }
 
 /*! @brief Toggles an LED.
@@ -62,10 +64,10 @@ void LEDs_Off(const TLED colour)
  *  @param color THe color of the LED to toggle.
  *  @note Assumes that LEDs_Init has been called.
  */
-void LEDs_Toggle(const TLED colour)
+void LEDs_Toggle(const TLED color)
 {
-  GPIOA_PTOR |= colour;
+  GPIOA_PTOR |= color;
 }
 /*!
  * @}
-*/
+ */

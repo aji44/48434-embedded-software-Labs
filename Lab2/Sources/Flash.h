@@ -1,4 +1,4 @@
-/*! @file<Flash.h>
+/*! @file
  *
  *  @brief Routines for erasing and writing to the Flash.
  *
@@ -27,6 +27,8 @@
 #define FLASH_DATA_START 0x00080000LU
 // Address of the end of the Flash block we are using for data storage
 #define FLASH_DATA_END   0x00080007LU
+
+/*************************************************PUBLIC FUNCTION DECLARATION*************************************************/
 
 /*! @brief Enables the Flash module.
  *

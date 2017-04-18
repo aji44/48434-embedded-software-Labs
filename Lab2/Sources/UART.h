@@ -1,4 +1,4 @@
-/*! @file<UART.h>
+/*! @file
  *
  *  @brief I/O routines for UART communications on the TWR-K70F120M.
  *
@@ -17,6 +17,8 @@
 
 // new types
 #include "types.h"
+
+/*************************************************PUBLIC FUNCTION DECLARATION*************************************************/
 
 /*! @brief Sets up the UART interface before first use.
  *

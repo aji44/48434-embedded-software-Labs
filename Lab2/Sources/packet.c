@@ -22,11 +22,6 @@
 #include "Flash.h"
 
 /****************************************GLOBAL VARS*****************************************************/
-//uint8_t Packet_Command, 				/*!< The packet's command */
-//			Packet_Parameter1, 			/*!< The packet's 1st parameter */
-//			Packet_Parameter2, 			/*!< The packet's 2nd parameter */
-//			Packet_Parameter3,		 	/*!< The packet's 3rd parameter */
-//			Packet_Checksum; 			/*!< The packet's checksum */
 
 TPacket Packet;
 
@@ -34,14 +29,8 @@ uint8_t packet_position = 0;	//Used to mark the position of incoming bytes
 
 const uint8_t PACKET_ACK_MASK = 0x80u; //Used to mask out the Acknowledgment bit
 
-// uint8_t TowerNumberLsb = (S_ID & 0x00FF); 		//LSB of Tower Number
-// uint8_t TowerNumberMsb = (S_ID & 0xFF00) >> 8; 	//MSB of Tower Number
-
 uint16union_t volatile *TowerNumber;
 uint16union_t volatile *TowerMode;
-
-//static uint16union_t volatile *TowerNumber;
-//static uint16union_t volatile *TowerMode;
 
 /****************************************PRIVATE FUNCTION DECLARATION***********************************/
 
@@ -63,25 +52,25 @@ bool Packet_Init(const uint32_t baudRate, const uint32_t moduleClk)
 
 /*! @brief send datatoFlash
  *
- *  
+ *  @return bool - TRUE if the data was saved to flash
  */
 bool DataToFlash(void)
 {
-	bool numberAlloc = Flash_AllocateVar((volatile void **) &TowerNumber, sizeof(uint16union_t));
-	bool modeAlloc = Flash_AllocateVar((volatile void **) &TowerMode, sizeof(uint16union_t));
-	if(numberAlloc && modeAlloc)
+  bool numberAlloc = Flash_AllocateVar((volatile void **) &TowerNumber, sizeof(uint16union_t));
+  bool modeAlloc = Flash_AllocateVar((volatile void **) &TowerMode, sizeof(uint16union_t));
+  if(numberAlloc && modeAlloc)
 	{
-		if(TowerNumber->l == 0xFFFF)
+	  if(TowerNumber->l == 0xFFFF) //If un-programmed
 		{
-			Flash_Write16((uint16_t volatile *) TowerNumber, S_ID);
+		  Flash_Write16((uint16_t volatile *) TowerNumber, S_ID);
 		}
-		if(TowerMode->l == 0xFFFF)
+	  if(TowerMode->l == 0xFFFF)	//If un-programmed
 		{
-			Flash_Write16((uint16_t volatile *) TowerMode, 0x1);
+		  Flash_Write16((uint16_t volatile *) TowerMode, 0x1);
 		}
-		return true;
+	  return true;
 	}
-	return false;
+  return false;
 }
 
 /*! @brief Attempts to get a packet from the received data.
@@ -199,7 +188,7 @@ void Packet_Handle(void)
 
 	case GET_VERSION:
 	  //Place the Tower Version packet in the TxFIFO
-		error = !Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
+	  error = !Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
 	  break;
 
 	case TOWER_NUMBER:
@@ -220,45 +209,50 @@ void Packet_Handle(void)
 		  }
 	  break;
 	case GET_TOWER_MODE:
-		if (Packet_Parameter1 == TOWER_MODE_GET)
+	  if (Packet_Parameter1 == TOWER_MODE_GET)
 		{
-			error = !Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
+		  //Sub-Command: Get Tower Mode
+		  error = !Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
 		}
-		else if (Packet_Parameter1 == TOWER_MODE_SET)
+	  else if (Packet_Parameter1 == TOWER_MODE_SET)
 		{
-			uint16union_t temp;
-			temp.s.Hi = Packet_Parameter3;
-			temp.s.Lo = Packet_Parameter2;
-			error = !Flash_Write16((uint16_t volatile *) TowerMode, temp.l);
+		  //Sub-Command: Set Tower Mode (In flash)
+		  uint16union_t temp;
+		  temp.s.Hi = Packet_Parameter3;
+		  temp.s.Lo = Packet_Parameter2;
+		  error = !Flash_Write16((uint16_t volatile *) TowerMode, temp.l);
 		}
-	break;
+	  break;
 	case FLASH_PROGRAM_BYTE:
-		if(Packet_Parameter1 > 8) error = true;
-		if(Packet_Parameter1 == 8) error = !Flash_Erase();
-		else {
-			uint8_t *tempAdr = (uint8_t *)(FLASH_DATA_START + Packet_Parameter1);
-			error = !Flash_Write8((uint8_t volatile *) tempAdr, Packet_Parameter3);
-		}
-	break;
+	  //if 8, erase flash, if >8, this is an error, < 8 refers to offset address in memory
+	  if(Packet_Parameter1 > 8) error = true;
+	  if(Packet_Parameter1 == 8) error = !Flash_Erase();
+	  else {
+		  uint8_t *tempAdr = (uint8_t *)(FLASH_DATA_START + Packet_Parameter1);
+		  error = !Flash_Write8((uint8_t volatile *) tempAdr, Packet_Parameter3);
+	  }
+	  break;
 	case FLASH_READ_BYTE:
-		if (Packet_Parameter1 < 0 || Packet_Parameter1 > 7) error = true;
-		else{
-			uint8_t * const byte;
-			*byte = _FB(FLASH_DATA_START + Packet_Parameter1);
-			error = !Packet_Put(TOWER_READ_BYTE_COMM, Packet_Parameter1, 0x0, *byte);
-		}
-	break;
+	  //check that the address is within boundaries
+	  if (Packet_Parameter1 < 0 || Packet_Parameter1 > 7) error = true;
+	  else{
+		  //Access single byte of flash data
+		  uint8_t * const byte;
+		  *byte = _FB(FLASH_DATA_START + Packet_Parameter1);
+		  error = !Packet_Put(TOWER_READ_BYTE_COMM, Packet_Parameter1, 0x0, *byte);
+	  }
+	  break;
 	default:
 	  break;
   }
 
+  //Yellow LED indicates Error in sending packet
   if(error)
-  {
-  	//const TLED colour = LED_YELLOW;
-  	LEDs_On(LED_YELLOW);
-  } else {
-  	LEDs_Off(LED_YELLOW);
-  }
+	{
+	  LEDs_On(LED_YELLOW);
+	} else {
+		LEDs_Off(LED_YELLOW);
+	}
 
   //Check whether the Acknowledgment bit is set
   if (Packet_Command & PACKET_ACK_MASK)

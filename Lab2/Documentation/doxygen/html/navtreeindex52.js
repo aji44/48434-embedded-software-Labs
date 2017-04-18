@@ -1,5 +1,6 @@
 var NAVTREEINDEX52 =
 {
+"group___p_o_r_t___register___accessor___macros.html#ga8009a31443788f9fde5a55f634d42abf":[4,0,2,0,0,9582],
 "group___p_o_r_t___register___accessor___macros.html#ga81100c07fadcc7effe722b3063af5971":[4,0,2,0,0,9679],
 "group___p_o_r_t___register___accessor___macros.html#ga81417de647aba0f85d6e0b003b81ec19":[4,0,2,0,0,9793],
 "group___p_o_r_t___register___accessor___macros.html#ga81a5d66a560dc54bb4c2b5b5a5251dfd":[4,0,2,0,0,9567],
@@ -174,8 +175,8 @@ var NAVTREEINDEX52 =
 "group___r_c_m___peripheral.html":[2,12,43],
 "group___r_c_m___peripheral.html#ga25ab3aa8d593d455ed36a52c77f88234":[2,12,43,3],
 "group___r_c_m___peripheral.html#ga25ab3aa8d593d455ed36a52c77f88234":[4,0,2,0,0,9803],
-"group___r_c_m___peripheral.html#ga787b1c58d947f0b81c2502227dd0396b":[2,12,43,5],
 "group___r_c_m___peripheral.html#ga787b1c58d947f0b81c2502227dd0396b":[4,0,2,0,0,13309],
+"group___r_c_m___peripheral.html#ga787b1c58d947f0b81c2502227dd0396b":[2,12,43,5],
 "group___r_c_m___peripheral.html#gad8549fec4a09b0b485983beadfc3a5fb":[2,12,43,4],
 "group___r_c_m___peripheral.html#gad8549fec4a09b0b485983beadfc3a5fb":[4,0,2,0,0,9804],
 "group___r_c_m___register___accessor___macros.html":[2,12,43,0],
@@ -227,8 +228,8 @@ var NAVTREEINDEX52 =
 "group___r_f_s_y_s___peripheral.html":[2,12,44],
 "group___r_f_s_y_s___peripheral.html#ga2dab66eae1abcaf22879dbce661ea2fa":[2,12,44,3],
 "group___r_f_s_y_s___peripheral.html#ga2dab66eae1abcaf22879dbce661ea2fa":[4,0,2,0,0,9849],
-"group___r_f_s_y_s___peripheral.html#ga59f6caa8732744ac3a9f91828ec2daa1":[4,0,2,0,0,9850],
 "group___r_f_s_y_s___peripheral.html#ga59f6caa8732744ac3a9f91828ec2daa1":[2,12,44,4],
+"group___r_f_s_y_s___peripheral.html#ga59f6caa8732744ac3a9f91828ec2daa1":[4,0,2,0,0,9850],
 "group___r_f_s_y_s___peripheral.html#gaea9e2f6aeeb4976615e3c3dd87acff9e":[4,0,2,0,0,13310],
 "group___r_f_s_y_s___peripheral.html#gaea9e2f6aeeb4976615e3c3dd87acff9e":[2,12,44,5],
 "group___r_f_s_y_s___register___accessor___macros.html":[2,12,44,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX52 =
 "group___r_f_s_y_s___register___masks.html#ga2fe64579aaef18ce266e3d6c316d3241":[4,0,2,0,0,9870],
 "group___r_f_s_y_s___register___masks.html#ga605e2a9b11854ce01ce33ab06ee481ab":[4,0,2,0,0,9869],
 "group___r_f_s_y_s___register___masks.html#ga7d696d8c5f250e7f2a9f11607bbc8506":[4,0,2,0,0,9860],
-"group___r_f_s_y_s___register___masks.html#ga9e5f30d82693f4f97b51b6459c3dc590":[4,0,2,0,0,9866],
-"group___r_f_s_y_s___register___masks.html#ga9f8ddcb45324c34fd2d19417b8b13d11":[4,0,2,0,0,9867]
+"group___r_f_s_y_s___register___masks.html#ga9e5f30d82693f4f97b51b6459c3dc590":[4,0,2,0,0,9866]
 };

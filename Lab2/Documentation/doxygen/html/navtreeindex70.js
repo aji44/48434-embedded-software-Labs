@@ -1,5 +1,9 @@
 var NAVTREEINDEX70 =
 {
+"struct_e_w_m___mem_map.html#aa9c25d4775f785d6911e096a226f4e40":[2,12,18,2,3],
+"struct_e_w_m___mem_map.html#ada0221f7554297f23a0257f54f28f5fc":[2,12,18,2,1],
+"struct_f_b___mem_map.html":[2,12,19,2],
+"struct_f_b___mem_map.html#a02c1e1542339e83d168a52e763f60228":[2,12,19,2,3],
 "struct_f_b___mem_map.html#a7876f1f5e2d0718968b09242af73b600":[2,12,19,2,4],
 "struct_f_b___mem_map.html#a7a1e48a5fde6382a076243009f5c0846":[2,12,19,2,2],
 "struct_f_b___mem_map.html#aa59ea1aff2f195dc7d41ef8611884381":[2,12,19,2,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX70 =
 "struct_l_d_d___d_m_a___t_transfer_descriptor.html#a3bddfb1f8217b18925521909612307db":[2,9,34,15],
 "struct_l_d_d___d_m_a___t_transfer_descriptor.html#a3ddeb9c7243015b0ee7afd15235ce37b":[2,9,34,21],
 "struct_l_d_d___d_m_a___t_transfer_descriptor.html#a3df48f5bf31d359f8d9d28f8841e9b09":[2,9,34,16],
-"struct_l_d_d___d_m_a___t_transfer_descriptor.html#a4136d6742944c7b04a94695c78b581b8":[2,9,34,38],
-"struct_l_d_d___d_m_a___t_transfer_descriptor.html#a4aad12602586d10ce5e460ed3f20daf4":[2,9,34,24],
-"struct_l_d_d___d_m_a___t_transfer_descriptor.html#a57be3744be0a4cce03a93980199922ee":[2,9,34,25],
-"struct_l_d_d___d_m_a___t_transfer_descriptor.html#a65316d477535d064953174d3eb7eadfe":[2,9,34,32],
-"struct_l_d_d___d_m_a___t_transfer_descriptor.html#a69841fc4c2477b04b3371594dea2f47c":[2,9,34,10]
+"struct_l_d_d___d_m_a___t_transfer_descriptor.html#a4136d6742944c7b04a94695c78b581b8":[2,9,34,38]
 };

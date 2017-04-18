@@ -1,5 +1,9 @@
 var NAVTREEINDEX74 =
 {
+"struct_u_s_b___mem_map.html#a5462ecd3a3fe1425826815c78bfb8120":[2,12,57,2,49],
+"struct_u_s_b___mem_map.html#a593a3dc10eb92a0dab6f62dbda5f0209":[2,12,57,2,52],
+"struct_u_s_b___mem_map.html#a60b8bb28c42b316a1f9bf655e900a39e":[2,12,57,2,25],
+"struct_u_s_b___mem_map.html#a615eaa9b0200d66323e8ee2650a49164":[2,12,57,2,17],
 "struct_u_s_b___mem_map.html#a6b1fac9acdf7f6c7e0471af3886c6a8e":[2,12,57,2,1],
 "struct_u_s_b___mem_map.html#a6eacb73f23f815f7686f4e7bf7eb2fcc":[2,12,57,2,19],
 "struct_u_s_b___mem_map.html#a6f64544a4aa0f7b68d02d2df9c3cb47c":[2,12,57,2,39],
@@ -113,8 +117,8 @@ var NAVTREEINDEX74 =
 "structt_vector_table.html":[2,6,1],
 "structt_vector_table.html#a324d365e9c8c6c033f4edbc906f94844":[2,6,1,1],
 "structt_vector_table.html#a6001c7c57c392674cadaf831203e4606":[2,6,1,0],
-"types_8h.html":[4,0,1,10],
-"types_8h_source.html":[4,0,1,10],
+"types_8h.html":[4,0,1,11],
+"types_8h_source.html":[4,0,1,11],
 "union_f_c_c_o_b___a_d_r__t.html":[2,2,0],
 "union_f_c_c_o_b___a_d_r__t.html#a06ea5c45b9c88e53a2a6989a63b3ffa2":[2,2,0,2],
 "union_f_c_c_o_b___a_d_r__t.html#a3207cbe2983deaef1aac4b85371e6700":[2,2,0,1],

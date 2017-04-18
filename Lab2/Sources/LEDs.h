@@ -1,4 +1,4 @@
-/*! @file<LEDs.h>
+/*! @file
  *
  *  @brief Routines to access the LEDs on the TWR-K70F120M.
  *
@@ -10,7 +10,7 @@
 /*!
  * @ addtogroup led _module LEDs module documentation
  * @{
-*/
+ */
 
 #ifndef LEDS_H
 #define LEDS_H
@@ -28,6 +28,8 @@ typedef enum
   LED_GREEN = (1 << 29),
   LED_BLUE = (1 << 10)
 } TLED;
+
+/*************************************************PUBLIC FUNCTION DECLARATION*************************************************/
 
 /*! @brief Sets up the LEDs before first use.
  *
@@ -58,6 +60,6 @@ void LEDs_Toggle(const TLED color);
 
 /*!
  * @}
-*/
+ */
 
 #endif

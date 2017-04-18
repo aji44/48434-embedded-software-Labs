@@ -1,4 +1,4 @@
-/*! @file<FIF0.c>
+/*! @file
  *
  *  @brief FIFO buffer function implementations
  *
@@ -8,7 +8,7 @@
 /*!
  * @addtogroup fifo_module FIFO module documentation
  * @{
-*/
+ */
 
 /****************************************HEADER FILES****************************************************/
 #include "FIFO.h"
@@ -22,9 +22,9 @@
  */
 void FIFO_Init(TFIFO * const FIFO)
 {
-	FIFO->Start = 0;
-	FIFO->End = 0;
-	FIFO->NbBytes = 0;
+  FIFO->Start = 0;
+  FIFO->End = 0;
+  FIFO->NbBytes = 0;
 }
 
 /*! @brief Put one character into the FIFO.
@@ -36,18 +36,18 @@ void FIFO_Init(TFIFO * const FIFO)
  */
 bool FIFO_Put(TFIFO * const FIFO, const uint8_t data)
 {
-	if (FIFO->NbBytes < FIFO_SIZE) //Check there is space in the buffer
+  if (FIFO->NbBytes < FIFO_SIZE) //Check there is space in the buffer
 	{
-		FIFO->Buffer[FIFO->End] = data; 	//Put data into FIFO buffer
-		FIFO->NbBytes++; 			//Number of bytes in FIFO increases
-		FIFO->End++; 			//Next available position iterates
-		if (FIFO->End == FIFO_SIZE-1) FIFO->End = 0; //Check whether the FIFO is full, reset
-		return true;
+	  FIFO->Buffer[FIFO->End] = data; 	//Put data into FIFO buffer
+	  FIFO->NbBytes++; 			//Number of bytes in FIFO increases
+	  FIFO->End++; 			//Next available position iterates
+	  if (FIFO->End == FIFO_SIZE-1) FIFO->End = 0; //Check whether the FIFO is full, reset
+	  return true;
 	}
 
-	else
+  else
 	{
-		return false; //Buffer Overflow
+	  return false; //Buffer Overflow
 	}
 }
 
@@ -60,15 +60,15 @@ bool FIFO_Put(TFIFO * const FIFO, const uint8_t data)
  */
 bool FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr)
 {
-	if (FIFO->NbBytes > 0)
+  if (FIFO->NbBytes > 0)
 	{ //If there is data in the buffer..
-		*dataPtr = FIFO->Buffer[FIFO->Start]; //Data = Array[Start]
-		FIFO->Start++; //Moves to the next element in the array
-		FIFO->NbBytes--;
-		if (FIFO->Start == FIFO_SIZE-1) FIFO->Start = 0;
-		return true;
+	  *dataPtr = FIFO->Buffer[FIFO->Start]; //Data = Array[Start]
+	  FIFO->Start++; //Moves to the next element in the array
+	  FIFO->NbBytes--;
+	  if (FIFO->Start == FIFO_SIZE-1) FIFO->Start = 0;
+	  return true;
 	}
-	return false;
+  return false;
 }
 
 
