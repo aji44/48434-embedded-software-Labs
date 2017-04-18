@@ -1,4 +1,4 @@
-/*! @file
+/*! @file<types.h>
  *
  *  @brief Declares new types.
  *

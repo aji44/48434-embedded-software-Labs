@@ -19,11 +19,11 @@
 ** @brief
 **         Main module.
 **         This module contains user's application code.
-*/         
+*/
 /*!
 **  @addtogroup main_module main module documentation
 **  @{
-*/         
+*/
 /* MODULE main */
 
 
@@ -34,11 +34,11 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+
 #include "Flash.h"
 #include "LEDs.h"
 #include "packet.h"
 #include "types.h"
-#include "UART.h"
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -56,19 +56,11 @@ int main(void)
   bool packetStatus = Packet_Init(BaudRate, ModuleClock);
   bool flashStatus  = Flash_Init();
   bool ledStatus 	  = LEDs_Init();
-  if(!(packetStatus && flashStatus && ledStatus))
+  if(!(startup_packet & startup_flash & startup_led))
   {
   	const TLED colour = LED_ORANGE;
   	LEDs_On(colour);
-
-  	Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3);
-  	Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
-  	Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
-  	Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
   	/*
-		store tower number and tower mode in flash
-
-
 		startup packet
 		special tower version
 		tower number
