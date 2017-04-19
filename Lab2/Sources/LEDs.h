@@ -8,7 +8,7 @@
  *  @date 2015-08-15
  */
 /*!
- * @ addtogroup led _module LEDs module documentation
+ * @addtogroup led_module LEDs module documentation
  * @{
  */
 
@@ -23,10 +23,10 @@
  */
 typedef enum
 {
-  LED_ORANGE = (1 << 11),
-  LED_YELLOW = (1 << 28),
-  LED_GREEN = (1 << 29),
-  LED_BLUE = (1 << 10)
+	LED_ORANGE = (1 << 11),
+	LED_YELLOW = (1 << 28),
+	LED_GREEN = (1 << 29),
+	LED_BLUE = (1 << 10)
 } TLED;
 
 /*************************************************PUBLIC FUNCTION DECLARATION*************************************************/

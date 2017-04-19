@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Lab1: C:/Users/12195032/Documents/Lab2/sources/UART.h Source File</title>
+<title>Lab1: C:/Users/98119910/Documents/Lab2/sources/UART.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,16 +77,18 @@ $(document).ready(function(){initNavTree('_u_a_r_t_8h_source.html','');});
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// new types</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group___u_a_r_t__module.html#gae5760d1a086ec79a33901db253000af9">UART_Init</a>(<span class="keyword">const</span> uint32_t baudRate, <span class="keyword">const</span> uint32_t moduleClk);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group___u_a_r_t__module.html#ga03049bcc3bf9af2a75ee77016d3b0d60">UART_InChar</a>(uint8_t * <span class="keyword">const</span> dataPtr);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group___u_a_r_t__module.html#gab20ebaeefd1f29d31e098ade31189dda">UART_OutChar</a>(<span class="keyword">const</span> uint8_t data);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___u_a_r_t__module.html#ga799b375101827a18f652a3f28ecefcd0">UART_Poll</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/*************************************************PUBLIC FUNCTION DECLARATION*************************************************/</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group___u_a_r_t__module.html#gae5760d1a086ec79a33901db253000af9">UART_Init</a>(<span class="keyword">const</span> uint32_t baudRate, <span class="keyword">const</span> uint32_t moduleClk);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group___u_a_r_t__module.html#ga03049bcc3bf9af2a75ee77016d3b0d60">UART_InChar</a>(uint8_t * <span class="keyword">const</span> dataPtr);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group___u_a_r_t__module.html#gab20ebaeefd1f29d31e098ade31189dda">UART_OutChar</a>(<span class="keyword">const</span> uint8_t data);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___u_a_r_t__module.html#ga799b375101827a18f652a3f28ecefcd0">UART_Poll</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="types_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Declares new types. </div></div>
 <div class="ttc" id="group___u_a_r_t__module_html_gae5760d1a086ec79a33901db253000af9"><div class="ttname"><a href="group___u_a_r_t__module.html#gae5760d1a086ec79a33901db253000af9">UART_Init</a></div><div class="ttdeci">bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)</div><div class="ttdoc">Sets up the UART interface before first use. </div><div class="ttdef"><b>Definition:</b> UART.c:33</div></div>
 <div class="ttc" id="group___u_a_r_t__module_html_gab20ebaeefd1f29d31e098ade31189dda"><div class="ttname"><a href="group___u_a_r_t__module.html#gab20ebaeefd1f29d31e098ade31189dda">UART_OutChar</a></div><div class="ttdeci">bool UART_OutChar(const uint8_t data)</div><div class="ttdoc">Put a byte in the transmit FIFO if it is not full. </div><div class="ttdef"><b>Definition:</b> UART.c:87</div></div>
@@ -98,7 +100,7 @@ $(document).ready(function(){initNavTree('_u_a_r_t_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="_u_a_r_t_8h.html">UART.h</a></li>
-    <li class="footer">Generated on Tue Apr 18 2017 15:13:36 for Lab1 by
+    <li class="footer">Generated on Wed Apr 19 2017 10:02:52 for Lab1 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

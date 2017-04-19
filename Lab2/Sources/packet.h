@@ -26,31 +26,31 @@
 
 typedef union
 {
-  uint8_t bytes[PACKET_NB_BYTES];     /*!< The packet as an array of bytes. */
-  struct
-  {
-	uint8_t command;		      /*!< The packet's command. */
-	union
-	{
-	  struct
-	  {
-		uint8_t parameter1;	      /*!< The packet's 1st parameter. */
-		uint8_t parameter2;	      /*!< The packet's 2nd parameter. */
-		uint8_t parameter3;	      /*!< The packet's 3rd parameter. */
-	  } separate;
-	  struct
-	  {
-		uint16_t parameter12;         /*!< Parameter 1 and 2 concatenated. */
-		uint8_t parameter3;
-	  } combined12;
-	  struct
-	  {
-		uint8_t paramater1;
-		uint16_t parameter23;         /*!< Parameter 2 and 3 concatenated. */
-	  } combined23;
-	} parameters;
-	uint8_t checksum;
-  } packetStruct;
+		uint8_t bytes[PACKET_NB_BYTES];     /*!< The packet as an array of bytes. */
+		struct
+		{
+				uint8_t command;		      /*!< The packet's command. */
+				union
+				{
+						struct
+						{
+								uint8_t parameter1;	      /*!< The packet's 1st parameter. */
+								uint8_t parameter2;	      /*!< The packet's 2nd parameter. */
+								uint8_t parameter3;	      /*!< The packet's 3rd parameter. */
+						} separate;
+						struct
+						{
+								uint16_t parameter12;         /*!< Parameter 1 and 2 concatenated. */
+								uint8_t parameter3;
+						} combined12;
+						struct
+						{
+								uint8_t paramater1;
+								uint16_t parameter23;         /*!< Parameter 2 and 3 concatenated. */
+						} combined23;
+				} parameters;
+				uint8_t checksum;
+		} packetStruct;
 } TPacket;
 
 #pragma pack(pop)

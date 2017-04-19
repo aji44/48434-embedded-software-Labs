@@ -8,7 +8,7 @@
  *  @date 2015-07-23
  */
 /*!
- * @addtogroup UART_module packet documentation
+ * @addtogroup UART_module UART documentation
  * @{
  */
 //MODULE UART
