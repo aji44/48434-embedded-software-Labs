@@ -40,8 +40,8 @@
 #include "types.h"
 #include "UART.h"
 
-#define BAUDRATE 115200
-#define MODULE_CLOCK (CPU_BUS_CLK_HZ)
+const static uint32_t BAUD_RATE = 115200;
+const static uint32_t MODULE_CLOCK = CPU_BUS_CLK_HZ;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -54,7 +54,7 @@ int main(void)
 	/*** End of Processor Expert internal initialization.                    ***/
 
 	/* Write your code here */
-	bool packetStatus = Packet_Init(BAUDRATE, MODULE_CLOCK);
+	bool packetStatus = Packet_Init(BAUD_RATE, MODULE_CLOCK);
 	bool flashStatus  = Flash_Init();
 	bool ledStatus 	  = LEDs_Init();
 	if(!(packetStatus && flashStatus && ledStatus))
