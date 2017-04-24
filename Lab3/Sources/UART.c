@@ -63,6 +63,10 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 	UART2_C2 |= UART_C2_TE_MASK;		//Enables UART transmitter
 	UART2_C2 |= UART_C2_RE_MASK;		//Enables UART receiver
 
+	//Initialize NVIC
+	NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
+	NVICISER1 = NVIC_ISER_SETENA(1 << 12); //Enable interrupts
+
 	return true;
 }
 
@@ -95,20 +99,20 @@ bool UART_OutChar(const uint8_t data)
  *  @return void
  *  @note Assumes that UART_Init has been called.
  */
-void UART_Poll(void)
-{
-	//If TDRE is set, there is data to transmit, place this in the data register
-	if (UART2_S1 & UART_S1_TDRE_MASK)
-	{
-		FIFO_Get(&TxFIFO, (uint8_t *) &UART2_D);
-	}
-
-	//If RDRF is set, there is data to receive, retrieve this from the data register
-	if (UART2_S1 & UART_S1_RDRF_MASK)
-	{
-		FIFO_Put(&RxFIFO, UART2_D);
-	}
-}
+//void UART_Poll(void)
+//{
+//	//If TDRE is set, there is data to transmit, place this in the data register
+//	if (UART2_S1 & UART_S1_TDRE_MASK)
+//	{
+//		FIFO_Get(&TxFIFO, (uint8_t *) &UART2_D);
+//	}
+//
+//	//If RDRF is set, there is data to receive, retrieve this from the data register
+//	if (UART2_S1 & UART_S1_RDRF_MASK)
+//	{
+//		FIFO_Put(&RxFIFO, UART2_D);
+//	}
+//}
 
 /*! @brief Interrupt service routine for the UART.
  *
@@ -116,10 +120,6 @@ void UART_Poll(void)
  */
 void __attribute__ ((interrupt)) UART_ISR(void)
 {
-	/*
-	??????
-	UART_Poll();
-	*/
 	//Receive character
 	if (UART2_C2 & UART_C2_RIE_MASK) 
 	{

@@ -49,7 +49,7 @@ bool UART_OutChar(const uint8_t data);
  *  @return void
  *  @note Assumes that UART_Init has been called.
  */
-void UART_Poll(void);
+//void UART_Poll(void);
 
 /*! @brief Interrupt service routine for the UART.
  *
