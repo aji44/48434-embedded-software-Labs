@@ -12,6 +12,6 @@
 
   * Please refer to the Lab2 PDF
   * Status          : Incomplete
-  * Mark            : 
+  * Mark            : 7.7/8
   * Processor       : MK70FN1M0VMJ12
   * Microcontroller : Freescale Tower
