@@ -110,6 +110,36 @@ void UART_Poll(void)
 	}
 }
 
+/*! @brief Interrupt service routine for the UART.
+ *
+ *  @note Assumes the transmit and receive FIFOs have been initialized.
+ */
+void __attribute__ ((interrupt)) UART_ISR(void)
+{
+	/*
+	??????
+	UART_Poll();
+	*/
+	//Receive character
+	if (UART2_C2 & UART_C2_RIE_MASK) 
+	{
+  		// Clear RDRF flag by reading the status register
+		if (UART2_S1 & UART_S1_RDRF_MASK)
+		{
+			FIFO_Put(&RxFIFO, UART2_D);	//Place byte in Receive FIFO buffer
+		}
+	}
+	
+	//Transmit character
+	if (UART2_C2 & UART_C2_TIE_MASK) 
+	{
+	 	// Clear TDRE flag by reading the status register
+		if (UART2_S1 & UART_S1_TDRE_MASK) 
+		{
+			FIFO_Get(&TxFIFO, (uint8_t *) &UART2_D); //Place byte in Transmit FIFO buffer
+		}
+	}
+}
 
 /*!
  * @}
