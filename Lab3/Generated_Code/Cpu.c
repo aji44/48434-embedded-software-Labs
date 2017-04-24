@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-08-17, 00:21, # CodeGen: 0
+**     Date/Time   : 2017-04-24, 14:17, # CodeGen: 1
 **     Abstract    :
 **
 **     Settings    :
@@ -41,7 +41,7 @@
 **                  OSC0ERCLK clock                        : Enabled
 **                  OSC0ERCLK in stop                      : Disabled
 **                  OSC0ERCLK clock [MHz]                  : 50
-**                  OSC1ERCLK clock                        : Enabled
+**                  OSC1ERCLK clock                        : Disabled
 **                  OSC1ERCLK in stop                      : Disabled
 **                  OSC1ERCLK clock [MHz]                  : 0
 **                  ERCLK32K clock source                  : System oscillator 0
@@ -334,6 +334,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "Events.h"
 #include "Cpu.h"
 
 #ifdef __cplusplus
@@ -430,8 +431,8 @@ void __init_hardware(void)
   MCG_C2 = MCG_C2_RANGE0(0x02);
   /* OSC0_CR: ERCLKEN=1,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
   OSC0_CR = OSC_CR_ERCLKEN_MASK;
-  /* OSC1_CR: ERCLKEN=1,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
-  OSC1_CR = OSC_CR_ERCLKEN_MASK;
+  /* OSC1_CR: ERCLKEN=0,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
+  OSC1_CR = 0x00U;
   /* MCG_C1: CLKS=2,FRDIV=5,IREFS=0,IRCLKEN=1,IREFSTEN=0 */
   MCG_C1 = (MCG_C1_CLKS(0x02) | MCG_C1_FRDIV(0x05) | MCG_C1_IRCLKEN_MASK);
   /* MCG_C4: DMX32=0,DRST_DRS=0 */

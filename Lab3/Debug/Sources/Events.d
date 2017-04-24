@@ -1,4 +1,4 @@
-Sources/main.o: ../Sources/main.c \
+Sources/Events.o: ../Sources/Events.c \
  C:/Users/98119910/Documents/Lab3/Generated_Code/Cpu.h \
  C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Types.h \
  C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Error.h \
@@ -9,9 +9,7 @@ Sources/main.o: ../Sources/main.c \
  C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Types.h \
  C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Error.h \
  C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Const.h \
- C:/Users/98119910/Documents/Lab3/Generated_Code/IO_Map.h \
- ../Sources/Flash.h ../Sources/types.h ../Sources/LEDs.h \
- ../Sources/packet.h ../Sources/UART.h
+ C:/Users/98119910/Documents/Lab3/Generated_Code/IO_Map.h
 
 C:/Users/98119910/Documents/Lab3/Generated_Code/Cpu.h:
 
@@ -34,13 +32,3 @@ C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Error.h:
 C:/Users/98119910/Documents/Lab3/Generated_Code/PE_Const.h:
 
 C:/Users/98119910/Documents/Lab3/Generated_Code/IO_Map.h:
-
-../Sources/Flash.h:
-
-../Sources/types.h:
-
-../Sources/LEDs.h:
-
-../Sources/packet.h:
-
-../Sources/UART.h:
