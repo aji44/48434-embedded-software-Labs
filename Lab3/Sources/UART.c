@@ -123,7 +123,8 @@ bool UART_OutChar(const uint8_t data)
  *  @note Assumes the transmit and receive FIFOs have been initialized.
  */
 void __attribute__ ((interrupt)) UART_ISR(void)
-{	//pg 4/28 and 10/28 interrupts.pdf
+{	//pg 6/28 -listing 5.1 interrupts.pdf
+	//polling the source of an interrupt in an ISR
 	//Receive character
 	if (UART2_C2 & UART_C2_RIE_MASK) 
 	{
