@@ -62,6 +62,10 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 
 	UART2_C2 |= UART_C2_TE_MASK;		//Enables UART transmitter
 	UART2_C2 |= UART_C2_RE_MASK;		//Enables UART receiver
+	
+	//menka- not sure
+	// UART2_C2 |= UART_C2_RIE_MASK;  //Receive interrupt Enable
+	// UART2_C2 |= UART_C2_TCIE_MASK; //Transmission complete interrupr enable
 
 	//Initialize NVIC
 	NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
