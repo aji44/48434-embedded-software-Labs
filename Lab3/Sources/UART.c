@@ -65,9 +65,12 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 	UART2_C2 |= UART_C2_RE_MASK;		//Enables UART receiver
 
 	//Initialize NVIC ??
+  //SPRING 2017- Mid semester question pg 4
+	//pg 92/2275 - K70 Manual
+
 	//NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
 	//NVICISER1 = NVIC_ISER_SETENA(1 << 12); //Enable interrupts
-	NVICICPR1 = (1 << 17);
+	NVICICPR1 = (1 << 17); 
 	NVICISER1 = (1 << 17);
 	//NVICICPR1 = (1 << (49 % 32));
 	//NVICISER1 = (1 << (49 % 32));
