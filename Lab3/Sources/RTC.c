@@ -29,8 +29,31 @@
    RTC_Callback = userFunction; //Globally accessible (userFunction)
 
    SIM_SCGC6 |= SIM_SCGC6_RTC_MASK;  	// Enable clock gate RTC
+   //lab3 note hint 7 -RTC | pg 1394/2275 k70 manual
+   RTC_CR |= RTC_CR_OSCE_MASK;	//Enables the 32.768kHz Oscillator
+   //Enable 18pF load - pg 1394/2275 k70 manual
+   RTC_CR |= RTC_CR_SC2P_MASK;
+   RTC_CR |= RTC_CR_SC16P_MASK;
 
-  //return true;
+   //RTC-Interrupt Enable Register|PG 1399/2275 K70 Manual
+   //TSIE -Time Seconds Interrupt Enable
+    RTC_IER |= RTC_IER_TSIE_MASK;				// Enables seconds enable interrupt (on by default)
+    //TAIE - Time Alarm Interrupt Enable
+    RTC_IER &= ~RTC_IER_TAIE_MASK;			// Disables Time Alarm Interrupt
+    //TOIE - Time Overflow Interrupt Enable
+    RTC_IER &= ~RTC_IER_TOIE_MASK;			// Disables Overflow Interrupt
+    //TIIE - Time Invalid Interrupt Enable
+    RTC_IER &= ~RTC_IER_TIIE_MASK;			// Disables Time Invalid Interrupt
+
+
+    RTC_LR &= ~RTC_LR_CRL_MASK;				// Locks the control register
+    RTC_SR |= RTC_SR_TCE_MASK;				// Initialises the timer control
+
+// Initialise NVICs for RTC | pg 97/2275 k70 manual
+ NVICICPR2 =  (1 << 3);		//IRQ 67(seconds interrupt) mod 32
+ NVICISER2 =  (1 << 3);
+
+  return true;
   }
 
   /*! @brief Sets the value of the real time clock.
@@ -42,7 +65,7 @@
    */
   void RTC_Set(const uint8_t hours, const uint8_t minutes, const uint8_t seconds){
 
-  }
+}
 
   /*! @brief Gets the value of the real time clock.
    *

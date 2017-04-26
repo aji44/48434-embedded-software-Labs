@@ -66,7 +66,7 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 
 	//Initialize NVIC ??
   //SPRING 2017- Mid semester question pg 4
-	//pg 92/2275 - K70 Manual
+	//pg 97/2275 - K70 Manual
 
 	//NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
 	//NVICISER1 = NVIC_ISER_SETENA(1 << 12); //Enable interrupts
