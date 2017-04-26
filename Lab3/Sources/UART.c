@@ -46,9 +46,6 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 	UART2_C2 &= ~UART_C2_TE_MASK;		//Disable UART transmitter
 	UART2_C2 &= ~UART_C2_RE_MASK;		//Disable UART receiver
 
-	FIFO_Init(&RxFIFO);					//Initialize the Receiving FIFO for usage
-	FIFO_Init(&TxFIFO);					//Initialize the Transmitting FIFO for usage
-
 	sbr.l = moduleClk / (baudRate * 16);//Set the baud rate
 
 	if (sbr.l > 0x1FFF) return false;	//Check that the BaudRate is valid
@@ -60,16 +57,25 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 	UART2_C4 |= UART_C4_BRFA_MASK;		//Prepare the register
 	UART2_C4 &= brfa;					//Set the BaudRate Fine Adjust value
 
+	UART2_C2 |= UART_C2_TIE_MASK;
+	//UART2_C2 |= UART_C2_TCIE_MASK; ////Transmission Complete interrupt requests enabled
+	UART2_C2 |= UART_C2_RIE_MASK;  //Receive interrupt Enable
+
 	UART2_C2 |= UART_C2_TE_MASK;		//Enables UART transmitter
 	UART2_C2 |= UART_C2_RE_MASK;		//Enables UART receiver
-	
-	//menka- not sure
-	// UART2_C2 |= UART_C2_RIE_MASK;  //Receive interrupt Enable
-	// UART2_C2 |= UART_C2_TCIE_MASK; //Transmission complete interrupr enable
 
-	//Initialize NVIC
-	NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
-	NVICISER1 = NVIC_ISER_SETENA(1 << 12); //Enable interrupts
+	//Initialize NVIC ??
+	//NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
+	//NVICISER1 = NVIC_ISER_SETENA(1 << 12); //Enable interrupts
+	NVICICPR1 = (1 << 17);
+	NVICISER1 = (1 << 17);
+	//NVICICPR1 = (1 << (49 % 32));
+	//NVICISER1 = (1 << (49 % 32));
+	//IPR -> interrupt priority
+	//ICER -> clear enable registers
+
+	FIFO_Init(&RxFIFO);					//Initialize the Receiving FIFO for usage
+	FIFO_Init(&TxFIFO);					//Initialize the Transmitting FIFO for usage
 
 	return true;
 }
@@ -94,8 +100,13 @@ bool UART_InChar(uint8_t * const dataPtr)
  */
 bool UART_OutChar(const uint8_t data)
 {
-	//Place the value stored in data into the TxFIFO
-	return FIFO_Put(&TxFIFO, data);
+	bool success;
+
+	UART2_C2 &= ~UART_C2_TIE_MASK;
+	success = FIFO_Put(&TxFIFO, data); //Place the value stored in data into the TxFIFO
+	UART2_C2 |= UART_C2_TIE_MASK;
+
+	return success;
 }
 
 /*! @brief Poll the UART status register to try and receive and/or transmit one character.
@@ -103,6 +114,7 @@ bool UART_OutChar(const uint8_t data)
  *  @return void
  *  @note Assumes that UART_Init has been called.
  */
+
 //void UART_Poll(void)
 //{
 //	//If TDRE is set, there is data to transmit, place this in the data register
@@ -122,26 +134,59 @@ bool UART_OutChar(const uint8_t data)
  *
  *  @note Assumes the transmit and receive FIFOs have been initialized.
  */
+//void __attribute__ ((interrupt)) UART_ISR(void)
+//{
+//	//pg 6/28 -listing 5.1 interrupts.pdf
+//	//polling the source of an interrupt in an ISR
+//
+//	//Receive character
+//	if(UART2_C2 & UART_C2_RIE_MASK)
+//	{
+//		// Clear RDRF flag by reading the status register
+//		if (UART2_S1 & UART_S1_RDRF_MASK)
+//		{
+//			FIFO_Put(&RxFIFO, UART2_D);	//Place byte in Receive FIFO buffer
+//		}
+//	}
+//
+//	//Transmit character
+//	if(UART2_C2 & UART_C2_TIE_MASK)
+//	{
+//		// Clear TDRE flag by reading the status register
+//		if (UART2_S1 & UART_S1_TDRE_MASK)
+//		{
+//			if(FIFO_Get(&TxFIFO, (uint8_t *) &UART2_D)) //Place byte in Transmit FIFO buffer
+//			{
+//				//UART2_C2 &= !(UART_C2_TCIE_MASK);
+//			}
+//		}
+//	}
+//}
+
+
 void __attribute__ ((interrupt)) UART_ISR(void)
-{	//pg 6/28 -listing 5.1 interrupts.pdf
-	//polling the source of an interrupt in an ISR
-	//Receive character
-	if (UART2_C2 & UART_C2_RIE_MASK) 
+{
+	static uint8_t txData;
+	uint8_t TEMPregisterRead;
+
+	if(UART2_S1 & UART_C2_RIE_MASK)
 	{
-  		// Clear RDRF flag by reading the status register
 		if (UART2_S1 & UART_S1_RDRF_MASK)
 		{
-			FIFO_Put(&RxFIFO, UART2_D);	//Place byte in Receive FIFO buffer
+			FIFO_Put(&RxFIFO, UART2_D);
 		}
 	}
-	
-	//Transmit character
-	if (UART2_C2 & UART_C2_TIE_MASK) 
+
+	if(UART2_S1 & UART_S1_TDRE_MASK)
 	{
-	 	// Clear TDRE flag by reading the status register
-		if (UART2_S1 & UART_S1_TDRE_MASK) 
+		if (FIFO_Get(&TxFIFO, &txData))
 		{
-			FIFO_Get(&TxFIFO, (uint8_t *) &UART2_D); //Place byte in Transmit FIFO buffer
+			UART2_D = txData;
+			TEMPregisterRead = UART2_S1;
+		} else
+		{
+			UART2_C2 &= ~UART_C2_TIE_MASK;
+			TEMPregisterRead = UART2_S1;
 		}
 	}
 }
