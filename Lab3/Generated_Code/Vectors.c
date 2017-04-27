@@ -57,6 +57,7 @@
   #include "Cpu.h"
   #include "Events.h"
 	#include "UART.h"
+  #include "RTC.h"
 
 
   /* ISR prototype */
