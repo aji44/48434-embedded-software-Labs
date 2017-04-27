@@ -38,7 +38,7 @@
      RTC_CR |= RTC_CR_SC2P_MASK;
      RTC_CR |= RTC_CR_SC16P_MASK;
 
-     //RTC-Interrupt Enable Register | pg 1399/2275 K70 Manual
+     //RTC-IER Interrupt Enable Register | pg 1399/2275 K70 Manual
      //TSIE -Time Seconds Interrupt Enable
       RTC_IER |= RTC_IER_TSIE_MASK;				// Enables seconds enable interrupt (on by default)
       //TAIE - Time Alarm Interrupt Enable

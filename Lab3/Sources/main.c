@@ -39,6 +39,7 @@
 #include "packet.h"
 #include "types.h"
 #include "UART.h"
+#include "RTC.h"
 
 const static uint32_t BAUD_RATE = 115200;
 const static uint32_t MODULE_CLOCK = CPU_BUS_CLK_HZ;
