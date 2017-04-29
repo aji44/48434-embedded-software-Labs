@@ -58,24 +58,17 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 	UART2_C4 &= brfa;					//Set the BaudRate Fine Adjust value
 
 	UART2_C2 |= UART_C2_TIE_MASK;
-	//UART2_C2 |= UART_C2_TCIE_MASK; ////Transmission Complete interrupt requests enabled
 	UART2_C2 |= UART_C2_RIE_MASK;  //Receive interrupt Enable
+	//UART2_C2 |= UART_C2_TCIE_MASK; ////Transmission Complete interrupt requests enabled
 
 	UART2_C2 |= UART_C2_TE_MASK;		//Enables UART transmitter
 	UART2_C2 |= UART_C2_RE_MASK;		//Enables UART receiver
 
-	//Initialize NVIC ??
-  //SPRING 2017- Mid semester question pg 4
+	//Initialize NVIC
+	//SPRING 2017- Mid semester question pg 4
 	//pg 97/2275 - K70 Manual
-
-	//NVICICPR1 = NVIC_ICPR_CLRPEND(1 << 12); //Clear pending
-	//NVICISER1 = NVIC_ISER_SETENA(1 << 12); //Enable interrupts
-	NVICICPR2 = (1 << 17);  //??? 	NVICICPR1 - Menka change to NVICICPR2
-	NVICISER2 = (1 << 17);  //??? 	NVICISER2
-	//NVICICPR1 = (1 << (49 % 32));
-	//NVICISER1 = (1 << (49 % 32));
-	//IPR -> interrupt priority
-	//ICER -> clear enable registers
+	NVICICPR1 = (1 << (49 % 32));
+	NVICISER1 = (1 << (49 % 32));
 
 	FIFO_Init(&RxFIFO);					//Initialize the Receiving FIFO for usage
 	FIFO_Init(&TxFIFO);					//Initialize the Transmitting FIFO for usage
@@ -137,36 +130,6 @@ bool UART_OutChar(const uint8_t data)
  *
  *  @note Assumes the transmit and receive FIFOs have been initialized.
  */
-//void __attribute__ ((interrupt)) UART_ISR(void)
-//{
-//	//pg 6/28 -listing 5.1 interrupts.pdf
-//	//polling the source of an interrupt in an ISR
-//
-//	//Receive character
-//	if(UART2_C2 & UART_C2_RIE_MASK)
-//	{
-//		// Clear RDRF flag by reading the status register
-//		if (UART2_S1 & UART_S1_RDRF_MASK)
-//		{
-//			FIFO_Put(&RxFIFO, UART2_D);	//Place byte in Receive FIFO buffer
-//		}
-//	}
-//
-//	//Transmit character
-//	if(UART2_C2 & UART_C2_TIE_MASK)
-//	{
-//		// Clear TDRE flag by reading the status register
-//		if (UART2_S1 & UART_S1_TDRE_MASK)
-//		{
-//			if(FIFO_Get(&TxFIFO, (uint8_t *) &UART2_D)) //Place byte in Transmit FIFO buffer
-//			{
-//				//UART2_C2 &= !(UART_C2_TCIE_MASK);
-//			}
-//		}
-//	}
-//}
-
-
 void __attribute__ ((interrupt)) UART_ISR(void)
 {
 	static uint8_t txData;
