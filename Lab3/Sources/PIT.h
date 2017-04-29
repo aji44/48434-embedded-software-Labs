@@ -7,7 +7,7 @@
  *  @author PMcL
  *  @date 2015-08-22
  */
- /*!
+/*!
  **  @addtogroup pit_module PIT module documentation
  **  @{
  */
@@ -52,6 +52,6 @@ void PIT_Enable(const bool enable);
 void __attribute__ ((interrupt)) PIT_ISR(void);
 
 /*!
-** @}
-*/
+ ** @}
+ */
 #endif

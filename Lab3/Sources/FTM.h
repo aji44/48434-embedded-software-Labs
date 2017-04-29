@@ -16,38 +16,38 @@
 
 typedef enum
 {
-  TIMER_FUNCTION_INPUT_CAPTURE,
-  TIMER_FUNCTION_OUTPUT_COMPARE
+	TIMER_FUNCTION_INPUT_CAPTURE,
+	TIMER_FUNCTION_OUTPUT_COMPARE
 } TTimerFunction;
 
 typedef enum
 {
-  TIMER_OUTPUT_DISCONNECT,
-  TIMER_OUTPUT_TOGGLE,
-  TIMER_OUTPUT_LOW,
-  TIMER_OUTPUT_HIGH
+	TIMER_OUTPUT_DISCONNECT,
+	TIMER_OUTPUT_TOGGLE,
+	TIMER_OUTPUT_LOW,
+	TIMER_OUTPUT_HIGH
 } TTimerOutputAction;
 
 typedef enum
 {
-  TIMER_INPUT_OFF,
-  TIMER_INPUT_RISING,
-  TIMER_INPUT_FALLING,
-  TIMER_INPUT_ANY
+	TIMER_INPUT_OFF,
+	TIMER_INPUT_RISING,
+	TIMER_INPUT_FALLING,
+	TIMER_INPUT_ANY
 } TTimerInputDetection;
 
 typedef struct
 {
-  uint8_t channelNb;
-  uint16_t delayCount;
-  TTimerFunction timerFunction;
-  union
-  {
-    TTimerOutputAction outputAction;
-    TTimerInputDetection inputDetection;
-  } ioType;
-  void (*userFunction)(void*);
-  void *userArguments;
+		uint8_t channelNb;
+		uint16_t delayCount;
+		TTimerFunction timerFunction;
+		union
+		{
+				TTimerOutputAction outputAction;
+				TTimerInputDetection inputDetection;
+		} ioType;
+		void (*userFunction)(void*);
+		void *userArguments;
 } TFTMChannel;
 
 
