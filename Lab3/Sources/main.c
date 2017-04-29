@@ -40,19 +40,44 @@
 #include "types.h"
 #include "UART.h"
 #include "RTC.h"
+#include "PIT.h"
 
 const static uint32_t BAUD_RATE = 115200;
 const static uint32_t MODULE_CLOCK = CPU_BUS_CLK_HZ;
+
+void RTCCallback(void *arg)
+{
+	uint8_t h, m ,s;
+	RTC_Get(&h, &m, &s);
+	Packet_Put(0x0c, h, m, s);
+	LEDs_Toggle(LED_YELLOW);
+}
+
+void PITCallback(void *arg)
+{
+	PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
+	while(PIT_TFLG0 == 1)
+	{
+		;
+	}
+
+	LEDs_Toggle(LED_GREEN);
+}
 
 void TowerInit(void)
 {
 	bool packetStatus = Packet_Init(BAUD_RATE, MODULE_CLOCK);
 	bool flashStatus  = Flash_Init();
-	bool ledStatus 	  = LEDs_Init();
-	if(!(packetStatus && flashStatus && ledStatus))
+	bool ledStatus = LEDs_Init();
+
+	bool PITStatus = PIT_Init(MODULE_CLOCK, &PITCallback, (void *)0);
+	PIT_Set(500e6, false);
+
+	bool RTCStatus = RTC_Init(&RTCCallback, (void *)0);
+
+	if(!(packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus))
 	{
 		LEDs_On(LED_ORANGE);	//Tower was initialized correctly
-
 	}
 }
 
@@ -71,10 +96,10 @@ int main(void)
 	TowerInit();	//Initialize tower peripheral modules
 	__EI(); 		//Enable interrupts
 
-//	Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3);
-//	Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
-//	Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
-//	Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
+	Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3);
+	Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
+	Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
+	Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
 
 	for (;;)
 	{
