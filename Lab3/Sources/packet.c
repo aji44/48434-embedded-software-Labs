@@ -20,6 +20,7 @@
 #include "types.h"
 #include "LEDs.h"
 #include "Flash.h"
+#include "RTC.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 
@@ -241,6 +242,9 @@ void Packet_Handle(void)
 				*byte = _FB(FLASH_DATA_START + Packet_Parameter1);
 				error = !Packet_Put(TOWER_READ_BYTE_COMM, Packet_Parameter1, 0x0, *byte);
 			}
+			break;
+		case SET_TIME:
+			RTC_Set(Packet_Parameter1, Packet_Parameter2, Packet_Parameter3);
 			break;
 		default:
 			break;
