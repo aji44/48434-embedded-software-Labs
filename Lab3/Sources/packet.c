@@ -21,6 +21,7 @@
 #include "LEDs.h"
 #include "Flash.h"
 #include "RTC.h"
+#include "PE_Types.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 
