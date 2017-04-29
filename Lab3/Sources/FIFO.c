@@ -12,6 +12,7 @@
 
 /****************************************HEADER FILES****************************************************/
 #include "FIFO.h"
+#include "PE_Types.h"
 
 /****************************************PUBLIC FUNCTION DEFINITION***************************************/
 
@@ -36,17 +37,19 @@ void FIFO_Init(TFIFO * const FIFO)
  */
 bool FIFO_Put(TFIFO * const FIFO, const uint8_t data)
 {
+	EnterCritical();
 	if (FIFO->NbBytes < FIFO_SIZE) //Check there is space in the buffer
 	{
 		FIFO->Buffer[FIFO->End] = data; 	//Put data into FIFO buffer
 		FIFO->NbBytes++; 			//Number of bytes in FIFO increases
 		FIFO->End++; 			//Next available position iterates
 		if (FIFO->End == FIFO_SIZE-1) FIFO->End = 0; //Check whether the FIFO is full, reset
+		ExitCritical();
 		return true;
 	}
-
 	else
 	{
+		ExitCritical();
 		return false; //Buffer Overflow
 	}
 }
@@ -60,14 +63,17 @@ bool FIFO_Put(TFIFO * const FIFO, const uint8_t data)
  */
 bool FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr)
 {
+	EnterCritical();
 	if (FIFO->NbBytes > 0)
 	{ //If there is data in the buffer..
 		*dataPtr = FIFO->Buffer[FIFO->Start]; //Data = Array[Start]
 		FIFO->Start++; //Moves to the next element in the array
 		FIFO->NbBytes--;
 		if (FIFO->Start == FIFO_SIZE-1) FIFO->Start = 0;
+		ExitCitical();
 		return true;
 	}
+	ExitCritical();
 	return false;
 }
 

@@ -79,6 +79,7 @@ bool DataToFlash(void)
  *  @return bool - TRUE if a valid packet was received.
  */
 bool Packet_Get(void) {
+	EnterCritical();
 	uint8_t uartData;
 
 	//Checks whether there is data in the RxFIFO and stores it the address pointed by uartData
@@ -90,6 +91,7 @@ bool Packet_Get(void) {
 			case 0:
 				Packet_Command = uartData;
 				packet_position++;
+				ExitCritical();
 				return false; //Return false, incomplete packet
 				break;
 
@@ -97,6 +99,7 @@ bool Packet_Get(void) {
 			case 1:
 				Packet_Parameter1 = uartData;
 				packet_position++;
+				ExitCritical();
 				return false; //Return false, incomplete packet
 				break;
 
@@ -104,6 +107,7 @@ bool Packet_Get(void) {
 			case 2:
 				Packet_Parameter2 = uartData;
 				packet_position++;
+				ExitCritical();
 				return false; //Return false, incomplete packet
 				break;
 
@@ -111,6 +115,7 @@ bool Packet_Get(void) {
 			case 3:
 				Packet_Parameter3 = uartData;
 				packet_position++;
+				ExitCritical();
 				return false; //Return false, incomplete packet
 				break;
 
@@ -121,6 +126,7 @@ bool Packet_Get(void) {
 				if (PacketTest())
 				{
 					packet_position = 0;
+					ExitCritical();
 					return true; //Return true, complete packet
 				}
 				//The Checksum doesn't match
@@ -130,6 +136,7 @@ bool Packet_Get(void) {
 				Packet_Parameter2 = Packet_Parameter3;
 				Packet_Parameter3 = Packet_Checksum;
 				packet_position = 0;
+				ExitCritical();
 				return false;
 				break;
 
@@ -138,6 +145,7 @@ bool Packet_Get(void) {
 				break;
 		}
 	}
+	ExitCritical();
 	return false;
 }
 
@@ -248,14 +256,6 @@ void Packet_Handle(void)
 			break;
 		default:
 			break;
-	}
-
-	//Yellow LED indicates Error in sending packet
-	if(error)
-	{
-		LEDs_On(LED_YELLOW);
-	} else {
-		LEDs_Off(LED_YELLOW);
 	}
 
 	//Check whether the Acknowledgment bit is set
