@@ -91,7 +91,8 @@ bool Flash_AllocateVar(volatile void** variable, const uint8_t size)
 	 * it changes mask and how many bit shifts occur
 	 *
 	 */
-	for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size) {
+	for(addressPos = FLASH_DATA_START; addressPos < (FLASH_DATA_END+1); addressPos += size)
+	{
 		if(mask == (phrase_alloc & mask)) 		//has this address been allocated?
 		{
 			*variable = (void *) addressPos;
