@@ -19,7 +19,7 @@
 #define FIXED_FREQUENCY_CLOCK 2
 
 static void (*FTM_Callback)(void *); //pointer to userCallback function
-static void* FTM_Arguments; //pointer to userArguments funtion
+static void* FTM_Arguments; //pointer to userArguments function
 
 /*! @brief Sets up the FTM before first use.
  *
@@ -105,7 +105,6 @@ bool FTM_Set(const TFTMChannel* const aFTMChannel)
 		FTM_Callback = aFTMChannel->userFunction;				// Globally accessible (userFunction)
 		FTM_Arguments = aFTMChannel->userArguments;			// Globally accessible (userArguments)
 		return true;
-		// return true; ???????
 }
 
 /*! @brief Starts a timer if set up for output compare.
@@ -123,10 +122,11 @@ bool FTM_StartTimer(const TFTMChannel* const aFTMChannel)
 			//CHIE - channel interrupt enable
 			FTM0_CnSC(aFTMChannel->channelNb) |= FTM_CnSC_CHIE_MASK; //enables channel interrupts
 			//FTM0_CNT The Count register contains the counter value.
-			 FTM0_CnV(aFTMChannel->channelNb) = FTM0_CNT + aFTMChannel->delayCount;	// Sets the channels initial countss
-			 return true; //Timer successfully initialised.
+			FTM0_CnV(aFTMChannel->channelNb) = FTM0_CNT + aFTMChannel->delayCount;	// Sets the channels initial countss
+			return true; //Timer successfully initialised.
 		}
 	}
+	return false; //Not successful
 }
 
 /*! @brief Interrupt service routine for the FTM.

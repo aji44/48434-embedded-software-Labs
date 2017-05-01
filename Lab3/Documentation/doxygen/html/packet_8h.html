@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Lab3: C:/Users/PMcL/Documents/Subjects/48434 Embedded Software/4 Labs/Lab 3/Template/Lab 3/sources/packet.h File Reference</title>
+<title>Lab3: C:/Users/98119910/Documents/Lab3/sources/packet.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,160 +83,153 @@ $(document).ready(function(){initNavTree('packet_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_packet.html">TPacket</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union_t_packet.html">TPacket</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a0a6b54bd6327268c60b131046279dc73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a6b54bd6327268c60b131046279dc73"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Command</b>&#160;&#160;&#160;Packet.command</td></tr>
-<tr class="separator:a0a6b54bd6327268c60b131046279dc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac57a9c4b28d49a596ca5fa943e40b9af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac57a9c4b28d49a596ca5fa943e40b9af"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter1</b>&#160;&#160;&#160;Packet.parameters.separate.parameter1</td></tr>
-<tr class="separator:ac57a9c4b28d49a596ca5fa943e40b9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a05df635f3e5b1395d008f1901a4d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45a05df635f3e5b1395d008f1901a4d1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter2</b>&#160;&#160;&#160;Packet.parameters.separate.parameter2</td></tr>
-<tr class="separator:a45a05df635f3e5b1395d008f1901a4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a625e727e1e36680f574a360bc3747695"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a625e727e1e36680f574a360bc3747695"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter3</b>&#160;&#160;&#160;Packet.parameters.separate.parameter3</td></tr>
-<tr class="separator:a625e727e1e36680f574a360bc3747695"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a263d9441afcb8d453f9d25e637d34907"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a263d9441afcb8d453f9d25e637d34907"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter12</b>&#160;&#160;&#160;Packet.parameters.combined12.parameter12</td></tr>
-<tr class="separator:a263d9441afcb8d453f9d25e637d34907"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59d544f3e4a53730d58061ec7203f7ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59d544f3e4a53730d58061ec7203f7ed"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter23</b>&#160;&#160;&#160;Packet.parameters.combined23.parameter23</td></tr>
-<tr class="separator:a59d544f3e4a53730d58061ec7203f7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5916165249c1d4739d21a001d5a4775d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5916165249c1d4739d21a001d5a4775d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PACKET_NB_BYTES</b>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:ga5916165249c1d4739d21a001d5a4775d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a6b54bd6327268c60b131046279dc73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0a6b54bd6327268c60b131046279dc73"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Command</b>&#160;&#160;&#160;Packet.packetStruct.command</td></tr>
+<tr class="separator:ga0a6b54bd6327268c60b131046279dc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac57a9c4b28d49a596ca5fa943e40b9af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac57a9c4b28d49a596ca5fa943e40b9af"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter1</b>&#160;&#160;&#160;Packet.packetStruct.parameters.separate.parameter1</td></tr>
+<tr class="separator:gac57a9c4b28d49a596ca5fa943e40b9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga45a05df635f3e5b1395d008f1901a4d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga45a05df635f3e5b1395d008f1901a4d1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter2</b>&#160;&#160;&#160;Packet.packetStruct.parameters.separate.parameter2</td></tr>
+<tr class="separator:ga45a05df635f3e5b1395d008f1901a4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga625e727e1e36680f574a360bc3747695"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga625e727e1e36680f574a360bc3747695"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter3</b>&#160;&#160;&#160;Packet.packetStruct.parameters.separate.parameter3</td></tr>
+<tr class="separator:ga625e727e1e36680f574a360bc3747695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga263d9441afcb8d453f9d25e637d34907"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga263d9441afcb8d453f9d25e637d34907"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter12</b>&#160;&#160;&#160;Packet.packetStruct.parameters.combined12.parameter12</td></tr>
+<tr class="separator:ga263d9441afcb8d453f9d25e637d34907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59d544f3e4a53730d58061ec7203f7ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga59d544f3e4a53730d58061ec7203f7ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Parameter23</b>&#160;&#160;&#160;Packet.packetStruct.parameters.combined23.parameter23</td></tr>
+<tr class="separator:ga59d544f3e4a53730d58061ec7203f7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade7afcb767f4375a5728e1804376bd1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gade7afcb767f4375a5728e1804376bd1b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Packet_Checksum</b>&#160;&#160;&#160;Packet.packetStruct.checksum</td></tr>
+<tr class="separator:gade7afcb767f4375a5728e1804376bd1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7315fbc8509047db67073cd9ae1ec102"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7315fbc8509047db67073cd9ae1ec102"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GET_STARTUP_VAL</b>&#160;&#160;&#160;0x04</td></tr>
+<tr class="separator:ga7315fbc8509047db67073cd9ae1ec102"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9ef65fac5a6e3c6594811a7c8ee2291"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae9ef65fac5a6e3c6594811a7c8ee2291"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GET_VERSION</b>&#160;&#160;&#160;0x09</td></tr>
+<tr class="separator:gae9ef65fac5a6e3c6594811a7c8ee2291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaece2e6f34d985aa54a4a6e312cf7fdc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaece2e6f34d985aa54a4a6e312cf7fdc7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GET_TOWER_MODE</b>&#160;&#160;&#160;0xd</td></tr>
+<tr class="separator:gaece2e6f34d985aa54a4a6e312cf7fdc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03137e4264776672d2553722369e6e08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga03137e4264776672d2553722369e6e08"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_MODE_GET</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ga03137e4264776672d2553722369e6e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga658fb4b9b742291ec934ef7233b3fb02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga658fb4b9b742291ec934ef7233b3fb02"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_MODE_SET</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ga658fb4b9b742291ec934ef7233b3fb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbd0242e3945a0c4f41e381c5444c396"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gadbd0242e3945a0c4f41e381c5444c396"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FLASH_PROGRAM_BYTE</b>&#160;&#160;&#160;0x7</td></tr>
+<tr class="separator:gadbd0242e3945a0c4f41e381c5444c396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga31fcc948b380c0d9f8e42cbd64d0a5f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga31fcc948b380c0d9f8e42cbd64d0a5f2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FLASH_READ_BYTE</b>&#160;&#160;&#160;0x8</td></tr>
+<tr class="separator:ga31fcc948b380c0d9f8e42cbd64d0a5f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c606e826d94f0a60f13692e6814cc03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7c606e826d94f0a60f13692e6814cc03"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_TIME</b>&#160;&#160;&#160;0x0C</td></tr>
+<tr class="separator:ga7c606e826d94f0a60f13692e6814cc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e1aaf078379e25e9e3a06d66df0f5b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0e1aaf078379e25e9e3a06d66df0f5b5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_NUMBER</b>&#160;&#160;&#160;0x0B</td></tr>
+<tr class="separator:ga0e1aaf078379e25e9e3a06d66df0f5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga005a40182cc62774e80f78ae191cb38b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga005a40182cc62774e80f78ae191cb38b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_NUMBER_GET</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ga005a40182cc62774e80f78ae191cb38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5454737bdbadb76156ce19954532316f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5454737bdbadb76156ce19954532316f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_NUMBER_SET</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ga5454737bdbadb76156ce19954532316f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d8e65dc837241b72e90eac5ad86f6fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8d8e65dc837241b72e90eac5ad86f6fd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>S_ID</b>&#160;&#160;&#160;0x13A8</td></tr>
+<tr class="separator:ga8d8e65dc837241b72e90eac5ad86f6fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0b46978f220ff68a48af6cadf922d88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad0b46978f220ff68a48af6cadf922d88"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_STARTUP_COMM</b>&#160;&#160;&#160;0x04</td></tr>
+<tr class="separator:gad0b46978f220ff68a48af6cadf922d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43c624a17744670b75914c3a78980524"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga43c624a17744670b75914c3a78980524"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_STARTUP_PAR1</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:ga43c624a17744670b75914c3a78980524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09abbb9a1214ad4feba652a2f45fc0ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga09abbb9a1214ad4feba652a2f45fc0ad"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_STARTUP_PAR2</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:ga09abbb9a1214ad4feba652a2f45fc0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga493b95b12191a53ca3338c663f076fc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga493b95b12191a53ca3338c663f076fc2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_STARTUP_PAR3</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:ga493b95b12191a53ca3338c663f076fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2c7fcbe0880ad06ecfa03b6999417ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac2c7fcbe0880ad06ecfa03b6999417ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_VERSION_COMM</b>&#160;&#160;&#160;0x09</td></tr>
+<tr class="separator:gac2c7fcbe0880ad06ecfa03b6999417ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7172b435697d9c6b0e090d8924d45fef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7172b435697d9c6b0e090d8924d45fef"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_VERSION_V</b>&#160;&#160;&#160;'v'</td></tr>
+<tr class="separator:ga7172b435697d9c6b0e090d8924d45fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3440bf265bd5c665c396753a97c327ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga3440bf265bd5c665c396753a97c327ac"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_VERSION_MAJ</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ga3440bf265bd5c665c396753a97c327ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga19d818d58b80dbec02d707c0ff3f303a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga19d818d58b80dbec02d707c0ff3f303a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_VERSION_MIN</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ga19d818d58b80dbec02d707c0ff3f303a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd70b6cd14a8cfe857fccb4b34102654"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gabd70b6cd14a8cfe857fccb4b34102654"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_NUMBER_COMM</b>&#160;&#160;&#160;0x0B</td></tr>
+<tr class="separator:gabd70b6cd14a8cfe857fccb4b34102654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d2bce1a31a0352f6faed1ebf656c4de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6d2bce1a31a0352f6faed1ebf656c4de"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_NUMBER_PAR1</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ga6d2bce1a31a0352f6faed1ebf656c4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd200731f3df3cf07dbc28374bed77fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gafd200731f3df3cf07dbc28374bed77fd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_MODE_COMM</b>&#160;&#160;&#160;0x0d</td></tr>
+<tr class="separator:gafd200731f3df3cf07dbc28374bed77fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf499e56fd6b6ccc90e1b7e6f20e84ed2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf499e56fd6b6ccc90e1b7e6f20e84ed2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_MODE_PAR1</b>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:gaf499e56fd6b6ccc90e1b7e6f20e84ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09d338898a4e20162b71af02e8f35213"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga09d338898a4e20162b71af02e8f35213"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOWER_READ_BYTE_COMM</b>&#160;&#160;&#160;0x08</td></tr>
+<tr class="separator:ga09d338898a4e20162b71af02e8f35213"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aba27caca573c81c3160866cfdc03d6c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="packet_8h.html#aba27caca573c81c3160866cfdc03d6c9">Packet_Init</a> (const uint32_t baudRate, const uint32_t moduleClk)</td></tr>
-<tr class="memdesc:aba27caca573c81c3160866cfdc03d6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the packets by calling the initialization routines of the supporting software modules.  <a href="#aba27caca573c81c3160866cfdc03d6c9">More...</a><br /></td></tr>
-<tr class="separator:aba27caca573c81c3160866cfdc03d6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0864b60176a8caa5e5b20e8b0e6dcbd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="packet_8h.html#a0864b60176a8caa5e5b20e8b0e6dcbd3">Packet_Get</a> (void)</td></tr>
-<tr class="memdesc:a0864b60176a8caa5e5b20e8b0e6dcbd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get a packet from the received data.  <a href="#a0864b60176a8caa5e5b20e8b0e6dcbd3">More...</a><br /></td></tr>
-<tr class="separator:a0864b60176a8caa5e5b20e8b0e6dcbd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a248c4a5c53ef328f89e26ee5cb3b9131"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="packet_8h.html#a248c4a5c53ef328f89e26ee5cb3b9131">Packet_Put</a> (const uint8_t command, const uint8_t parameter1, const uint8_t parameter2, const uint8_t parameter3)</td></tr>
-<tr class="memdesc:a248c4a5c53ef328f89e26ee5cb3b9131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a packet and places it in the transmit FIFO buffer.  <a href="#a248c4a5c53ef328f89e26ee5cb3b9131">More...</a><br /></td></tr>
-<tr class="separator:a248c4a5c53ef328f89e26ee5cb3b9131"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga414aa3f521fdfd6e4586d98a946b6ab2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__packet__module.html#ga414aa3f521fdfd6e4586d98a946b6ab2">Packet_Init</a> (const uint32_t baudRate, const uint32_t moduleClk)</td></tr>
+<tr class="memdesc:ga414aa3f521fdfd6e4586d98a946b6ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the packets by calling the initialization routines of the supporting software modules.  <a href="group__packet__module.html#ga414aa3f521fdfd6e4586d98a946b6ab2">More...</a><br /></td></tr>
+<tr class="separator:ga414aa3f521fdfd6e4586d98a946b6ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac58a17928cd5e556e1567b2fde9f88f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__packet__module.html#gac58a17928cd5e556e1567b2fde9f88f0">Packet_Get</a> (void)</td></tr>
+<tr class="memdesc:gac58a17928cd5e556e1567b2fde9f88f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get a packet from the received data.  <a href="group__packet__module.html#gac58a17928cd5e556e1567b2fde9f88f0">More...</a><br /></td></tr>
+<tr class="separator:gac58a17928cd5e556e1567b2fde9f88f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga431a1e1da25a8214a502ec81f88fc3f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__packet__module.html#ga431a1e1da25a8214a502ec81f88fc3f1">Packet_Put</a> (const uint8_t command, const uint8_t parameter1, const uint8_t parameter2, const uint8_t parameter3)</td></tr>
+<tr class="memdesc:ga431a1e1da25a8214a502ec81f88fc3f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a packet and places it in the transmit FIFO buffer.  <a href="group__packet__module.html#ga431a1e1da25a8214a502ec81f88fc3f1">More...</a><br /></td></tr>
+<tr class="separator:ga431a1e1da25a8214a502ec81f88fc3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace17ca63df4ddfe3eeb01207eccff57c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__packet__module.html#gace17ca63df4ddfe3eeb01207eccff57c">Packet_Handle</a> (void)</td></tr>
+<tr class="memdesc:gace17ca63df4ddfe3eeb01207eccff57c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the stored packet.  <a href="group__packet__module.html#gace17ca63df4ddfe3eeb01207eccff57c">More...</a><br /></td></tr>
+<tr class="separator:gace17ca63df4ddfe3eeb01207eccff57c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ac74c1cf77ae5807a61baefd6df20201e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac74c1cf77ae5807a61baefd6df20201e"></a>
-<a class="el" href="struct_t_packet.html">TPacket</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Packet</b></td></tr>
-<tr class="separator:ac74c1cf77ae5807a61baefd6df20201e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5faca24c448374dc4656ebc31afcae0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5faca24c448374dc4656ebc31afcae0b"></a>
+<tr class="memitem:gac74c1cf77ae5807a61baefd6df20201e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac74c1cf77ae5807a61baefd6df20201e"></a>
+<a class="el" href="union_t_packet.html">TPacket</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Packet</b></td></tr>
+<tr class="separator:gac74c1cf77ae5807a61baefd6df20201e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5faca24c448374dc4656ebc31afcae0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5faca24c448374dc4656ebc31afcae0b"></a>
 const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>PACKET_ACK_MASK</b></td></tr>
-<tr class="separator:a5faca24c448374dc4656ebc31afcae0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ga5faca24c448374dc4656ebc31afcae0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbd952f9aa238f057456af90b4d33032"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gadbd952f9aa238f057456af90b4d33032"></a>
+<a class="el" href="unionuint16union__t.html">uint16union_t</a> volatile *&#160;</td><td class="memItemRight" valign="bottom"><b>TowerNumber</b></td></tr>
+<tr class="separator:gadbd952f9aa238f057456af90b4d33032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1c8f42f8cc006f8197dc8cb025f34d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf1c8f42f8cc006f8197dc8cb025f34d6"></a>
+<a class="el" href="unionuint16union__t.html">uint16union_t</a> volatile *&#160;</td><td class="memItemRight" valign="bottom"><b>TowerMode</b></td></tr>
+<tr class="separator:gaf1c8f42f8cc006f8197dc8cb025f34d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Routines to implement packet encoding and decoding for the serial port. </p>
 <p>This contains the functions for implementing the "Tower to PC Protocol" 5-byte packets.</p>
 <dl class="section author"><dt>Author</dt><dd>PMcL </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2015-07-23 </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a0864b60176a8caa5e5b20e8b0e6dcbd3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> Packet_Get </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Attempts to get a packet from the received data. </p>
-<dl class="section return"><dt>Returns</dt><dd>BOOL - TRUE if a valid packet was received. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aba27caca573c81c3160866cfdc03d6c9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> Packet_Init </td>
-          <td>(</td>
-          <td class="paramtype">const uint32_t&#160;</td>
-          <td class="paramname"><em>baudRate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint32_t&#160;</td>
-          <td class="paramname"><em>moduleClk</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes the packets by calling the initialization routines of the supporting software modules. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">baudRate</td><td>The desired baud rate in bits/sec. </td></tr>
-    <tr><td class="paramname">moduleClk</td><td>The module clock rate in Hz. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>BOOL - TRUE if the packet module was successfully initialized. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a248c4a5c53ef328f89e26ee5cb3b9131"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> Packet_Put </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t&#160;</td>
-          <td class="paramname"><em>command</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t&#160;</td>
-          <td class="paramname"><em>parameter1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t&#160;</td>
-          <td class="paramname"><em>parameter2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t&#160;</td>
-          <td class="paramname"><em>parameter3</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Builds a packet and places it in the transmit FIFO buffer. </p>
-<dl class="section return"><dt>Returns</dt><dd>BOOL - TRUE if a valid packet was sent. </dd></dl>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="packet_8h.html">packet.h</a></li>
-    <li class="footer">Generated on Mon Sep 7 2015 16:10:14 for Lab3 by
+    <li class="footer">Generated on Mon May 1 2017 15:35:41 for Lab3 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>
