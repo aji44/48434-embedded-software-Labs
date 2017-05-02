@@ -41,41 +41,40 @@
 #include "UART.h"
 #include "RTC.h"
 #include "PIT.h"
+#include "FTM.h"
 
 const static uint32_t BAUD_RATE = 115200;
 const static uint32_t MODULE_CLOCK = CPU_BUS_CLK_HZ;
 
-void RTCCallback(void *arg)
-{
-	uint8_t h, m ,s;
-	RTC_Get(&h, &m, &s);
-	Packet_Put(0x0c, h, m, s);
-	LEDs_Toggle(LED_YELLOW);
-}
+void FTM0Callback(void *arg);
+void RTCCallback(void *arg);
+void PITCallback(void *arg);
 
-void PITCallback(void *arg)
-{
-	PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
-	while(PIT_TFLG0 == 1)
-	{
-		;
-	}
 
-	LEDs_Toggle(LED_GREEN);
-}
+//TFTMChannel configuration for FTM timer
+TFTMChannel packetTimer = {
+		0, 															//channel
+		CPU_MCGFF_CLK_HZ_CONFIG_0,			//delay count
+		TIMER_FUNCTION_OUTPUT_COMPARE,	//timer function
+		TIMER_OUTPUT_HIGH,
+		FTM0Callback,					//User function
+		(void*) 0										//User arguments
+};
 
 void TowerInit(void)
 {
 	bool packetStatus = Packet_Init(BAUD_RATE, MODULE_CLOCK);
 	bool flashStatus  = Flash_Init();
 	bool ledStatus = LEDs_Init();
-
 	bool PITStatus = PIT_Init(MODULE_CLOCK, &PITCallback, (void *)0);
 	PIT_Set(500e6, false);
 
+	bool FTMStatus = FTM_Init();
+	FTM_Set(&packetTimer);
+
 	bool RTCStatus = RTC_Init(&RTCCallback, (void *)0);
 
-	if(!(packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus))
+	if(!(packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus &&FTMStatus))
 	{
 		LEDs_On(LED_ORANGE);	//Tower was initialized correctly
 	}
@@ -105,22 +104,48 @@ int main(void)
 	{
 		if (Packet_Get())	//Check if there is a packet in the retrieved data
 		{
+			LEDs_On(LED_BLUE);
+			FTM_StartTimer(&packetTimer);
 			Packet_Handle();
-			LEDs_Toggle(LED_BLUE);
 		}
 		//UART_Poll();	//Checks whether the RDRF or TDRE flags are set and retrieves/transmits data
 	}
 
 	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
-	/*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
-#ifdef PEX_RTOS_START
-	PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
-#endif
-	/*** End of RTOS startup code.  ***/
-	/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-	for(;;){}
-	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+  /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+  #ifdef PEX_RTOS_START
+    PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+  #endif
+  /*** End of RTOS startup code.  ***/
+  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+  for(;;){}
+  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
+
+
+void RTCCallback(void *arg)
+{
+	uint8_t h, m ,s;
+	RTC_Get(&h, &m, &s);
+	Packet_Put(0x0c, h, m, s);
+	LEDs_Toggle(LED_YELLOW);
+}
+
+void PITCallback(void *arg)
+{
+	PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
+	while(PIT_TFLG0 == 1)
+	{
+		;
+	}
+
+	LEDs_Toggle(LED_GREEN);
+}
+
+void FTM0Callback(void *arg)
+{
+	LEDs_Off(LED_BLUE);
+}
 
 /* END main */
 /*!

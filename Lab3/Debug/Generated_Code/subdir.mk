@@ -6,17 +6,20 @@
 C_SRCS += \
 ../Generated_Code/Cpu.c \
 ../Generated_Code/PE_LDD.c \
-../Generated_Code/Vectors.c 
+../Generated_Code/Vectors.c \
+../Generated_Code/Vectors_Backup.c 
 
 OBJS += \
 ./Generated_Code/Cpu.o \
 ./Generated_Code/PE_LDD.o \
-./Generated_Code/Vectors.o 
+./Generated_Code/Vectors.o \
+./Generated_Code/Vectors_Backup.o 
 
 C_DEPS += \
 ./Generated_Code/Cpu.d \
 ./Generated_Code/PE_LDD.d \
-./Generated_Code/Vectors.d 
+./Generated_Code/Vectors.d \
+./Generated_Code/Vectors_Backup.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

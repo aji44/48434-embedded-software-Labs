@@ -11,7 +11,8 @@ Generated_Code/Vectors.o: ../Generated_Code/Vectors.c \
  C:/Users/98119910/Documents/Lab3/Sources/UART.h \
  C:/Users/98119910/Documents/Lab3/Sources/types.h \
  C:/Users/98119910/Documents/Lab3/Sources/PIT.h \
- C:/Users/98119910/Documents/Lab3/Sources/RTC.h
+ C:/Users/98119910/Documents/Lab3/Sources/RTC.h \
+ C:/Users/98119910/Documents/Lab3/Sources/FTM.h
 
 ../Generated_Code/Cpu.h:
 
@@ -42,3 +43,5 @@ C:/Users/98119910/Documents/Lab3/Sources/types.h:
 C:/Users/98119910/Documents/Lab3/Sources/PIT.h:
 
 C:/Users/98119910/Documents/Lab3/Sources/RTC.h:
+
+C:/Users/98119910/Documents/Lab3/Sources/FTM.h:

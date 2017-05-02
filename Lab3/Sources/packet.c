@@ -22,6 +22,7 @@
 #include "Flash.h"
 #include "RTC.h"
 #include "PE_Types.h"
+#include "Cpu.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 
@@ -254,6 +255,7 @@ void Packet_Handle(void)
 			break;
 		case SET_TIME:
 			RTC_Set(Packet_Parameter1, Packet_Parameter2, Packet_Parameter3);
+			error = false;
 			break;
 		default:
 			break;
