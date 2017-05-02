@@ -74,7 +74,7 @@ void TowerInit(void)
 
 	bool RTCStatus = RTC_Init(&RTCCallback, (void *)0);
 
-	if(!(packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus &&FTMStatus))
+	if(packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus)
 	{
 		LEDs_On(LED_ORANGE);	//Tower was initialized correctly
 	}
