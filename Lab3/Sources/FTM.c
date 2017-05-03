@@ -18,11 +18,8 @@
 #define NO_OF_CHANNELS 8					// Number of channels in flexible timer module
 #define FIXED_FREQUENCY_CLOCK 2
 
-//static void (*FTM_Callback)(void *); //pointer to userCallback function
-//static void* FTM_Arguments; //pointer to userArguments function
-
-static void (*FTM_Callback[NO_OF_CHANNELS])(void *); //pointer to userCallback function
-static void* FTM_Arguments[NO_OF_CHANNELS]; //pointer to userArguments function
+static void (*FTMCallback[NO_OF_CHANNELS])(void *); //pointer to userCallback function
+static void* FTMArguments[NO_OF_CHANNELS]; //pointer to userArguments function
 
 /*! @brief Sets up the FTM before first use.
  *
@@ -35,13 +32,15 @@ bool FTM_Init()
 //FTM_SCx = Status and Control -contains the overflow status flag and control bits used to configure the interrupt enable
 //lab3 requirements: The clock source for the FTM should be the fixed frequency clock (MCGFFCLK)
 //The fixed frequency clock for each FTM is MCGFFCLK -pg 167 k70
- FTM0_SC |= FTM_SC_CLKS(FIXED_FREQUENCY_CLOCK);	// Enable FTM overflow interrupts, up counting mode
+
 
  //FTM0 Register instances (pg1217 - 1223 k70 manual)
   //The CNT register contains the FTM counter value.
   FTM0_CNTIN = ~FTM_CNTIN_INIT_MASK;			// Checks initial value of counter for space
-  FTM0_CNT = ~FTM_CNT_COUNT_MASK;			// Checks counter value
   FTM0_MOD = FTM_MOD_MOD_MASK;				// Initialises FTM counter by writing to CNT
+  FTM0_CNT = ~FTM_CNT_COUNT_MASK;			// Checks counter value
+  FTM0_SC |= FTM_SC_CLKS(FIXED_FREQUENCY_CLOCK);	// Enable FTM overflow interrupts, up counting mode
+
 
 	// Initialise NVICs for FTM0 | pg 97/2275 k70 manual
   // IRQ = 62 mod 32 = 30.
@@ -69,7 +68,7 @@ return true; //FTM successfully initialised
 bool FTM_Set(const TFTMChannel* const aFTMChannel)
 {
 	//refer to structs given in FTM.h
-	if(aFTMChannel->timerFunction == TIMER_FUNCTION_INPUT_CAPTURE)
+	if (aFTMChannel->timerFunction == TIMER_FUNCTION_INPUT_CAPTURE)
 	{
 		//Channel (n) Status And Control (pg 1219/2275)
 		//The channel mode can be set up as an Input Capture channel
@@ -105,12 +104,9 @@ bool FTM_Set(const TFTMChannel* const aFTMChannel)
 			  FTM0_CnSC(aFTMChannel->channelNb) &= ~FTM_CnSC_ELSA_MASK;
 			  break;
 		}
-		
-		//FTM_Callback = aFTMChannel->userFunction;				// Globally accessible (userFunction)
-		//FTM_Arguments = aFTMChannel->userArguments;			// Globally accessible (userArguments)
 
-		Callback[aFTMChannel->channelNb] = aFTMChannel->userFunction;
-  		Arguments[aFTMChannel->channelNb] = aFTMChannel->userArguments;
+	  FTMCallback[aFTMChannel->channelNb] = aFTMChannel->userFunction;
+	  FTMArguments[aFTMChannel->channelNb] = aFTMChannel->userArguments;
 		return true;
 }
 
@@ -126,44 +122,44 @@ bool FTM_StartTimer(const TFTMChannel* const aFTMChannel)
 	{
 		if (aFTMChannel->timerFunction == TIMER_FUNCTION_OUTPUT_COMPARE)
 		{
+			FTM0_CnV(aFTMChannel->channelNb) = FTM0_CNT + aFTMChannel->delayCount;	// Sets the channels initial countss
+
+			// If any event on the channel has occurred, clear the channel flag
+			if (FTM0_CnSC(aFTMChannel->channelNb) & FTM_CnSC_CHF_MASK)
+			{
+				FTM0_CnSC(aFTMChannel->channelNb) &= ~FTM_CnSC_CHF_MASK;
+			}
+
 			//CHIE - channel interrupt enable
 			FTM0_CnSC(aFTMChannel->channelNb) |= FTM_CnSC_CHIE_MASK; //enables channel interrupts
-			//FTM0_CNT The Count register contains the counter value.
-			FTM0_CnV(aFTMChannel->channelNb) = FTM0_CNT + aFTMChannel->delayCount;	// Sets the channels initial countss
+
 			return true; //Timer successfully initialised.
 		}
 	}
 	return false; //Not successful
 }
 
-/*! @brief Interrupt service routine for the FTM.
- *
- *  If a timer channel was set up as output compare, then the user callback function will be called.
- *  @note Assumes the FTM has been initialized.
- */
 void __attribute__ ((interrupt)) FTM0_ISR(void)
 {
 	uint8_t channelNb;
 
-	for(channelNb = 0; channelNb < NO_OF_CHANNEL; channelNb++)
+	for (channelNb = 0; channelNb < NO_OF_CHANNELS; channelNb++)
 	{
 		// Check if interrupt is enabled for channel and Check if the flag is set for that channel
-    	if ((FTM0_CnSC(channelNb) & FTM_CnSC_CHIE_MASK) && (FTM0_CnSC(channelNb) & FTM_CnSC_CHF_MASK))
-    	{
-    		// Disable interrupt
-      		FTM0_CnSC(channelNb) &= ~FTM_CnSC_CHIE_MASK;
-      		//Callback function
-      		(*FTM_Callback[channelNb])(FTM_Arguments[channelNb]);
+		if ((FTM0_CnSC(channelNb) & FTM_CnSC_CHIE_MASK) && (FTM0_CnSC(channelNb) & FTM_CnSC_CHF_MASK))
+		{
+			FTM0_CnSC(channelNb) &= ~FTM_CnSC_CHF_MASK;
 
-      		//possibly -
-      		// if (FTM_Callback[channelNb])
-      		// {
-        	// 	(*FTM_Callback[channelNb])(FTM_Arguments[channelNb]);
-      		// }
-    	}
+			//Disable interrupt
+			FTM0_CnSC(channelNb) &= ~FTM_CnSC_CHIE_MASK;
+
+			//Callback function
+			if (FTMCallback[channelNb])
+			{
+				(*FTMCallback[channelNb])(FTMArguments[channelNb]);
+			}
+		}
 	}
-	return;
-	//(*FTM_Callback)(FTM_Arguments); //not sure ask on  monday??????
 }
 
 /*!

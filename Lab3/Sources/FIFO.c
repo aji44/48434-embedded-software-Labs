@@ -13,7 +13,7 @@
 /****************************************HEADER FILES****************************************************/
 #include "FIFO.h"
 #include "PE_Types.h"
-
+#include "Cpu.h"
 /****************************************PUBLIC FUNCTION DEFINITION***************************************/
 
 /*! @brief Initialize the FIFO before first use.
@@ -23,9 +23,13 @@
  */
 void FIFO_Init(TFIFO * const FIFO)
 {
+	EnterCritical();
+
 	FIFO->Start = 0;
 	FIFO->End = 0;
 	FIFO->NbBytes = 0;
+
+	ExitCritical();
 }
 
 /*! @brief Put one character into the FIFO.
@@ -70,7 +74,7 @@ bool FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr)
 		FIFO->Start++; //Moves to the next element in the array
 		FIFO->NbBytes--;
 		if (FIFO->Start == FIFO_SIZE-1) FIFO->Start = 0;
-		ExitCitical();
+		ExitCritical();
 		return true;
 	}
 	ExitCritical();

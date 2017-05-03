@@ -193,10 +193,10 @@ var NAVTREEINDEX52 =
 "group___r_c_m___peripheral.html":[2,17,43],
 "group___r_c_m___peripheral.html#ga25ab3aa8d593d455ed36a52c77f88234":[2,17,43,3],
 "group___r_c_m___peripheral.html#ga25ab3aa8d593d455ed36a52c77f88234":[4,0,2,0,0,9803],
-"group___r_c_m___peripheral.html#ga787b1c58d947f0b81c2502227dd0396b":[2,17,43,5],
 "group___r_c_m___peripheral.html#ga787b1c58d947f0b81c2502227dd0396b":[4,0,2,0,0,13309],
-"group___r_c_m___peripheral.html#gad8549fec4a09b0b485983beadfc3a5fb":[4,0,2,0,0,9804],
+"group___r_c_m___peripheral.html#ga787b1c58d947f0b81c2502227dd0396b":[2,17,43,5],
 "group___r_c_m___peripheral.html#gad8549fec4a09b0b485983beadfc3a5fb":[2,17,43,4],
+"group___r_c_m___peripheral.html#gad8549fec4a09b0b485983beadfc3a5fb":[4,0,2,0,0,9804],
 "group___r_c_m___register___accessor___macros.html":[2,17,43,0],
 "group___r_c_m___register___accessor___macros.html#ga1c19f66051e218d534efc33ec09cc461":[4,0,2,0,0,9809],
 "group___r_c_m___register___accessor___macros.html#ga1d8c54f5dc3a71defe562b00ec97fd40":[4,0,2,0,0,9808],
@@ -244,10 +244,10 @@ var NAVTREEINDEX52 =
 "group___r_c_m___register___masks.html#gadfb0f8132fbbc978c9756a2adfbf2ed0":[4,0,2,0,0,9814],
 "group___r_c_m___register___masks.html#gaed8a9ebad93d9ea2a3b3a827890f983d":[4,0,2,0,0,9818],
 "group___r_f_s_y_s___peripheral.html":[2,17,44],
-"group___r_f_s_y_s___peripheral.html#ga2dab66eae1abcaf22879dbce661ea2fa":[2,17,44,3],
 "group___r_f_s_y_s___peripheral.html#ga2dab66eae1abcaf22879dbce661ea2fa":[4,0,2,0,0,9849],
-"group___r_f_s_y_s___peripheral.html#ga59f6caa8732744ac3a9f91828ec2daa1":[4,0,2,0,0,9850],
+"group___r_f_s_y_s___peripheral.html#ga2dab66eae1abcaf22879dbce661ea2fa":[2,17,44,3],
 "group___r_f_s_y_s___peripheral.html#ga59f6caa8732744ac3a9f91828ec2daa1":[2,17,44,4],
-"group___r_f_s_y_s___peripheral.html#gaea9e2f6aeeb4976615e3c3dd87acff9e":[4,0,2,0,0,13310],
-"group___r_f_s_y_s___peripheral.html#gaea9e2f6aeeb4976615e3c3dd87acff9e":[2,17,44,5]
+"group___r_f_s_y_s___peripheral.html#ga59f6caa8732744ac3a9f91828ec2daa1":[4,0,2,0,0,9850],
+"group___r_f_s_y_s___peripheral.html#gaea9e2f6aeeb4976615e3c3dd87acff9e":[2,17,44,5],
+"group___r_f_s_y_s___peripheral.html#gaea9e2f6aeeb4976615e3c3dd87acff9e":[4,0,2,0,0,13310]
 };

@@ -56,9 +56,9 @@ TFTMChannel packetTimer = {
 		0, 															//channel
 		CPU_MCGFF_CLK_HZ_CONFIG_0,			//delay count
 		TIMER_FUNCTION_OUTPUT_COMPARE,	//timer function
-		TIMER_OUTPUT_HIGH,
-		FTM0Callback,					//User function
-		(void*) 0										//User arguments
+		TIMER_OUTPUT_HIGH,							//ioType
+		FTM0Callback,										//User function
+		(void*) 0												//User arguments
 };
 
 void TowerInit(void)
@@ -108,7 +108,6 @@ int main(void)
 			FTM_StartTimer(&packetTimer);
 			Packet_Handle();
 		}
-		//UART_Poll();	//Checks whether the RDRF or TDRE flags are set and retrieves/transmits data
 	}
 
 	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
@@ -122,26 +121,22 @@ int main(void)
   /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
-
+//RTCCallback function from RTC_ISR
 void RTCCallback(void *arg)
 {
 	uint8_t h, m ,s;
-	RTC_Get(&h, &m, &s);
-	Packet_Put(0x0c, h, m, s);
-	LEDs_Toggle(LED_YELLOW);
+	RTC_Get(&h, &m, &s);			//Get hours, mins, secs
+	Packet_Put(0x0c, h, m, s);//Send to PC
+	LEDs_Toggle(LED_YELLOW);	//Toggle Yellow LED
 }
 
+//PITCallback function from PIT_ISR
 void PITCallback(void *arg)
 {
-	PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
-	while(PIT_TFLG0 == 1)
-	{
-		;
-	}
-
 	LEDs_Toggle(LED_GREEN);
 }
 
+//FTM0Callback function from FTM_ISR
 void FTM0Callback(void *arg)
 {
 	LEDs_Off(LED_BLUE);

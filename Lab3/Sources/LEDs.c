@@ -37,6 +37,7 @@ bool LEDs_Init(void)
 
 	//Set as a General Purpose Output
 	GPIOA_PDDR |= (LED_ORANGE | LED_YELLOW | LED_GREEN | LED_BLUE);
+	return true;
 }
 
 /*! @brief Turns an LED on.
@@ -46,7 +47,7 @@ bool LEDs_Init(void)
  */
 void LEDs_On(const TLED color)
 {
-	GPIOA_PCOR |= color;
+	GPIOA_PCOR = color;
 }
 
 /*! @brief Turns off an LED.
@@ -56,7 +57,7 @@ void LEDs_On(const TLED color)
  */
 void LEDs_Off(const TLED color)
 {
-	GPIOA_PSOR |= color;
+	GPIOA_PSOR = color;
 }
 
 /*! @brief Toggles an LED.
@@ -66,7 +67,7 @@ void LEDs_Off(const TLED color)
  */
 void LEDs_Toggle(const TLED color)
 {
-	GPIOA_PTOR |= color;
+	GPIOA_PTOR = color;
 }
 /*!
  * @}

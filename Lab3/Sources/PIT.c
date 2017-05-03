@@ -15,8 +15,8 @@
 #include "MK70F12.h"
 
 static uint32_t PIT_moduleClk;
-static void * PIT_Arguments; //pointer to userArguments funtion
-static void (*PIT_Callback)(void *); //pointer to userCallback function
+static void * PITArguments; //pointer to userArguments funtion
+static void (*PITCallback)(void *); //pointer to userCallback function
 
 /*! @brief Sets up the PIT before first use.
  *
@@ -28,8 +28,8 @@ static void (*PIT_Callback)(void *); //pointer to userCallback function
  *  @note Assumes that moduleClk has a period which can be expressed as an integral number of nanoseconds.
  */
 bool PIT_Init(const uint32_t moduleClk, void (*userFunction)(void*), void* userArguments){
-	PIT_Arguments = userArguments; //Globally accessible (userArguments)
-	PIT_Callback = userFunction; //Globally accessible (userFunction)
+	PITArguments = userArguments; //Globally accessible (userArguments)
+	PITCallback = userFunction; //Globally accessible (userFunction)
 	PIT_moduleClk = moduleClk;
 
 	SIM_SCGC6 |= SIM_SCGC6_PIT_MASK;  // Enable clock gate PIT
@@ -37,10 +37,6 @@ bool PIT_Init(const uint32_t moduleClk, void (*userFunction)(void*), void* userA
 	PIT_MCR &= ~PIT_MCR_MDIS_MASK; //module disable - enabled to allow any kind of setup to PIT
 	PIT_MCR = PIT_MCR_FRZ_MASK; //freeze timer in debug module
 	PIT_Enable(true);
-
-	// MENKA ------NOT SURE......
-	// PIT_TFLG0 &= ~PIT_TFLG_TIF_MASK; 		//!clear any previous tif interrupts
-	// PIT_TCTRL0 &= ~PIT_TCTRL_TEN_MASK;		//!disables the timer //NOT SURE......
 
 	//Enable interrupts
 	//PIT_TCTRL0 - Timer Control Register |TIE - Timer Interrupt Enable |pg 1343/2275 k70 manual
@@ -103,8 +99,12 @@ void PIT_Enable(const bool enable)
  */
 void __attribute__ ((interrupt)) PIT_ISR(void){
 	//lab3 hints pg 6/8
-	if(PIT_Callback)
-		(*PIT_Callback)(PIT_Arguments);
+	PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
+
+	if (PITCallback)
+	{
+		(*PITCallback)(PITArguments);
+	}
 }
 
 

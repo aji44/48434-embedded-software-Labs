@@ -17,6 +17,7 @@
 #include "FIFO.h"
 #include "types.h"
 #include "MK70F12.h"
+#include "Cpu.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 TFIFO RxFIFO;
@@ -98,9 +99,13 @@ bool UART_OutChar(const uint8_t data)
 {
 	bool success;
 
-	UART2_C2 &= ~UART_C2_TIE_MASK;
+	EnterCritical();
+
+	UART2_C2 &= ~UART_C2_TIE_MASK; //disable
 	success = FIFO_Put(&TxFIFO, data); //Place the value stored in data into the TxFIFO
-	UART2_C2 |= UART_C2_TIE_MASK;
+	UART2_C2 |= UART_C2_TIE_MASK; //enable
+
+	ExitCritical();
 
 	return success;
 }
@@ -133,9 +138,10 @@ bool UART_OutChar(const uint8_t data)
 void __attribute__ ((interrupt)) UART_ISR(void)
 {
 	static uint8_t txData;
-	uint8_t TEMPregisterRead;
+	//uint8_t TEMPregisterRead;
 
-	if(UART2_S1 & UART_C2_RIE_MASK)
+
+	if (UART2_S1 & UART_C2_RIE_MASK)
 	{
 		if (UART2_S1 & UART_S1_RDRF_MASK)
 		{
@@ -148,11 +154,11 @@ void __attribute__ ((interrupt)) UART_ISR(void)
 		if (FIFO_Get(&TxFIFO, &txData))
 		{
 			UART2_D = txData;
-			TEMPregisterRead = UART2_S1;
+			//TEMPregisterRead = UART2_S1;
 		} else
 		{
 			UART2_C2 &= ~UART_C2_TIE_MASK;
-			TEMPregisterRead = UART2_S1;
+			//TEMPregisterRead = UART2_S1;
 		}
 	}
 }

@@ -17,8 +17,8 @@
 #include "LEDs.h"
 #include <stdint.h>
 
-static void *RTC_Arguments; //pointer to userArguments funtion
-static void (*RTC_Callback)(void *); //pointer to userCallback function
+static void *RTCArguments; //pointer to userArguments funtion
+static void (*RTCCallback)(void *); //pointer to userCallback function
 
 /*! @brief Initializes the RTC before first use.
  *
@@ -30,15 +30,35 @@ static void (*RTC_Callback)(void *); //pointer to userCallback function
  */
 bool RTC_Init(void (*userFunction)(void*), void* userArguments)
 {
-	RTC_Arguments = userArguments; //Globally accessible (userArguments)
-	RTC_Callback = userFunction; //Globally accessible (userFunction)
+	RTCArguments = userArguments; //Globally accessible (userArguments)
+	RTCCallback = userFunction; //Globally accessible (userFunction)
 
 	SIM_SCGC6 |= SIM_SCGC6_RTC_MASK;  	// Enable clock gate RTC
-	//lab3 note hint 7 -RTC | pg 1394/2275 k70 manual
-	RTC_CR |= RTC_CR_OSCE_MASK;	//Enables the 32.768kHz Oscillator
-	//Enable 18pF load - pg 1394/2275 k70 manual
-	RTC_CR |= RTC_CR_SC2P_MASK;
-	RTC_CR |= RTC_CR_SC16P_MASK;
+
+	// First Try and assert a software reset on the RTC
+	RTC_CR = RTC_CR_SWR_MASK;
+
+	// Check if there was a prior reset
+//	if (RTC_CR == RTC_CR_SWR_MASK)
+//	{
+		RTC_CR &= ~RTC_CR_SWR_MASK;
+
+		RTC_TSR = 0; // Time invalid flag
+
+		//Enable 18pF load - pg 1394/2275 k70 manual
+		RTC_CR |= RTC_CR_SC2P_MASK;
+		RTC_CR |= RTC_CR_SC16P_MASK;
+
+		//lab3 note hint 7 -RTC | pg 1394/2275 k70 manual
+		RTC_CR |= RTC_CR_OSCE_MASK;	//Enables the 32.768kHz Oscillator
+
+		// You need to wait at least 500ms for the RTC to startup
+		for (int i = 0; i < 0x600000; i++);
+
+		// lock the control reg
+		RTC_LR &= ~RTC_LR_CRL_MASK;				// Locks the control register
+//	}
+
 
 	//RTC-IER Interrupt Enable Register | pg 1399/2275 K70 Manual
 	//TSIE -Time Seconds Interrupt Enable
@@ -51,7 +71,7 @@ bool RTC_Init(void (*userFunction)(void*), void* userArguments)
 	RTC_IER &= ~RTC_IER_TIIE_MASK;			// Disables Time Invalid Interrupt
 
 
-	RTC_LR &= ~RTC_LR_CRL_MASK;				// Locks the control register
+
 	RTC_SR |= RTC_SR_TCE_MASK;				// Initialises the timer control
 
 	// Initialise NVICs for RTC | pg 97/2275 k70 manual
@@ -94,13 +114,11 @@ void RTC_Set(const uint8_t hours, const uint8_t minutes, const uint8_t seconds)
 void RTC_Get(uint8_t* const hours, uint8_t* const minutes, uint8_t* const seconds)
 {
 	uint32_t currentSeconds = RTC_TSR;
-	// *hours = currentSeconds/3600; //updates the current time value of hours
-	// *minutes =(currentSeconds/60) % 60; //updates the current time value of minutes
-	// *seconds = currentSeconds % 60; //updates the current time value of seconds
+	// Should be reading this twice, checking if the reads match see p 1400 roughly
 
 	//Link : http://stackoverflow.com/questions/24850738/how-to-convert-total-seconds-value-to-string-in-hours-minutes-seconds-format
-	*hours = currentSeconds/3600; //updates the current time value of hours
-	*minutes =(currentSeconds % 3600) / 60; //updates the current time value of minutes
+	*hours = (currentSeconds/3600); //updates the current time value of hours
+	*minutes = (currentSeconds % 3600) / 60; //updates the current time value of minutes
 	*seconds = (currentSeconds % 3600) % 60; //updates the current time value of seconds
 }
 
@@ -112,8 +130,10 @@ void RTC_Get(uint8_t* const hours, uint8_t* const minutes, uint8_t* const second
  */
 void __attribute__ ((interrupt)) RTC_ISR(void)
 {
-	if(RTC_Callback)
-		(*RTC_Callback)(RTC_Arguments);
+	if (RTCCallback)
+	{
+		(*RTCCallback)(RTCArguments);
+	}
 }
 
 

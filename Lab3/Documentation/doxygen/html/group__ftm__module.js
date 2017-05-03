@@ -10,7 +10,6 @@ var group__ftm__module =
       [ "userArguments", "struct_t_f_t_m_channel.html#a975090ae478158776d52eb24660021d6", null ],
       [ "userFunction", "struct_t_f_t_m_channel.html#af3920191861032f55e27bd4fd42cb29a", null ]
     ] ],
-    [ "__attribute__", "group__ftm__module.html#ga445500277ba0e363873b34cffc015745", null ],
     [ "FTM_Init", "group__ftm__module.html#ga5f31811e067b5690d5f73c8e77019a6b", null ],
     [ "FTM_Set", "group__ftm__module.html#gae4928af832114c8173e43d10e4144c1f", null ],
     [ "FTM_StartTimer", "group__ftm__module.html#gabb34a0dd79d879502fd81c0efa9440ec", null ]
