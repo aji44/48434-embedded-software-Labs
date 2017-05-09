@@ -42,13 +42,81 @@
 #include "RTC.h"
 #include "PIT.h"
 #include "FTM.h"
+#include "median.h"
+#include "I2C.h"
 
 const static uint32_t BAUD_RATE = 115200;
 const static uint32_t MODULE_CLOCK = CPU_BUS_CLK_HZ;
 
+/*!
+ * @brief Contains the latest accelerometer data
+ */
+static uint8_t AccReadData[3] = {0};
+
 void FTM0Callback(void *arg);
 void RTCCallback(void *arg);
 void PITCallback(void *arg);
+
+/*!
+ * @brief slidingwindow Shifts the elements of an array one to the left.
+ * @param array The array to shifting window.
+ * @param arraylength The length of the array.
+ * @param newValue The new value to insert at index 0.
+ */
+void SlidingWindow(uint8_t* const array, const size_t arraylength const uint8_t newValue)
+{
+	for (size_t i = (arraylength -1); i >0; i --)
+	{
+		array[i] = array [i-1];
+	}
+	array[0] =newValue;
+}
+
+/*!
+ * @brief The latest bytes of accelerometer data which were sent.
+ */
+static uint8_t AccelSendHistory[3] = {0};
+/*!
+ * @brief The latest bytes of X read from the accelerometer .
+ */
+static uint8_t AccXHistory[3] = {0};
+/*!
+ * @brief The latest bytes of Yread from the accelerometer .
+ */
+static uint8_t AccYHistory[3] = {0};
+/*!
+ * @brief The latest bytes of Z read from the accelerometer .
+ */
+static uint8_t AccZHistory[3] = {0};
+
+/*!
+ * @brief Run on the main thread to handle new accelerometer data.
+ */
+void HandleMedianData()
+{
+	// 	if (Accel_GetMode() == ACCEL_INT)
+	// 	{
+	// 		Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+	// 		return;
+	// 	}
+
+	//shifting history
+	SlidingWindow(AccXHistory,3,AccReadData[0]);
+	SlidingWindow(AccYHistory,3,AccReadData[1]);
+	SlidingWindow(AccZHistory,3,AccReadData[2]);
+
+	uint8_t xMedian = Median_Filter3(AccXHistory[0],AccXHistory[1],AccXHistory[2] );
+	uint8_t yMedian = Median_Filter3(AccYHistory[0],AccYHistory[1],AccYHistory[2] );
+	uint8_t zMedian = Median_Filter3(AccZHistory[0],AccZHistory[1],AccZHistory[2] );
+
+		if ((xMedian!= AccelSendHistory[0]) | (yMedian != AccelSendHistory[1]) | (zMedian != AccelSendHistory[2]))
+		{
+			AccelSendHistory[0] = xMedian;
+			AccelSendHistory[1] = yMedian;
+			AccelSendHistory[2] = zMedian;
+			//code to use packet put ?????
+}
+}
 
 
 //TFTMChannel configuration for FTM timer
@@ -99,7 +167,8 @@ int main(void)
 	Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
 	Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
 	Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
-
+	//do something for accelerometer values
+}
 	for (;;)
 	{
 		if (Packet_Get())	//Check if there is a packet in the retrieved data
