@@ -184,5 +184,59 @@ static union
 #define CTRL_REG5_INT_CFG_ASLP		CTRL_REG5_Union.bits.INT_CFG_ASLP
 
 /*!
+ * @brief Callback once data is available.
+ */
+static void (*DataCallback)(void *);
+
+/*!
+ * @brief Argument to pass to data callback.
+ */
+static void *DataCallbackArgument;
+
+/*!
+ * @brief Callback once read is complete.
+ */
+static void (*ReadCallback)(void *);
+
+/*!
+ * @brief Argument passed to read callback.
+ */
+static void *ReadCallbackArgument;
+/*! @brief Initializes the accelerometer by calling the initialization routines of the supporting software modules.
+ *
+ *  @param accelSetup is a pointer to an accelerometer setup structure.
+ *  @return BOOL - TRUE if the accelerometer module was successfully initialized.
+ */
+BOOL Accel_Init(const TAccelSetup* const accelSetup)
+{
+
+}
+
+/*! @brief Reads X, Y and Z accelerations.
+ *  @param data is a an array of 3 bytes where the X, Y and Z data are stored.
+ */
+void Accel_ReadXYZ(uint8_t data[3])
+{
+
+}
+
+/*! @brief Set the mode of the accelerometer.
+ *  @param mode specifies either polled or interrupt driven operation.
+ */
+void Accel_SetMode(const TAccelMode mode)
+{
+
+}
+/*! @brief Interrupt service routine for the accelerometer.
+ *
+ *  The accelerometer has data ready.
+ *  The user callback function will be called.
+ *  @note Assumes the accelerometer has been initialized.
+ */
+void __attribute__ ((interrupt)) AccelDataReady_ISR(void)
+{
+
+}
+/*!
  * @}
 */
