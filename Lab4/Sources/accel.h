@@ -49,7 +49,7 @@ typedef union
  *  @param accelSetup is a pointer to an accelerometer setup structure.
  *  @return BOOL - TRUE if the accelerometer module was successfully initialized.
  */
-BOOL Accel_Init(const TAccelSetup* const accelSetup);
+bool Accel_Init(const TAccelSetup* const accelSetup);
 
 /*! @brief Reads X, Y and Z accelerations.
  *  @param data is a an array of 3 bytes where the X, Y and Z data are stored.

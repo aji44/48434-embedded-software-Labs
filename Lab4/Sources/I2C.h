@@ -28,7 +28,7 @@ typedef struct
  *  @param moduleClk The module clock in Hz.
  *  @return BOOL - TRUE if the I2C module was successfully initialized.
  */
-BOOL I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk);
+bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk);
 
 /*! @brief Selects the current slave device
  *

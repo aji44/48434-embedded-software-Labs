@@ -207,7 +207,7 @@ static void *ReadCallbackArgument;
  *  @param accelSetup is a pointer to an accelerometer setup structure.
  *  @return BOOL - TRUE if the accelerometer module was successfully initialized.
  */
-BOOL Accel_Init(const TAccelSetup* const accelSetup)
+bool Accel_Init(const TAccelSetup* const accelSetup)
 {
 
 }
