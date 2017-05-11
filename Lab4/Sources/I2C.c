@@ -252,5 +252,22 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
  */
 void __attribute__ ((interrupt)) I2C_ISR(void)
 {
+	uint8_t status = I2C0_S;
+
+	//STARTF, STOPF?
+
+	if (!(status & I2C_S_IICIF_MASK)) //?
+	{
+		return;
+	} 
+	else 
+	{
+		//acknowledge interrupt
+		I2C0_S |= I2C_S_IICIF_MASK;
+	}
+
+
+	//Therefore, it is a read operation
+	// Do we need to check if it is a read operation? how?
 
 }
