@@ -29,6 +29,7 @@ typedef struct
   void* readCompleteCallbackArguments;		/*!< The user's read complete callback function arguments. */
 } TAccelSetup;
 
+
 #pragma pack(push)
 #pragma pack(1)
 

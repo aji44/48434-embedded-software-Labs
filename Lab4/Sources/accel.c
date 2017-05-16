@@ -28,6 +28,8 @@
 // CPU and PE_types are needed for critical section variables and the defintion of NULL pointer
 #include "CPU.h"
 #include "PE_types.h"
+#include "types.h"
+
 
 // Accelerometer registers
 #define ADDRESS_OUT_X_MSB 0x01
@@ -209,7 +211,25 @@ static void *ReadCallbackArgument;
  */
 bool Accel_Init(const TAccelSetup* const accelSetup)
 {
+	DataCallback = accelSetup-> dataReadyCallbackFunction;
+	DataCallbackArgument=accelSetup->dataReadyCallbackArguments;
 
+	ReadCallback = accelSetup->readCompleteCallbackFunction;
+	ReadCallbackArgument = accelSetup->readCompleteCallbackArguments;
+
+	SIM_SCGC5 |=  SIM_SCGC5_PORTB_MASK; //set portB as per lab requirements
+
+	//set pins use pin 4
+	PORTB_PCR4 &= ~PORT_PCR_MUX_MASK; //clear any previously set bits for the PCR_MUX
+	PORTB_PCR4 |= PORT_PCR_MUX(1); //set pin 4
+	PORTB_PCR4 |= PORT_PCR_ISF_MASK; //set interrupt status flag pg 323
+	PORTB_PCR4 |= PORT_PCR_IRQC(10); //set interrupt configuration
+
+	//NVICS: IQR- Pin detect portB (88mod32) pg98 k70 manual
+	NVICICPR2 = (1<<24);
+	NVICISER2 = (1<<24);
+
+	return true;
 }
 
 /*! @brief Reads X, Y and Z accelerations.
@@ -217,7 +237,8 @@ bool Accel_Init(const TAccelSetup* const accelSetup)
  */
 void Accel_ReadXYZ(uint8_t data[3])
 {
-
+	//call the i2c_selectslavedevice????????
+	I2C_IntRead(ADDRESS_OUT_X_MSB,data,3);
 }
 
 /*! @brief Set the mode of the accelerometer.
