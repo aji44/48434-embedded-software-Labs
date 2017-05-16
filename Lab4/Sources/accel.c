@@ -1,11 +1,9 @@
 /*! @file
  *
- *  @brief <Write your description here>.
+ *  @brief Implementation of the HAL for the accelerometer.
  *
- *  <Write your description here>.
- *
- *  @author <Write your name here>
- *  @date <Write the data here>
+ *  @author Corey Stidston and Menka Mehta
+ *  @date 2017-05-17
  */
 
 /*!

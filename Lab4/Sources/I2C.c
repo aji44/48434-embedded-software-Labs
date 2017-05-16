@@ -7,7 +7,10 @@
  *  @author Corey Stidston and Menka Mehta
  *  @date 2017-05-08
  */
-
+ /*!
+ **  @addtogroup i2c_module I2C module documentation
+ **  @{
+ */
 #include "I2C.h"
 #include "MK70F12.h"
 #include "PE_Types.h"
@@ -34,12 +37,16 @@ static uint8_t NumBytes;
 static uint8_t *ReceivedData;
 static bool OKtoRead = true;
 
+//function Prototypes
 static bool waitForAck(void);
 static bool start(void);
 static bool stop(void);
 static void sendDeviceAddress(void);
 static void sendRegisterAddress(const uint8_t registerAddress);
 
+/*!
+ * @briefwaitForAck
+ */
 bool waitForAck(void)
 {
 	//Wait for ack
@@ -51,6 +58,9 @@ bool waitForAck(void)
 	return true;
 }
 
+/*!
+ * @brief Start the I2C bus
+ */
 bool start(void)
 {
 	//I2C0_S |= I2C_S_IICIF_MASK; //Clear interrupts pending
@@ -61,6 +71,9 @@ bool start(void)
 	return true;
 }
 
+/*!
+ * @brief Stop the I2C bus
+ */
 bool stop()
 {
 	//stop //disable the following.
@@ -70,6 +83,9 @@ bool stop()
 	return true;
 }
 
+/*!
+ * @brief sendDeviceAddress
+ */
 void sendDeviceAddress(void)
 {
 	//slave addresses I2C Data I/O register (i2Cx_D) pg 1875/2275 k70 manual
@@ -324,3 +340,6 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 		}
 	}
 }
+/*!
+** @}
+*/
