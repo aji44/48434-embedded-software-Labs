@@ -23,6 +23,7 @@
 #include "RTC.h"
 #include "PE_Types.h"
 #include "Cpu.h"
+#include "accel.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 
@@ -257,6 +258,32 @@ void Packet_Handle(void)
 			RTC_Set(Packet_Parameter1, Packet_Parameter2, Packet_Parameter3);
 			error = false;
 			break;
+		case 0x0a:
+			if (Packet_Parameter1 == 2)
+			{
+				if (Packet_Parameter2 == 0)
+				{
+					Accel_SetMode(ACCEL_POLL);
+					error = false;
+				}
+				else if(Packet_Parameter2 == 1)
+				{
+					Accel_SetMode(ACCEL_INT);
+					error = false;
+				}
+			}
+			else if(Packet_Parameter1 == 1)
+			{
+				if(Accel_GetMode() == ACCEL_INT)
+				{
+					error = !Packet_Put(0x0A, 0x0,  1, 0x0);
+				}
+				else if(Accel_GetMode() == ACCEL_POLL)
+				{
+					error = !Packet_Put(0x0A, 0x0,  0, 0x0);
+				}
+			}
+
 		default:
 			break;
 	}

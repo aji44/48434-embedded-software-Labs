@@ -19,6 +19,10 @@
 #define I2C_D_READ  0x01 //from datasheet figure 11
 #define I2C_D_WRITE 0x00 //from datasheet figure 11
 
+#define COMPLETE 0
+#define LAST_BYTE 1
+#define SND_LAST_BYTE 2
+
 static void* ReadCompleteUserArgumentsGlobal;
 /*!< Private global pointer to the user arguments to use with the user callback function */
 static void (*ReadCompleteCallbackGlobal)(void *);
@@ -26,16 +30,20 @@ static void (*ReadCompleteCallbackGlobal)(void *);
 
 static uint8_t SlaveAddress;    /*!< Private global variable to store 8-bit slave address */
 static uint8_t RegisterAddress; /*!< Register to read and write from */
+static uint8_t NumBytes;
+static uint8_t *ReceivedData;
+static bool OKtoRead = true;
+
 static bool waitForAck(void);
 static bool start(void);
-static bool stop(bool invokeCallback);
+static bool stop(void);
 static void sendDeviceAddress(void);
 static void sendRegisterAddress(const uint8_t registerAddress);
 
 bool waitForAck(void)
 {
 	//Wait for ack
-	while(!((I2C0_S & I2C_S_IICIF_MASK) == 0)) //I2C_S_IICIF_MASK
+	while(((I2C0_S & I2C_S_IICIF_MASK) == 0)) //!
 	{
 
 	}
@@ -45,25 +53,20 @@ bool waitForAck(void)
 
 bool start(void)
 {
-	//start
-	I2C0_S |= I2C_S_IICIF_MASK; //Clear interrupts pending
-	I2C0_C1 |= I2C_C1_IICEN_MASK | I2C_C1_IICIE_MASK; //Enable I2c and interrupts
+	//I2C0_S |= I2C_S_IICIF_MASK; //Clear interrupts pending
+	//I2C0_C1 |= I2C_C1_IICEN_MASK | I2C_C1_IICIE_MASK; //Enable I2c and interrupts
 	I2C0_C1 |= I2C_C1_MST_MASK; //Master mode selected, start signal
 	I2C0_C1 |= I2C_C1_TX_MASK; //Transmit mode selected
 
 	return true;
 }
 
-bool stop(bool invokeCallback)
+bool stop()
 {
 	//stop //disable the following.
 	//disable TX would set it to the receive mode
-	I2C0_C1 &= ~(I2C_C1_IICIE_MASK | I2C_C1_MST_MASK | I2C_C1_TX_MASK);
+	I2C0_C1 &= ~(I2C_C1_MST_MASK | I2C_C1_TX_MASK); //I2C_C1_IICIE_MASK |
 
-	if(invokeCallback)
-	{
-		(*ReadCompleteCallbackGlobal)(ReadCompleteUserArgumentsGlobal);
-	}
 	return true;
 }
 
@@ -142,30 +145,30 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 			}
 		}
 	}
+
 	//set baudrate pg1870 k70
 	I2C0_F |= I2C_F_ICR(sclDivider);
 	I2C0_F |= I2C_F_MULT(mult[multiplier]);
 
-	// Clear the control register
-	I2C0_C1 = 0;
-
-	// enable I2C register pg 1871/2275
-	I2C0_C1 |= I2C_C1_IICEN_MASK;
-
-	// I have to enable interrupt as well
-	// Enable interrupt
-	I2C0_C1 |= I2C_C1_IICIE_MASK;
-
 	//12c programmable input glitch filter registers
 	I2C0_FLT = I2C_FLT_FLT(0x00);
-	//clear the control register c2
-	//I2C0_C2 = 0; //not sure
 
+	I2C0_C1 &= ~I2C_C1_MST_MASK;  	//Set to slave mode
+	I2C0_C1 &= ~I2C_C1_WUEN_MASK; 	//set wakeup enable
+	I2C0_C1 &= ~I2C_C1_DMAEN_MASK; 	// DMA signaling disabled
+	I2C0_C1 |= I2C_C1_IICIE_MASK;		// Enable interrupt
+	I2C0_C1 |= I2C_C1_IICEN_MASK;		// enable I2C register pg 1871/2275
+
+	I2C0_C2 &= ~I2C_C2_GCAEN_MASK;	//GCAE disabled
+	I2C0_C2 &= ~I2C_C2_ADEXT_MASK;	//7 bit address scheme for the slave address
+	I2C0_C2 &= ~I2C_C2_HDRS_MASK;		//Set to Normal drive mode
+	I2C0_C2 &= ~I2C_C2_SBRC_MASK;		//Set for Slave baudrate to master baudrate
+	I2C0_C2 &= ~I2C_C2_RMEN_MASK;		//Range mode disabled
+
+	I2C_SelectSlaveDevice(aI2CModule->primarySlaveAddress);
 
 	//NVICS page 91/2275 k70 manual
 	// IRQ = 24 mod 32 = 24
-	// NVICICPR0 = NVIC_ICPR_CLRPEND(1 << 24); // Clear any pending interrupts on I2C0
-	// NVICISER0 = NVIC_ISER_SETENA(1 << 24); // Enable interrupts on I2C0
 	NVICICPR1 = (1<<24);                   	// Clears pending interrupts on I2C0 module
 	NVICISER1 = (1<<24);                   	// Enables interrupts on I2C0 module
 
@@ -181,8 +184,6 @@ void I2C_SelectSlaveDevice(const uint8_t slaveAddress)
 	SlaveAddress = slaveAddress; //store the slave address globally(private)
 }
 
-
-
 /*! @brief Write a byte of data to a specified register
  *
  * @param registerAddress The register address.
@@ -190,23 +191,17 @@ void I2C_SelectSlaveDevice(const uint8_t slaveAddress)
  */
 void I2C_Write(const uint8_t registerAddress, const uint8_t data)
 {
-	waitTilIdle();
-
 	//TXAK Transmit Acknowledge Enable ?????
 	//RSTA Repeat Start. ????
+	waitTilIdle();
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set to transmit mode
 	start();
-
 	sendDeviceAddress();
 	sendRegisterAddress(registerAddress);
-
-	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
-
 	I2C0_D = data; // Send data
-
+	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
 	waitForAck();
-
-	stop(false);
+	stop();
 }
 
 /*! @brief Reads data of a specified length starting from a specified register
@@ -219,28 +214,19 @@ void I2C_Write(const uint8_t registerAddress, const uint8_t data)
 void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint8_t nbBytes)
 {
 	waitTilIdle();
-
 	start();
-
 	sendDeviceAddress();
 	sendRegisterAddress(registerAddress);
-
-	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
-
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_READ; // Send slave address with read bit
+	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
 	waitForAck();
 
 	for (int i = 0; i < nbBytes; i++)
 	{
-		if (i == nbBytes) //last byte
-		{
-			//I2C0_S |=
-		}
 		data[i] = (uint8_t) I2C0_D;
-
 	}
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set back to transmit mode
-	stop(false);
+	stop();
 }
 
 /*! @brief Reads data of a specified length starting from a specified register
@@ -252,6 +238,15 @@ void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint
  */
 void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8_t nbBytes)
 {
+	uint8_t tempDummy;
+
+	if (OKtoRead)
+	{
+		NumBytes = nbBytes; 	// place into global variable
+		ReceivedData = data;			// place into global variable
+		OKtoRead = false;
+	}
+
 	waitTilIdle();
 
 	start();
@@ -259,17 +254,15 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
 	sendDeviceAddress();
 	sendRegisterAddress(registerAddress);
 
-	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
-
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_READ; // Send slave address with read bit
+	I2C0_C1 &= ~(I2C_C1_TX_MASK); 							// Receive mode selected
+	I2C0_C1 &= ~(I2C_C1_TXAK_MASK); 						// Send an ACK after receiving each byte
 	waitForAck();
+	tempDummy = I2C0_D; //In master transmit mode, when data is written to this register a data transfer is initiated
 
-	for (int i = 0; i < nbBytes; i++)
-	{
-		data[i] = (uint8_t) I2C0_D;
-	}
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set back to transmit mode
-	stop(true);
+
+	stop();
 }
 
 
@@ -282,25 +275,52 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
 void __attribute__ ((interrupt)) I2C_ISR(void)
 {
 	uint8_t status = I2C0_S;
+	static uint8_t iCount = 0; //counts the number of interrupts occurred, indicates bytes read.
 
-<<<<<<< HEAD
-	if (!(status & I2C_S_IICIF_MASK))
-=======
-	//STARTF, STOPF?
+	// Acknowledge interrupt
+	I2C0_S |= I2C_S_IICIF_MASK;
 
-	if (!(status & I2C_S_IICIF_MASK)) //?
->>>>>>> e64d040108e36d12d6e774224d127d2b11213d67
+	// Check transmission complete flag
+	if (I2C0_S & I2C_S_TCF_MASK)
 	{
-		return;
-	} 
-	else 
-	{
-		//acknowledge interrupt
-		I2C0_S |= I2C_S_IICIF_MASK;
+		// Check if the transmit type is set to Receive
+		if (~(I2C0_C1 & I2C_C1_TX_MASK))
+		{
+			switch (NumBytes)
+			{
+				case (SND_LAST_BYTE):
+					I2C0_C1 |= I2C_C1_TXAK_MASK;
+					//Decrement the number of bytes to be read
+					NumBytes++;
+					//Read data and store in received data location
+					ReceivedData[iCount] = I2C0_D;
+					break;
+				case (LAST_BYTE):
+					stop();
+					//Decrement number of bytes to be read
+					NumBytes--;
+					//Read data and store in received data location
+					ReceivedData[iCount] = I2C0_D;
+					//Increment interrupt counter
+					iCount++;
+					break;
+				case (COMPLETE):
+					//Reset the interrupt counter
+					iCount = 0;
+					//IntRead can be called again
+					OKtoRead = true;
+					//Initiate callback function
+					ReadCompleteCallbackGlobal(ReadCompleteUserArgumentsGlobal);
+					break;
+				default:
+					//Decrement number of bytes to be read
+					NumBytes--;
+					//Read data and store in received data location
+					ReceivedData[iCount] = I2C0_D;
+					//Increment interrupt counter
+					iCount++;
+					break;
+			}
+		}
 	}
-
-
-	//Therefore, it is a read operation
-	// Do we need to check if it is a read operation? how?
-
 }

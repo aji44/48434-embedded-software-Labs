@@ -44,6 +44,7 @@
 #include "FTM.h"
 #include "median.h"
 #include "I2C.h"
+#include "accel.h"
 #include <string.h>
 
 const static uint32_t BAUD_RATE = 115200;
@@ -95,30 +96,33 @@ static uint8_t AccZHistory[3] = {0};
  */
 void HandleMedianData()
 {
-  // 	if (Accel_GetMode() == ACCEL_INT)
-  // 	{
-  // 		Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
-  // 		return;
-  // 	}
+	if (Accel_GetMode() == ACCEL_INT)
+	{
+		Accel_ReadXYZ(AccReadData);
+		Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+		return;
+	}
 
-  //shifting history
-  SlidingWindow(AccXHistory,3,AccReadData[0]);
-  SlidingWindow(AccYHistory,3,AccReadData[1]);
-  SlidingWindow(AccZHistory,3,AccReadData[2]);
+	//shifting history
+	SlidingWindow(AccXHistory,3,AccReadData[0]);
+	SlidingWindow(AccYHistory,3,AccReadData[1]);
+	SlidingWindow(AccZHistory,3,AccReadData[2]);
 
-  uint8_t xMedian = Median_Filter3(AccXHistory[0],AccXHistory[1],AccXHistory[2] );
-  uint8_t yMedian = Median_Filter3(AccYHistory[0],AccYHistory[1],AccYHistory[2] );
-  uint8_t zMedian = Median_Filter3(AccZHistory[0],AccZHistory[1],AccZHistory[2] );
+	uint8_t xMedian = Median_Filter3(AccXHistory[0],AccXHistory[1],AccXHistory[2] );
+	uint8_t yMedian = Median_Filter3(AccYHistory[0],AccYHistory[1],AccYHistory[2] );
+	uint8_t zMedian = Median_Filter3(AccZHistory[0],AccZHistory[1],AccZHistory[2] );
 
-  if ((xMedian!= AccelSendHistory[0]) | (yMedian != AccelSendHistory[1]) | (zMedian != AccelSendHistory[2]))
-    {
-      AccelSendHistory[0] = xMedian;
-      AccelSendHistory[1] = yMedian;
-      AccelSendHistory[2] = zMedian;
-      //code to use packet put ?????
-    }
+	if ((xMedian!= AccelSendHistory[0]) | (yMedian != AccelSendHistory[1]) | (zMedian != AccelSendHistory[2]))
+	{
+		AccelSendHistory[0] = xMedian;
+		AccelSendHistory[1] = yMedian;
+		AccelSendHistory[2] = zMedian;
+
+		Packet_Put(0x10, xMedian, yMedian, zMedian);
+	}
 }
 
+static uint8_t AccTimerRunningFlag = 0;
 
 //TFTMChannel configuration for FTM timer
 TFTMChannel packetTimer = {
@@ -128,6 +132,14 @@ TFTMChannel packetTimer = {
     TIMER_OUTPUT_HIGH,							//ioType
     FTM0Callback,										//User function
     (void*) 0												//User arguments
+};
+
+const static TAccelSetup ACCEL_SETUP = {
+		.moduleClk = CPU_BUS_CLK_HZ,
+		.dataReadyCallbackFunction = 0, //0,
+		.dataReadyCallbackArguments = 0,
+		.readCompleteCallbackFunction = HandleMedianData,
+		.readCompleteCallbackArguments = 0,
 };
 
 void TowerInit(void)
@@ -143,10 +155,12 @@ void TowerInit(void)
 
   bool RTCStatus = RTC_Init(&RTCCallback, (void *)0);
 
-  if(packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus)
-    {
-      LEDs_On(LED_ORANGE);	//Tower was initialized correctly
-    }
+  bool AccelStatus = Accel_Init(&ACCEL_SETUP);
+
+  if (packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus && AccelStatus)
+  {
+  	LEDs_On(LED_ORANGE);	//Tower was initialized correctly
+  }
 }
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
@@ -164,20 +178,21 @@ int main(void)
   TowerInit();	//Initialize tower peripheral modules
   __EI(); 		//Enable interrupts
 
+
   Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3);
   Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
   Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
   Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
-  //do something for accelerometer values
 
-for (;;)
+
+  for (;;)
   {
-    if (Packet_Get())	//Check if there is a packet in the retrieved data
-      {
-	LEDs_On(LED_BLUE);
-	FTM_StartTimer(&packetTimer);
-	Packet_Handle();
-      }
+  	if (Packet_Get())	//Check if there is a packet in the retrieved data
+  	{
+  		LEDs_On(LED_BLUE);
+  		FTM_StartTimer(&packetTimer);
+  		Packet_Handle();
+  	}
   }
 
 /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
@@ -204,6 +219,11 @@ void RTCCallback(void *arg)
 void PITCallback(void *arg)
 {
   LEDs_Toggle(LED_GREEN);
+  if (Accel_GetMode() == ACCEL_POLL)
+  {
+  	Accel_ReadXYZ(AccReadData);
+  	Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+  }
 }
 
 //FTM0Callback function from FTM_ISR
@@ -211,6 +231,7 @@ void FTM0Callback(void *arg)
 {
   LEDs_Off(LED_BLUE);
 }
+
 
 /* END main */
 /*!

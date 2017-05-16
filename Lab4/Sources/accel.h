@@ -45,6 +45,8 @@ typedef union
 #pragma pack(pop)
 
 
+TAccelMode Accel_GetMode();
+
 /*! @brief Initializes the accelerometer by calling the initialization routines of the supporting software modules.
  *
  *  @param accelSetup is a pointer to an accelerometer setup structure.
