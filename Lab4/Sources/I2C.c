@@ -283,7 +283,13 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 {
 	uint8_t status = I2C0_S;
 
+<<<<<<< HEAD
 	if (!(status & I2C_S_IICIF_MASK))
+=======
+	//STARTF, STOPF?
+
+	if (!(status & I2C_S_IICIF_MASK)) //?
+>>>>>>> e64d040108e36d12d6e774224d127d2b11213d67
 	{
 		return;
 	} 
