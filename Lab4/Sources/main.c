@@ -136,9 +136,9 @@ TFTMChannel packetTimer = {
 
 const static TAccelSetup ACCEL_SETUP = {
 		.moduleClk = CPU_BUS_CLK_HZ,
-		.dataReadyCallbackFunction = 0, //0,
+		.dataReadyCallbackFunction = &HandleMedianData,
 		.dataReadyCallbackArguments = 0,
-		.readCompleteCallbackFunction = HandleMedianData,
+		.readCompleteCallbackFunction = &HandleMedianData,
 		.readCompleteCallbackArguments = 0,
 };
 
@@ -222,6 +222,7 @@ void PITCallback(void *arg)
   if (Accel_GetMode() == ACCEL_POLL)
   {
   	Accel_ReadXYZ(AccReadData);
+  	HandleMedianData();
   	Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
   }
 }

@@ -7,6 +7,10 @@
  *  @author Corey Stidston and Menka Mehta
  *  @date 2015-10-12
  */
+/*!
+ *  @addtogroup median_module Median module documentation
+ *  @{
+*/
 
  #include "median.h"
 

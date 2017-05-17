@@ -7,7 +7,10 @@
  *  @author PMcL
  *  @date 2015-09-17
  */
-
+ /*!
+ **  @addtogroup i2c_module I2C module documentation
+ **  @{
+ */
 #ifndef I2C_H
 #define I2C_H
 
@@ -68,5 +71,7 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
  *  @note Assumes the I2C module has been initialized.
  */
 void __attribute__ ((interrupt)) I2C_ISR(void);
-
+/*!
+ * @}
+*/
 #endif

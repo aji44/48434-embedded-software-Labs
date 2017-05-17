@@ -7,7 +7,7 @@
  */
 
 /*!
- *  @addtogroup <Your group here>
+ *  @addtogroup accel_module Accel module documentation
  *  @{
 */
 
@@ -34,6 +34,7 @@
 
 #define ADDRESS_INT_SOURCE 0x0C
 
+//function prototype
 void actualAccelReadDataBack(void * nothing);
 
 static const TI2CModule I2C_ACCEL_MODULE = {
@@ -220,6 +221,7 @@ static TAccelMode CurrentMode;
 
 /*!
  * @brief Used for controlling Standby mode for REG1
+ * @param standby
  */
 void standbyMode(bool standby)
 {
@@ -239,8 +241,9 @@ void standbyMode(bool standby)
 /*! @brief Initializes the accelerometer by calling the initialization routines of the supporting software modules.
  *
  *  @param accelSetup is a pointer to an accelerometer setup structure.
- *  @return BOOL - TRUE if the accelerometer module was successfully initialized.
+ *  @return bool - TRUE if the accelerometer module was successfully initialized.
  */
+
 bool Accel_Init(const TAccelSetup* const accelSetup)
 {
 	AccelModuleSetup = *accelSetup;
@@ -269,6 +272,9 @@ bool Accel_Init(const TAccelSetup* const accelSetup)
 
 	CTRL_REG4_INT_EN_DRDY = 0;
 	I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4); //Write to the register
+
+	CTRL_REG5_INT_CFG_DRDY = 1;
+	I2C_Write(ADDRESS_CTRL_REG5, CTRL_REG5);
 
 	standbyMode(false); //Standby Mode Deactivate
 
@@ -300,25 +306,25 @@ TAccelMode Accel_GetMode()
  */
 void Accel_ReadXYZ(uint8_t data[3])
 {
-	I2C_SelectSlaveDevice(0x1d);
-	//I2C_PollRead(ADDRESS_OUT_X_MSB, data, (sizeof(data)/sizeof(data[0]))); //Read data
+	//I2C_SelectSlaveDevice(0x1d);
 
 	if (CurrentMode == ACCEL_POLL)
 	{
 		I2C_PollRead(ADDRESS_OUT_X_MSB, data, (sizeof(data)/sizeof(data[0])));
 	}
-	else if(CurrentMode ==ACCEL_INT)
+	else if (CurrentMode == ACCEL_INT)
 	{
 		I2C_IntRead(ADDRESS_OUT_X_MSB, data,  (sizeof(data)/sizeof(data[0])));
 	}
 }
 
-/*! @brief Call back
- *  @param Nothing
+/*! @brief actualAccelReadDataBack
+ *  @param nothing
  */
+
 void actualAccelReadDataBack(void * nothing)
 {
-	if(AccelModuleSetup.readCompleteCallbackArguments != 0)
+	if(AccelModuleSetup.readCompleteCallbackFunction != 0)
 	{
 		AccelModuleSetup.readCompleteCallbackFunction(AccelModuleSetup.readCompleteCallbackArguments);
 	}
@@ -335,23 +341,15 @@ void Accel_SetMode(const TAccelMode mode)
 	{
 		CTRL_REG4_INT_EN_DRDY = 0; //Data ready interrupt disabled
 		I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4);
-		I2C0_C1 |= (I2C_C1_IICIE_MASK); //Enable interrupts for I2C
 	}
 	else
 	{
 		CTRL_REG4_INT_EN_DRDY = 1; //Data ready interrupt enabled
 		I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4);
-		I2C0_C1 &= ~(I2C_C1_IICIE_MASK); //Disable interrupts for the I2C
 	}
 }
 
 
-/*! @brief Interrupt service routine for the accelerometer.
- *
- *  The accelerometer has data ready.
- *  The user callback function will be called.
- *  @note Assumes the accelerometer has been initialized.
- */
 void __attribute__ ((interrupt)) AccelDataReady_ISR(void)
 {
 	if (!(PORTB_PCR7 & PORT_PCR_ISF_MASK))

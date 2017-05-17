@@ -8,8 +8,8 @@
  *  @date 2017-05-08
  */
  /*!
- **  @addtogroup i2c_module I2C module documentation
- **  @{
+ *  @addtogroup i2c_module I2C module documentation
+ *  @{
  */
 #include "I2C.h"
 #include "MK70F12.h"
@@ -41,6 +41,7 @@ static bool OKtoRead = true;
 static bool waitForAck(void);
 static bool start(void);
 static bool stop(void);
+static void waitTilIdle(void);
 static void sendDeviceAddress(void);
 static void sendRegisterAddress(const uint8_t registerAddress);
 
@@ -50,7 +51,7 @@ static void sendRegisterAddress(const uint8_t registerAddress);
 bool waitForAck(void)
 {
 	//Wait for ack
-	while(((I2C0_S & I2C_S_IICIF_MASK) == 0)) //!
+	while (((I2C0_S & I2C_S_IICIF_MASK) == 0)) //!
 	{
 
 	}
@@ -63,8 +64,6 @@ bool waitForAck(void)
  */
 bool start(void)
 {
-	//I2C0_S |= I2C_S_IICIF_MASK; //Clear interrupts pending
-	//I2C0_C1 |= I2C_C1_IICEN_MASK | I2C_C1_IICIE_MASK; //Enable I2c and interrupts
 	I2C0_C1 |= I2C_C1_MST_MASK; //Master mode selected, start signal
 	I2C0_C1 |= I2C_C1_TX_MASK; //Transmit mode selected
 
@@ -114,7 +113,7 @@ void waitTilIdle(void)
  *
  *  @param aI2CModule is a structure containing the operating conditions for the module.
  *  @param moduleClk The module clock in Hz.
- *  @return BOOL - TRUE if the I2C module was successfully initialized.
+ *  @return bOOL - TRUE if the I2C module was successfully initialized.
  */
 bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 {
@@ -162,7 +161,7 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 		}
 	}
 
-	//set baudrate pg1870 k70
+	//set BaudRate pg1870 k70
 	I2C0_F |= I2C_F_ICR(sclDivider);
 	I2C0_F |= I2C_F_MULT(mult[multiplier]);
 
@@ -173,7 +172,6 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 	I2C0_C1 &= ~I2C_C1_WUEN_MASK; 	//set wakeup enable
 	I2C0_C1 &= ~I2C_C1_DMAEN_MASK; 	// DMA signaling disabled
 	I2C0_C1 |= I2C_C1_IICIE_MASK;		// Enable interrupt
-	I2C0_C1 |= I2C_C1_IICEN_MASK;		// enable I2C register pg 1871/2275
 
 	I2C0_C2 &= ~I2C_C2_GCAEN_MASK;	//GCAE disabled
 	I2C0_C2 &= ~I2C_C2_ADEXT_MASK;	//7 bit address scheme for the slave address
@@ -181,13 +179,16 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 	I2C0_C2 &= ~I2C_C2_SBRC_MASK;		//Set for Slave baudrate to master baudrate
 	I2C0_C2 &= ~I2C_C2_RMEN_MASK;		//Range mode disabled
 
+	I2C0_S = I2C_S_IICIF_MASK; //Clear interrupts
+
 	I2C_SelectSlaveDevice(aI2CModule->primarySlaveAddress);
 
 	//NVICS page 91/2275 k70 manual
 	// IRQ = 24 mod 32 = 24
-	NVICICPR1 = (1<<24);                   	// Clears pending interrupts on I2C0 module
-	NVICISER1 = (1<<24);                   	// Enables interrupts on I2C0 module
+	NVICICPR0 = (1<<24);                   	// Clears pending interrupts on I2C0 module
+	NVICISER0 = (1<<24);                   	// Enables interrupts on I2C0 module
 
+	I2C0_C1 |= I2C_C1_IICEN_MASK;		// enable I2C register pg 1871/2275
 	return true;
 }
 
@@ -207,8 +208,6 @@ void I2C_SelectSlaveDevice(const uint8_t slaveAddress)
  */
 void I2C_Write(const uint8_t registerAddress, const uint8_t data)
 {
-	//TXAK Transmit Acknowledge Enable ?????
-	//RSTA Repeat Start. ????
 	waitTilIdle();
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set to transmit mode
 	start();
@@ -235,11 +234,18 @@ void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint
 	sendRegisterAddress(registerAddress);
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_READ; // Send slave address with read bit
 	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
+	I2C0_C1 &= ~(I2C_C1_TXAK_MASK); //Send ack after each msg
 	waitForAck();
 
 	for (int i = 0; i < nbBytes; i++)
 	{
-		data[i] = (uint8_t) I2C0_D;
+		if (i == nbBytes-1)
+		{
+			I2C0_C1 |= I2C_C1_TXAK_MASK;
+		}
+
+		data[i] = I2C0_D;
+		waitForAck();
 	}
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set back to transmit mode
 	stop();
@@ -254,6 +260,7 @@ void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint
  */
 void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8_t nbBytes)
 {
+	//turn on Interrupts IICIE
 	uint8_t tempDummy;
 
 	if (OKtoRead)
@@ -264,9 +271,7 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
 	}
 
 	waitTilIdle();
-
 	start();
-
 	sendDeviceAddress();
 	sendRegisterAddress(registerAddress);
 
@@ -279,6 +284,7 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set back to transmit mode
 
 	stop();
+
 }
 
 
@@ -294,7 +300,7 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 	static uint8_t iCount = 0; //counts the number of interrupts occurred, indicates bytes read.
 
 	// Acknowledge interrupt
-	I2C0_S |= I2C_S_IICIF_MASK;
+	I2C0_S |= I2C_S_IICIF_MASK; // =
 
 	// Check transmission complete flag
 	if (I2C0_S & I2C_S_TCF_MASK)
@@ -325,6 +331,8 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 					iCount = 0;
 					//IntRead can be called again
 					OKtoRead = true;
+					//interrupts off
+
 					//Initiate callback function
 					ReadCompleteCallbackGlobal(ReadCompleteUserArgumentsGlobal);
 					break;

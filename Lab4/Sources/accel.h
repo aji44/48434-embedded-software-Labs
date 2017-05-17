@@ -7,6 +7,10 @@
  *  @author PMcL
  *  @date 2015-10-06
  */
+/*!
+ *  @addtogroup accel_module Accel module documentation
+ *  @{
+*/
 
 #ifndef ACCEL_H
 #define ACCEL_H
@@ -71,5 +75,7 @@ void Accel_SetMode(const TAccelMode mode);
  *  @note Assumes the accelerometer has been initialized.
  */
 void __attribute__ ((interrupt)) AccelDataReady_ISR(void);
-
+/*!
+ * @}
+*/
 #endif
