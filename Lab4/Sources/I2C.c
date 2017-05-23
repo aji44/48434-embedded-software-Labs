@@ -46,16 +46,16 @@ static void sendDeviceAddress(void);
 static void sendRegisterAddress(const uint8_t registerAddress);
 
 /*!
- * @briefwaitForAck
+ * @brief waitForAck
  */
 bool waitForAck(void)
 {
-	//Wait for ack
-	while (((I2C0_S & I2C_S_IICIF_MASK) == 0)) //!
-	{
+	int timeOut = 100000;
 
+	while ((I2C0_S & I2C_S_IICIF_MASK) == 0 || timeOut > 0)
+	{
+		timeOut--;
 	}
-	I2C0_S |= I2C_S_IICIF_MASK;
 	return true;
 }
 
@@ -89,15 +89,11 @@ void sendDeviceAddress(void)
 {
 	//slave addresses I2C Data I/O register (i2Cx_D) pg 1875/2275 k70 manual
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_WRITE; // Send slave address with write bit
-
-	waitForAck();
 }
 
 void sendRegisterAddress(const uint8_t registerAddress)
 {
 	I2C0_D = registerAddress; //send slave register address
-
-	waitForAck();
 }
 
 void waitTilIdle(void)
@@ -153,7 +149,7 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 		{
 			if (abs(selectedBaudRate -  aI2CModule ->baudRate) < baudRateError) //check if the baudRate is closer to 100kbps
 			{
-				selectedBaudRate =moduleClk / mult[j] * scl[i]; //calculate baudRate
+				selectedBaudRate = moduleClk / mult[j] * scl[i]; //calculate baudRate
 				baudRateError = abs(selectedBaudRate - aI2CModule->baudRate); //calculate difference between baudrates
 				multiplier = j;
 				sclDivider = i;
@@ -162,8 +158,7 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 	}
 
 	//set BaudRate pg1870 k70
-	I2C0_F |= I2C_F_ICR(sclDivider);
-	I2C0_F |= I2C_F_MULT(mult[multiplier]);
+	I2C0_F = I2C_F_ICR(0x23) | I2C_F_MULT(mult[0x00]);
 
 	//12c programmable input glitch filter registers
 	I2C0_FLT = I2C_FLT_FLT(0x00);
@@ -212,7 +207,9 @@ void I2C_Write(const uint8_t registerAddress, const uint8_t data)
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set to transmit mode
 	start();
 	sendDeviceAddress();
+	waitForAck();
 	sendRegisterAddress(registerAddress);
+	waitForAck();
 	I2C0_D = data; // Send data
 	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
 	waitForAck();
@@ -231,7 +228,9 @@ void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint
 	waitTilIdle();
 	start();
 	sendDeviceAddress();
+	waitForAck();
 	sendRegisterAddress(registerAddress);
+	waitForAck();
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_READ; // Send slave address with read bit
 	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
 	I2C0_C1 &= ~(I2C_C1_TXAK_MASK); //Send ack after each msg
@@ -260,8 +259,9 @@ void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint
  */
 void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8_t nbBytes)
 {
-	//turn on Interrupts IICIE
 	uint8_t tempDummy;
+
+	I2C0_C1 |= I2C_C1_IICIE_MASK;		// Enable interrupt
 
 	if (OKtoRead)
 	{
@@ -273,7 +273,9 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
 	waitTilIdle();
 	start();
 	sendDeviceAddress();
+	waitForAck();
 	sendRegisterAddress(registerAddress);
+	waitForAck();
 
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_READ; // Send slave address with read bit
 	I2C0_C1 &= ~(I2C_C1_TX_MASK); 							// Receive mode selected
@@ -284,7 +286,6 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
 	I2C0_C1 |= (I2C_C1_TX_MASK); //Set back to transmit mode
 
 	stop();
-
 }
 
 
@@ -300,7 +301,7 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 	static uint8_t iCount = 0; //counts the number of interrupts occurred, indicates bytes read.
 
 	// Acknowledge interrupt
-	I2C0_S |= I2C_S_IICIF_MASK; // =
+	I2C0_S = I2C_S_IICIF_MASK;
 
 	// Check transmission complete flag
 	if (I2C0_S & I2C_S_TCF_MASK)

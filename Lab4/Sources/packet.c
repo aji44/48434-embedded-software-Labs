@@ -158,18 +158,23 @@ bool Packet_Get(void) {
  */
 bool Packet_Put(const uint8_t command, const uint8_t parameter1, const uint8_t parameter2, const uint8_t parameter3)
 {
-	//EnterCritical();
+	EnterCritical();
 	if (!UART_OutChar(command))
+		ExitCritical();
 		return false;				//Place Command byte in TxFIFO
 	if (!UART_OutChar(parameter1))
+		ExitCritical();
 		return false;			//Place Parameter1 byte in TxFIFO
 	if (!UART_OutChar(parameter2))
+		ExitCritical();
 		return false;			//Place Parameter2 byte in TxFIFO
 	if (!UART_OutChar(parameter3))
+		ExitCritical();
 		return false;			//Place Parameter3 byte in TxFIFO
 	if (!UART_OutChar(command ^ parameter1 ^ parameter2 ^ parameter3))
+		ExitCritical();
 		return false;	//Place Checksum byte in TxFIFO
-	//ExitCritical();
+  ExitCritical();
 	return true;
 }
 

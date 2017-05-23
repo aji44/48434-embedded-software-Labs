@@ -310,11 +310,11 @@ void Accel_ReadXYZ(uint8_t data[3])
 
 	if (CurrentMode == ACCEL_POLL)
 	{
-		I2C_PollRead(ADDRESS_OUT_X_MSB, data, (sizeof(data)/sizeof(data[0])));
+		I2C_PollRead(ADDRESS_OUT_X_MSB, data, 3);
 	}
 	else if (CurrentMode == ACCEL_INT)
 	{
-		I2C_IntRead(ADDRESS_OUT_X_MSB, data,  (sizeof(data)/sizeof(data[0])));
+		I2C_IntRead(ADDRESS_OUT_X_MSB, data, 3);
 	}
 }
 
