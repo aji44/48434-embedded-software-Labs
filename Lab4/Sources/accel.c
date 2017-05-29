@@ -28,6 +28,8 @@
 #include "PE_types.h"
 #include "types.h"
 
+#define MMA8451Q_WHO_AM_I 0x0Du
+#define MMA8451Q_WHO_AM_I_VALUE 0x1Au
 
 // Accelerometer registers
 #define ADDRESS_OUT_X_MSB 0x01
@@ -260,10 +262,13 @@ bool Accel_Init(const TAccelSetup* const accelSetup)
 
 	standbyMode(true); //Standby Mode Activate
 
+	uint8_t aaaaa;//0x1Au
+	I2C_PollRead(MMA8451Q_WHO_AM_I, &aaaaa, 1);
+
 	CTRL_REG1_DR = DATE_RATE_1_56_HZ;
 	CTRL_REG1_F_READ = 1; 										//8 bit precision
 	CTRL_REG1_LNOISE = 0; 										//Set to full dynamic range mode
-	CTRL_REG1_ASLP_RATE = SLEEP_MODE_RATE_1_56_HZ;
+	CTRL_REG1_ASLP_RATE = 0; //SLEEP_MODE_RATE_1_56_HZ;
 	I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1); 	//Write to the register
 
 	CTRL_REG3_PP_OD = 0;

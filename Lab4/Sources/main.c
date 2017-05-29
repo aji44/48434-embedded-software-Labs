@@ -193,7 +193,6 @@ int main(void)
   		FTM_StartTimer(&packetTimer);
   		Packet_Handle();
   	}
-  	Accel_ReadXYZ(AccReadData);
   }
 
 /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
@@ -220,12 +219,12 @@ void RTCCallback(void *arg)
 void PITCallback(void *arg)
 {
   LEDs_Toggle(LED_GREEN);
-//  if (Accel_GetMode() == ACCEL_POLL)
-//  {
-//  	Accel_ReadXYZ(AccReadData);
-//  	HandleMedianData();
-//  	Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
-//  }
+  if (Accel_GetMode() == ACCEL_POLL)
+  {
+  	Accel_ReadXYZ(AccReadData);
+  	//HandleMedianData();
+  	Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+  }
 }
 
 //FTM0Callback function from FTM_ISR

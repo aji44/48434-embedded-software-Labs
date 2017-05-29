@@ -97,9 +97,8 @@ bool UART_InChar(uint8_t * const dataPtr)
  */
 bool UART_OutChar(const uint8_t data)
 {
-	bool success;
-
 	EnterCritical();
+	bool success;
 
 	UART2_C2 &= ~UART_C2_TIE_MASK; //disable
 	success = FIFO_Put(&TxFIFO, data); //Place the value stored in data into the TxFIFO

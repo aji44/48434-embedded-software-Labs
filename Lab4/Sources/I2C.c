@@ -17,6 +17,8 @@
 #include "Cpu.h"
 #include "stdlib.h"
 #include "types.h"
+#include "LEDs.h"
+#include "stdlib.h"
 
 //Definitions
 #define I2C_D_READ  0x01 //from datasheet figure 11
@@ -88,7 +90,8 @@ bool stop()
 void sendDeviceAddress(void)
 {
 	//slave addresses I2C Data I/O register (i2Cx_D) pg 1875/2275 k70 manual
-	I2C0_D = (SlaveAddress << 1)  | I2C_D_WRITE; // Send slave address with write bit
+	I2C0_D = (SlaveAddress << 1);  //& I2C_D_WRITE; // Send slave address with write bit // |
+
 }
 
 void sendRegisterAddress(const uint8_t registerAddress)
@@ -142,6 +145,7 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 	PORTE_PCR18 = PORT_PCR_MUX(0x4) | PORT_PCR_ODE_MASK;
 	PORTE_PCR19 = PORT_PCR_MUX(0x4) | PORT_PCR_ODE_MASK;
 
+
 	//loop to find baudrate pg 1870
 	for (i=0; i <(sizeof(scl)/sizeof(uint16_t))-1; i++)
 	{
@@ -163,16 +167,17 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 	//12c programmable input glitch filter registers
 	I2C0_FLT = I2C_FLT_FLT(0x00);
 
-	I2C0_C1 &= ~I2C_C1_MST_MASK;  	//Set to slave mode
-	I2C0_C1 &= ~I2C_C1_WUEN_MASK; 	//set wakeup enable
-	I2C0_C1 &= ~I2C_C1_DMAEN_MASK; 	// DMA signaling disabled
-	I2C0_C1 |= I2C_C1_IICIE_MASK;		// Enable interrupt
+//	I2C0_C1 &= ~I2C_C1_MST_MASK;  	//Set to slave mode
+//	I2C0_C1 &= ~I2C_C1_WUEN_MASK; 	//set wakeup enable
+//	I2C0_C1 &= ~I2C_C1_DMAEN_MASK; 	// DMA signaling disabled
+//	I2C0_C1 |= I2C_C1_IICIE_MASK;		// Enable interrupt
 
-	I2C0_C2 &= ~I2C_C2_GCAEN_MASK;	//GCAE disabled
-	I2C0_C2 &= ~I2C_C2_ADEXT_MASK;	//7 bit address scheme for the slave address
-	I2C0_C2 &= ~I2C_C2_HDRS_MASK;		//Set to Normal drive mode
-	I2C0_C2 &= ~I2C_C2_SBRC_MASK;		//Set for Slave baudrate to master baudrate
-	I2C0_C2 &= ~I2C_C2_RMEN_MASK;		//Range mode disabled
+	I2C0_C1 = 0;
+//	I2C0_C2 &= ~I2C_C2_GCAEN_MASK;	//GCAE disabled
+//	I2C0_C2 &= ~I2C_C2_ADEXT_MASK;	//7 bit address scheme for the slave address
+//	I2C0_C2 &= ~I2C_C2_HDRS_MASK;		//Set to Normal drive mode
+//	I2C0_C2 &= ~I2C_C2_SBRC_MASK;		//Set for Slave baudrate to master baudrate
+//	I2C0_C2 &= ~I2C_C2_RMEN_MASK;		//Range mode disabled
 
 	I2C0_S = I2C_S_IICIF_MASK; //Clear interrupts
 
@@ -204,16 +209,18 @@ void I2C_SelectSlaveDevice(const uint8_t slaveAddress)
 void I2C_Write(const uint8_t registerAddress, const uint8_t data)
 {
 	waitTilIdle();
-	I2C0_C1 |= (I2C_C1_TX_MASK); //Set to transmit mode
-	start();
+//	I2C0_C1 |= (I2C_C1_TX_MASK); //Set to transmit mode
+	start(); //we set to transmit mode here when we start
 	sendDeviceAddress();
 	waitForAck();
 	sendRegisterAddress(registerAddress);
 	waitForAck();
 	I2C0_D = data; // Send data
-	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
+	// do we need to disable receive mode here?
+	//I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
 	waitForAck();
 	stop();
+	// waitTilIdle();
 }
 
 /*! @brief Reads data of a specified length starting from a specified register
@@ -225,29 +232,36 @@ void I2C_Write(const uint8_t registerAddress, const uint8_t data)
  */
 void I2C_PollRead(const uint8_t registerAddress, uint8_t* const data, const uint8_t nbBytes)
 {
+	//m-change
+	uint8_t dataCount;
+
 	waitTilIdle();
 	start();
-	sendDeviceAddress();
+	sendDeviceAddress(); //sending address in the write bit
 	waitForAck();
 	sendRegisterAddress(registerAddress);
 	waitForAck();
+	I2C0_C1 |= I2C_C1_RSTA_MASK; //Repeat start -new
 	I2C0_D = (SlaveAddress << 1)  | I2C_D_READ; // Send slave address with read bit
+	waitForAck(); //new
 	I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
 	I2C0_C1 &= ~(I2C_C1_TXAK_MASK); //Send ack after each msg
+	data[0] = I2C0_D; //dummy read -new
 	waitForAck();
 
-	for (int i = 0; i < nbBytes; i++)
+	//new for loop
+	for (dataCount = 0; dataCount < nbBytes-1; dataCount++)
 	{
-		if (i == nbBytes-1)
-		{
-			I2C0_C1 |= I2C_C1_TXAK_MASK;
-		}
-
-		data[i] = I2C0_D;
+		data[dataCount] = I2C0_D;
 		waitForAck();
 	}
-	I2C0_C1 |= (I2C_C1_TX_MASK); //Set back to transmit mode
-	stop();
+
+	I2C0_C1 |= I2C_C1_TXAK_MASK;//Nack from Master
+
+	data[dataCount++] = I2C0_D; //Read second last byte
+	waitForAck();
+	stop(); //stop signal
+	data[dataCount++] = I2C0_D; //Read last byte
 }
 
 /*! @brief Reads data of a specified length starting from a specified register
