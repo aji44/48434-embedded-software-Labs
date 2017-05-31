@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Lab1: C:/Users/PMcL/Documents/Subjects/48434 Embedded Software/4 Labs/Lab 4/Template/Lab4/Generated_Code/Cpu.h File Reference</title>
+<title>OSExample: C:/Users/PMcL/Documents/Subjects/48434 Embedded Software/5 Projects/OSExample/Generated_Code/Cpu.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Lab1
+   <div id="projectname">OSExample
    </div>
   </td>
  </tr>
@@ -76,8 +76,6 @@ $(document).ready(function(){initNavTree('_cpu_8h.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_p_e___types_8h_source.html">PE_Types.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_p_e___error_8h_source.html">PE_Error.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_p_e___const_8h_source.html">PE_Const.h</a>&quot;</code><br />
 <code>#include &quot;IO_Map.h&quot;</code><br />
 </div>
 <p><a href="_cpu_8h_source.html">Go to the source code of this file.</a></p>
@@ -112,9 +110,6 @@ Macros</h2></td></tr>
 <tr class="memitem:gacf80ae1c70da6f1932185345fb089ce2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gacf80ae1c70da6f1932185345fb089ce2"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_XTAL_CLK_HZ</b>&#160;&#160;&#160;50000000U /* Value of the external crystal or oscillator clock frequency in Hz */</td></tr>
 <tr class="separator:gacf80ae1c70da6f1932185345fb089ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab701f4ea593c322e0f7a3ee5f0572834"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab701f4ea593c322e0f7a3ee5f0572834"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_XTAL32k_CLK_HZ</b>&#160;&#160;&#160;32768U /* Value of the external 32k crystal or oscillator clock frequency in Hz */</td></tr>
-<tr class="separator:gab701f4ea593c322e0f7a3ee5f0572834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga925e4835a9fdb52f03bd354d62d6ba0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga925e4835a9fdb52f03bd354d62d6ba0a"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_INT_SLOW_CLK_HZ</b>&#160;&#160;&#160;32768U /* Value of the slow internal oscillator clock frequency in Hz  */</td></tr>
 <tr class="separator:ga925e4835a9fdb52f03bd354d62d6ba0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,7 +156,7 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_OSCER_CLK_HZ_CONFIG_0</b>&#160;&#160;&#160;50000000UL /* System OSC external reference clock frequency in clock configuration 0 */</td></tr>
 <tr class="separator:ga2960ebfe6475f475999ea8f1d5448483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga092702a75fd1041eb311850abb022240"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga092702a75fd1041eb311850abb022240"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_ERCLK32K_CLK_HZ_CONFIG_0</b>&#160;&#160;&#160;32768UL /* External reference clock 32k frequency in clock configuration 0 */</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_ERCLK32K_CLK_HZ_CONFIG_0</b>&#160;&#160;&#160;50000000UL /* External reference clock 32k frequency in clock configuration 0 */</td></tr>
 <tr class="separator:ga092702a75fd1041eb311850abb022240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafd8ec2ac4ea47574f95d0e5a6f80807e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gafd8ec2ac4ea47574f95d0e5a6f80807e"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CPU_MCGFF_CLK_HZ_CONFIG_0</b>&#160;&#160;&#160;24414UL /* MCG fixed frequency clock */</td></tr>
@@ -187,7 +182,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>__init_hardware</b> (
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:gab69281f0e90d16198a5595ed7f471441"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_t_cpu_clock_configuration.html">TCpuClockConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___cpu__module.html#gab69281f0e90d16198a5595ed7f471441">PE_CpuClockConfigurations</a> [CPU_CLOCK_CONFIG_NUMBER]</td></tr>
+<tr class="memitem:gab69281f0e90d16198a5595ed7f471441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab69281f0e90d16198a5595ed7f471441"></a>
+const <a class="el" href="struct_t_cpu_clock_configuration.html">TCpuClockConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><b>PE_CpuClockConfigurations</b> [CPU_CLOCK_CONFIG_NUMBER]</td></tr>
 <tr class="separator:gab69281f0e90d16198a5595ed7f471441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga17baaa5ab2c8895394c51a01248c5195"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga17baaa5ab2c8895394c51a01248c5195"></a>
 const <a class="el" href="structt_vector_table.html">tVectorTable</a>&#160;</td><td class="memItemRight" valign="bottom"><b>__vect_table</b></td></tr>
@@ -207,7 +203,7 @@ volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SR_lock</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_5ee4f4c790f0b84ba8f281983ad9ea7d.html">Generated_Code</a></li><li class="navelem"><a class="el" href="_cpu_8h.html">Cpu.h</a></li>
-    <li class="footer">Generated on Wed Sep 23 2015 15:55:33 for Lab1 by
+    <li class="footer">Generated on Thu Jun 9 2016 10:38:25 for OSExample by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Lab1: C:/Users/PMcL/Documents/Subjects/48434 Embedded Software/4 Labs/Lab 4/Template/Lab4/sources/main.c File Reference</title>
+<title>OSExample: C:/Users/PMcL/Documents/Subjects/48434 Embedded Software/5 Projects/OSExample/sources/main.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Lab1
+   <div id="projectname">OSExample
    </div>
   </td>
  </tr>
@@ -66,36 +66,44 @@ $(document).ready(function(){initNavTree('main_8c.html','');});
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">main.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Main module. This module contains user's application code.  
+<p>Main module.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_cpu_8h_source.html">Cpu.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_p_e___types_8h_source.html">PE_Types.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_p_e___error_8h_source.html">PE_Error.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_p_e___const_8h_source.html">PE_Const.h</a>&quot;</code><br />
-<code>#include &quot;IO_Map.h&quot;</code><br />
+<code>#include &quot;OS.h&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga90b7a8cb7bc3fdbd98014a3e15ee6e9a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga90b7a8cb7bc3fdbd98014a3e15ee6e9a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>THREAD_STACK_SIZE</b>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:ga90b7a8cb7bc3fdbd98014a3e15ee6e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga840291bc02cba5474a4cb46a9b9566fe"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></tr>
+<tr class="memitem:gaf60d8b831f2d2f7de43b72774fa5ce83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__main__module.html#gaf60d8b831f2d2f7de43b72774fa5ce83">LEDInit</a> (void)</td></tr>
+<tr class="memdesc:gaf60d8b831f2d2f7de43b72774fa5ce83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the hardware to support the blue LED.  <a href="group__main__module.html#gaf60d8b831f2d2f7de43b72774fa5ce83">More...</a><br /></td></tr>
+<tr class="separator:gaf60d8b831f2d2f7de43b72774fa5ce83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__main__module.html#ga840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+<tr class="memdesc:ga840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the hardware, sets up to threads, and starts the OS.  <a href="group__main__module.html#ga840291bc02cba5474a4cb46a9b9566fe">More...</a><br /></td></tr>
 <tr class="separator:ga840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main module. This module contains user's application code. </p>
-<dl class="section version"><dt>Version</dt><dd>4.0 </dd></dl>
+<div class="textblock"><p>Main module. </p>
+<dl class="section version"><dt>Version</dt><dd>1.0 This file contains the high-level code for the project. It initialises appropriate hardware subsystems, creates application threads, and then starts the OS.</dd></dl>
+<p>An example of two threads communicating via a semaphore is given that flashes the orange LED. These should be removed when the use of threads and the RTOS is understood. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
-    <li class="footer">Generated on Wed Sep 23 2015 15:55:33 for Lab1 by
+    <li class="footer">Generated on Thu Jun 9 2016 10:38:25 for OSExample by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>
