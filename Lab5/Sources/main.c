@@ -1,253 +1,297 @@
+/* ###################################################################
+ **     Filename    : main.c
+ **     Project     : Lab2
+ **     Processor   : MK70FN1M0VMJ12
+ **     Version     : Driver 01.01
+ **     Compiler    : GNU C Compiler
+ **     Date/Time   : 2015-07-20, 13:27, # CodeGen: 0
+ **     Abstract    :
+ **         Main module.
+ **         This module contains user's application code.
+ **     Settings    :
+ **     Contents    :
+ **         No public methods
+ **
+ ** ###################################################################*/
 /*!
-** @file
-** @version 1.0
-** @brief  Main module.
-**
-**   This file contains the high-level code for the project.
-**   It initialises appropriate hardware subsystems,
-**   creates application threads, and then starts the OS.
-**
-**   An example of two threads communicating via a semaphore
-**   is given that flashes the orange LED. These should be removed
-**   when the use of threads and the RTOS is understood.
-*/         
+ ** @file main.c
+ ** @version 2.0
+ ** @brief
+ **         Main module.
+ **         This module contains user's application code.
+ */
 /*!
-**  @addtogroup main_module main module documentation
-**  @{
-*/         
+ **  @addtogroup main_module main module documentation
+ **  @{
+ */
 /* MODULE main */
 
 
 // CPU module - contains low level hardware initialization routines
 #include "Cpu.h"
-
-// Simple OS
+#include "Events.h"
+#include "PE_Types.h"
+#include "PE_Error.h"
+#include "PE_Const.h"
+#include "IO_Map.h"
+#include "Flash.h"
+#include "LEDs.h"
+#include "packet.h"
+#include "types.h"
+#include "UART.h"
+#include "RTC.h"
+#include "PIT.h"
+#include "FTM.h"
+#include "median.h"
+#include "I2C.h"
+#include "accel.h"
+#include <string.h>
 #include "OS.h"
 
-/*! @brief LED to pin mapping on the TWR-K70F120M
- *
- */
-typedef enum
-{
-  LED_ORANGE = (1 << 11),
-  LED_YELLOW = (1 << 28),
-  LED_GREEN = (1 << 29),
-  LED_BLUE = (1 << 10)
-} TLED;
-
-// Arbitrary thread stack size - big enough for stacking of interrupts and OS use.
 #define THREAD_STACK_SIZE 100
-#define NB_LEDS 4
 
-// Thread stacks
-OS_THREAD_STACK(InitModulesThreadStack, THREAD_STACK_SIZE); /*!< The stack for the LED Init thread. */
-static uint32_t MyLEDThreadStacks[NB_LEDS][THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+/****************************************PRIVATE FUNCTION DECLARATION**************************************/
+void FTM0Callback(void *arg);
+void RTCCallback(void *arg);
+void PITCallback(void *arg);
+void SlidingWindow(uint8_t* const array, const size_t arraylength, const uint8_t newValue);
+void HandleMedianData();
+void InitThread(void* data);
+void PacketThread(void* data);
 
-// ----------------------------------------
-// Thread priorities
-// 0 = highest priority
-// ----------------------------------------
-const uint8_t LED_THREAD_PRIORITIES[NB_LEDS] = {1, 2, 3, 4};
+/****************************************THREAD STACKS*****************************************************/
+static uint32_t InitThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+static uint32_t PacketThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+static uint32_t ReceiveThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+static uint32_t TransmitThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+static OS_ECB *InitSemaphore;
 
-/*! @brief Data structure used to pass LED configuration to a user thread
- *
+/****************************************GLOBAL VARS*******************************************************/
+const static uint32_t BAUD_RATE = 115200;
+const static uint32_t MODULE_CLOCK = CPU_BUS_CLK_HZ;
+
+/*!
+ * @brief Contains the latest accelerometer data
  */
-typedef struct LEDThreadData
-{
-  OS_ECB* semaphore;
-  TLED color;
-  uint8_t delay;
-  struct LEDThreadData* next;
-} TLEDThreadData;
-
-/*! @brief LED thread configuration data
- *
+static uint8_t AccReadData[3] = {0};
+/*!
+ * @brief The latest bytes of accelerometer data which were sent.
  */
-static TLEDThreadData MyLEDThreadData[NB_LEDS] =
-{
-  {
-    .semaphore = NULL,
-    .color = LED_BLUE,
-    .delay = 8,
-    .next = &MyLEDThreadData[1],
-  },
-  {
-    .semaphore = NULL,
-    .color = LED_GREEN,
-    .delay = 15,
-    .next = &MyLEDThreadData[2],
-  },
-  {
-    .semaphore = NULL,
-    .color = LED_YELLOW,
-    .delay = 29,
-    .next = &MyLEDThreadData[0],
-  },
-  {
-    .semaphore = NULL,
-    .color = LED_ORANGE,
-    .delay = 0,
-    .next = NULL,
-  }
+static uint8_t AccelSendHistory[3] = {0};
+/*!
+ * @brief The latest bytes of X read from the accelerometer .
+ */
+static uint8_t AccXHistory[3] = {0};
+/*!
+ * @brief The latest bytes of Yread from the accelerometer .
+ */
+static uint8_t AccYHistory[3] = {0};
+/*!
+ * @brief The latest bytes of Z read from the accelerometer .
+ */
+static uint8_t AccZHistory[3] = {0};
+
+static uint8_t AccTimerRunningFlag = 0;
+
+//TFTMChannel configuration for FTM timer
+TFTMChannel packetTimer = {
+    0, 															//channel
+    CPU_MCGFF_CLK_HZ_CONFIG_0,			//delay count
+    TIMER_FUNCTION_OUTPUT_COMPARE,	//timer function
+    TIMER_OUTPUT_HIGH,							//ioType
+    FTM0Callback,										//User function
+    (void*) 0												//User arguments
 };
 
-void LPTMRInit(const uint16_t count)
-{
-  // Enable clock gate to LPTMR module
-  SIM_SCGC5 |= SIM_SCGC5_LPTIMER_MASK;
+const static TAccelSetup ACCEL_SETUP = {
+    .moduleClk = CPU_BUS_CLK_HZ,
+    .dataReadyCallbackFunction = &HandleMedianData,
+    .dataReadyCallbackArguments = 0,
+    .readCompleteCallbackFunction = &HandleMedianData,
+    .readCompleteCallbackArguments = 0,
+};
 
-  // Disable the LPTMR while we set up
-  // This also clears the CSR[TCF] bit which indicates a pending interrupt
-  LPTMR0_CSR &= ~LPTMR_CSR_TEN_MASK;
+/****************************************PRIVATE FUNCTION DEFINITION***************************************/
 
-  // Enable LPTMR interrupts
-  LPTMR0_CSR |= LPTMR_CSR_TIE_MASK;
-  // Reset the LPTMR free running counter whenever the 'counter' equals 'compare'
-  LPTMR0_CSR &= ~LPTMR_CSR_TFC_MASK;
-  // Set the LPTMR as a timer rather than a counter
-  LPTMR0_CSR &= ~LPTMR_CSR_TMS_MASK;
-
-  // Bypass the prescaler
-  LPTMR0_PSR |= LPTMR_PSR_PBYP_MASK;
-  // Select the prescaler clock source
-  LPTMR0_PSR = (LPTMR0_PSR & ~LPTMR_PSR_PCS(0x3)) | LPTMR_PSR_PCS(1);
-
-  // Set compare value
-  LPTMR0_CMR = LPTMR_CMR_COMPARE(count);
-
-  // Initialize NVIC
-  // see p. 91 of K70P256M150SF3RM.pdf
-  // Vector 0x65=101, IRQ=85
-  // NVIC non-IPR=2 IPR=21
-  // Clear any pending interrupts on LPTMR
-  NVICICPR2 = NVIC_ICPR_CLRPEND(1 << 21);
-  // Enable interrupts from LPTMR module
-  NVICISER2 = NVIC_ISER_SETENA(1 << 21);
-
-  //Turn on LPTMR and start counting
-  LPTMR0_CSR |= LPTMR_CSR_TEN_MASK;
-}
-
-/*! @brief Initialises the LEDs.
- *
+/*!
+ * @brief slidingwindow Shifts the elements of an array one to the left.
+ * @param array The array to shifting window.
+ * @param arraylength The length of the array.
+ * @param newValue The new value to insert at index 0.
  */
-void LEDInit()
+void SlidingWindow(uint8_t* const array, const size_t arraylength, const uint8_t newValue)
 {
-  uint32_t gpwd;
-
-  // Enable clock gate for Port A to enable pin routing
-  SIM_SCGC5 |= SIM_SCGC5_PORTA_MASK;
-
-  // Set up each port pin so that initially the LED is off
-  GPIOA_PSOR = LED_ORANGE | LED_YELLOW | LED_GREEN | LED_BLUE;
-
-  // Set up each port pin to be an output
-  GPIOA_PDDR |= (LED_ORANGE | LED_YELLOW | LED_GREEN | LED_BLUE);
-
-  // *** for PIN multiplexing, see p. 282 of K70P256M150SF3RM.pdf ***
-  // PORTA_PCRx: ISF=0, MUX=1 (see p. 316 of K70P256M150SF3RM.pdf)
-  // Use the global pin control registers since the pins are the same
-
-  gpwd = PORT_PCR_MUX(1) | PORT_PCR_DSE_MASK;
-  PORTA_GPCLR = ((LED_ORANGE | LED_BLUE) << 16) | gpwd;
-  PORTA_GPCHR = (LED_YELLOW | LED_GREEN) | gpwd;
-}
-
-/*! @brief Initialises the modules to support the LEDs and low power timer.
- *
- *  @param pData is not used but is required by the OS to create a thread.
- *  @note This thread deletes itself after running for the first time.
- */
-static void InitModulesThread(void* pData)
-{
-  // Initialise the low power timer to tick every 0.5s
-  LPTMRInit(500);
-
-  // Initialise the LEDs
-  LEDInit();
-
-  // Generate the three global LED semaphores
-  for (uint8_t ledNb = 0; ledNb < NB_LEDS; ledNb++)
-    MyLEDThreadData[ledNb].semaphore = OS_SemaphoreCreate(0);
-
-  // Signal the first LED to toggle
-  (void)OS_SemaphoreSignal(MyLEDThreadData[0].semaphore);
-
-  // We only do this once - therefore delete this thread
-  OS_ThreadDelete(OS_PRIORITY_SELF);
-}
-
-void __attribute__ ((interrupt)) LPTimer_ISR(void)
-{
-  // Clear interrupt flag
-  LPTMR0_CSR |= LPTMR_CSR_TCF_MASK;
-  // Signal the orange LED to toggle
-  (void)OS_SemaphoreSignal(MyLEDThreadData[3].semaphore);
-}
-
-/*! @brief Waits for a signal to toggle the LED, then waits for a specified delay, then signals for the next LED to toggle.
- *
- *  @param pData holds the configuration data for each LED thread.
- *  @note Assumes that LEDInit has been called successfully.
- */
-static void LEDThread(void* pData)
-{
-  // Make the code easier to read by giving a name to the typecast'ed pointer
-  #define ledData ((TLEDThreadData*)pData)
-
-  for (;;)
+  for (size_t i = (arraylength -1); i > 0; i--)
   {
-    // Wait here until signaled that we can turn the LED on
-    if (ledData->semaphore)
-      (void)OS_SemaphoreWait(ledData->semaphore, 0);
+    array[i] = array [i-1];
+  }
+  array[0] = newValue;
+}
 
-    // Toggle LED
-    GPIOA_PTOR = ledData->color;
+/*!
+ * @brief Run on the main thread to handle new accelerometer data.
+ */
+void HandleMedianData()
+{
+  if (Accel_GetMode() == ACCEL_INT)
+  {
+    Accel_ReadXYZ(AccReadData);
+    Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+    return;
+  }
 
-    // Wait for the required toggle time if the delay > 0
-    if (ledData->delay)
-      OS_TimeDelay(ledData->delay);
+  //shifting history
+  SlidingWindow(AccXHistory,3,AccReadData[0]);
+  SlidingWindow(AccYHistory,3,AccReadData[1]);
+  SlidingWindow(AccZHistory,3,AccReadData[2]);
 
-    // Signal for the next LED to toggle
-    if (ledData->next->semaphore)
-      (void)OS_SemaphoreSignal(ledData->next->semaphore);
+  uint8_t xMedian = Median_Filter3(AccXHistory[0],AccXHistory[1],AccXHistory[2] );
+  uint8_t yMedian = Median_Filter3(AccYHistory[0],AccYHistory[1],AccYHistory[2] );
+  uint8_t zMedian = Median_Filter3(AccZHistory[0],AccZHistory[1],AccZHistory[2] );
+
+  if ((xMedian!= AccelSendHistory[0]) | (yMedian != AccelSendHistory[1]) | (zMedian != AccelSendHistory[2]))
+  {
+    AccelSendHistory[0] = xMedian;
+    AccelSendHistory[1] = yMedian;
+    AccelSendHistory[2] = zMedian;
+
+    Packet_Put(0x10, xMedian, yMedian, zMedian);
   }
 }
 
-/*! @brief Initialises the hardware, sets up to threads, and starts the OS.
- *
- */
+void TowerInit(void)
+{
+  bool packetStatus = Packet_Init(BAUD_RATE, MODULE_CLOCK);
+  bool flashStatus  = Flash_Init();
+  bool ledStatus = LEDs_Init();
+//  bool PITStatus = PIT_Init(MODULE_CLOCK, &PITCallback, (void *)0);
+//  PIT_Set(500e6, false);
+//
+//  bool FTMStatus = FTM_Init();
+//  FTM_Set(&packetTimer);
+//
+//  bool RTCStatus = RTC_Init(&RTCCallback, (void *)0);
+
+  //bool AccelStatus = Accel_Init(&ACCEL_SETUP);
+
+  if (packetStatus && flashStatus && ledStatus )//&& PITStatus && RTCStatus && FTMStatus && AccelStatus)
+  {
+    LEDs_On(LED_ORANGE);	//Tower was initialized correctly
+  }
+}
+
+void InitThread(void* data)
+{
+  OS_ERROR error;
+  int count = 0;
+
+  for(;;)
+  {
+    OS_DisableInterrupts(); 		//Disable interrupts before peripheral module initialization
+    OS_SemaphoreWait(InitSemaphore, 0);
+    TowerInit();	//Initialize tower peripheral modules
+
+    Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3);
+    Packet_Put(TOWER_NUMBER_COMM, TOWER_NUMBER_PAR1, TowerNumber->s.Lo, TowerNumber->s.Hi);
+    Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
+    Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
+
+    OS_EnableInterrupts(); //Enable interrupts
+    error = OS_ThreadDelete(0);
+    if(error == OS_NO_ERROR)
+    {
+      count++;
+    }
+  }
+}
+
+void PacketThread(void* data)
+{
+  for(;;)
+  {
+    if (Packet_Get())	//Check if there is a packet in the retrieved data
+    {
+      LEDs_On(LED_BLUE);
+      FTM_StartTimer(&packetTimer);
+      Packet_Handle();
+    }
+  }
+}
+
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
+  /* Write your local variable definition here */
+
+  /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
+  PE_low_level_init();
+  /*** End of Processor Expert internal initialization.                    ***/
+
+  /* Write your code here */
+
   OS_ERROR error;
 
-  // Initialise low-level clocks etc using Processor Expert code
-  PE_low_level_init();
+  OS_Init(CPU_CORE_CLK_HZ, true);
 
-  // Initialize the RTOS - without flashing the orange LED "heartbeat"
-  OS_Init(CPU_CORE_CLK_HZ, false);
+  //Create Initialisation Semaphore
+  InitSemaphore = OS_SemaphoreCreate(1);
 
-  // Create module initialisation thread
-  error = OS_ThreadCreate(InitModulesThread,
-                          NULL,
-                          &InitModulesThreadStack[THREAD_STACK_SIZE - 1],
-		          0); // Highest priority
+  //Create threads
+  error = OS_ThreadCreate(InitThread, NULL, &InitThreadStack[THREAD_STACK_SIZE-1], 0);
+  //error = OS_ThreadCreate(ReceiveThread, NULL, &ReceiveThreadStack[THREAD_STACK_SIZE-1], 1);
+  //error = OS_ThreadCreate(TransmitThread, NULL, &TransmitThreadStack[THREAD_STACK_SIZE-1], 2);
+  //error = OS_ThreadCreate(PacketThread, NULL, &PacketThreadStack[THREAD_STACK_SIZE-1], 6);
 
-  // Create threads to toggle the LEDS
-  for (uint8_t threadNb = 0; threadNb < NB_LEDS; threadNb++)
-  {
-    error = OS_ThreadCreate(LEDThread,
-	                    &MyLEDThreadData[threadNb],
-		            &MyLEDThreadStacks[threadNb][THREAD_STACK_SIZE - 1],
-			    LED_THREAD_PRIORITIES[threadNb]);
-  }
-
-  // Start multithreading - never returns!
   OS_Start();
+  /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
+  /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+#ifdef PEX_RTOS_START
+  PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+#endif
+  /*** End of RTOS startup code.  ***/
+  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+  for(;;){}
+  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+} /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
+
+//RTCCallback function from RTC_ISR
+void RTCCallback(void *arg)
+{
+  uint8_t h, m ,s;
+  RTC_Get(&h, &m, &s);			//Get hours, mins, secs
+  Packet_Put(0x0c, h, m, s);//Send to PC
+  LEDs_Toggle(LED_YELLOW);	//Toggle Yellow LED
 }
 
+//PITCallback function from PIT_ISR
+void PITCallback(void *arg)
+{
+  LEDs_Toggle(LED_GREEN);
+  if (Accel_GetMode() == ACCEL_POLL)
+  {
+    Accel_ReadXYZ(AccReadData);
+    //HandleMedianData();
+    Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+  }
+}
+
+//FTM0Callback function from FTM_ISR
+void FTM0Callback(void *arg)
+{
+  LEDs_Off(LED_BLUE);
+}
+
+
+/* END main */
 /*!
-** @}
-*/
+ ** @}
+ */
+/*
+ ** ###################################################################
+ **
+ **     This file was created by Processor Expert 10.5 [05.21]
+ **     for the Freescale Kinetis series of microcontrollers.
+ **
+ ** ###################################################################
+ */
