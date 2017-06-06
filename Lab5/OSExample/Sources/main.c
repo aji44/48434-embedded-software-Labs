@@ -60,6 +60,8 @@ static void InitThread(void* data);
 static void PacketThread(void* data);
 static void PITThread(void* data);
 static void RTCThread(void* data);
+static void AccelThread(void* data);
+static void I2CThread(void *data);
 
 /****************************************THREAD STACKS*****************************************************/
 static uint32_t InitThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
@@ -69,6 +71,9 @@ static uint32_t TransmitThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0
 static uint32_t PITThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
 static uint32_t RTCThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
 static uint32_t FTM0ThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+static uint32_t AccelThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+static uint32_t I2CThreadStack[THREAD_STACK_SIZE] __attribute__ ((aligned(0x08)));
+
 static OS_ECB *InitSemaphore;
 
 /****************************************GLOBAL VARS*******************************************************/
@@ -178,7 +183,7 @@ void TowerInit(void)
 
   bool AccelStatus = Accel_Init(&ACCEL_SETUP);
 
-  if (packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus && AccelStatus)
+  if (packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus && AccelStatus) //&& AccelStatus
   {
     LEDs_On(LED_ORANGE);	//Tower was initialized correctly
   }
@@ -188,7 +193,7 @@ void InitThread(void* data)
 {
   OS_ERROR error;
 
-  for(;;)
+  for (;;)
   {
     OS_SemaphoreWait(InitSemaphore, 0);
     TowerInit();	//Initialize tower peripheral modules
@@ -203,7 +208,7 @@ void PacketThread(void* data)
   Packet_Put(TOWER_VERSION_COMM, TOWER_VERSION_V, TOWER_VERSION_MAJ, TOWER_VERSION_MIN);
   Packet_Put(TOWER_MODE_COMM, TOWER_MODE_PAR1, TowerMode->s.Lo, TowerMode->s.Hi);
 
-  for(;;)
+  for (;;)
   {
     if (Packet_Get())	//Check if there is a packet in the retrieved data
     {
@@ -216,11 +221,12 @@ void PacketThread(void* data)
 
 void PITThread(void* data)
 {
-  for(;;)
+  for (;;)
   {
     OS_SemaphoreWait(PITSemaphore, 0);
 
     LEDs_Toggle(LED_GREEN);
+    //The code stops working with the following code.
     if (Accel_GetMode() == ACCEL_POLL)
     {
       Accel_ReadXYZ(AccReadData);
@@ -230,25 +236,47 @@ void PITThread(void* data)
   }
 }
 
+void AccelThread(void* data)
+{
+  for (;;)
+  {
+    OS_SemaphoreWait(AccelSemaphore, 0);
+    Accel_ReadXYZ(AccReadData);
+    //HandleMedianData();
+    LEDs_Toggle(LED_GREEN);
+    Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+    (void)OS_SemaphoreSignal(AccelSemaphore);
+  }
+}
+
 void RTCThread(void* data)
 {
-  for(;;)
+  for (;;)
   {
     OS_SemaphoreWait(RTCSemaphore, 0);
 
     uint8_t h, m ,s;
-    RTC_Get(&h, &m, &s);			//Get hours, mins, secs
-    Packet_Put(0x0c, h, m, s);//Send to PC
-    LEDs_Toggle(LED_YELLOW);	//Toggle Yellow LED
+    RTC_Get(&h, &m, &s); //Get hours, mins, secs
+    Packet_Put(0x0c, h, m, s); //Send to PC
+    LEDs_Toggle(LED_YELLOW); //Toggle Yellow LED
   }
 }
 
 void FTM0Thread(void *data)
 {
-  for(;;)
+  for (;;)
   {
     OS_SemaphoreWait(FTM0Semaphore, 0);
     LEDs_Off(LED_BLUE);
+  }
+}
+
+void I2CThread(void *data)
+{
+  for (;;)
+  {
+    OS_SemaphoreWait(I2CSemaphore, 0);
+    HandleMedianData();
   }
 }
 
@@ -279,7 +307,8 @@ int main(void)
   error = OS_ThreadCreate(PITThread, NULL, &PITThreadStack[THREAD_STACK_SIZE-1], 3);
   error = OS_ThreadCreate(RTCThread, NULL, &RTCThreadStack[THREAD_STACK_SIZE-1], 4);
   error = OS_ThreadCreate(FTM0Thread, NULL, &FTM0ThreadStack[THREAD_STACK_SIZE-1], 5);
-
+  error = OS_ThreadCreate(AccelThread, NULL, &AccelThreadStack[THREAD_STACK_SIZE-1], 7);
+  error = OS_ThreadCreate(I2CThread, NULL, &I2CThreadStack[THREAD_STACK_SIZE-1], 8);
   OS_Start();
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/

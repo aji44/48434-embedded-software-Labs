@@ -17,6 +17,9 @@
 
 // New types
 #include "types.h"
+#include "OS.h"
+
+OS_ECB *AccelSemaphore;
 
 typedef enum
 {

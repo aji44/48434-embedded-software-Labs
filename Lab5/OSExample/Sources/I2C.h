@@ -16,6 +16,9 @@
 
 // new types
 #include "types.h"
+#include"OS.h"
+
+OS_ECB *I2CSemaphore;
 
 typedef struct
 {

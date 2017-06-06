@@ -19,6 +19,7 @@
 #include "types.h"
 #include "LEDs.h"
 #include "stdlib.h"
+#include "OS.h"
 
 //Definitions
 #define I2C_D_READ  0x01 //from datasheet figure 11
@@ -116,6 +117,9 @@ void waitTilIdle(void)
  */
 bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 {
+
+  I2CSemaphore = OS_SemaphoreCreate(0);
+
   ReadCompleteUserArgumentsGlobal = aI2CModule->readCompleteCallbackArguments;
   // userArguments made globally(private) accessible
   ReadCompleteCallbackGlobal = aI2CModule->readCompleteCallbackFunction;
@@ -311,6 +315,7 @@ void I2C_IntRead(const uint8_t registerAddress, uint8_t* const data, const uint8
  */
 void __attribute__ ((interrupt)) I2C_ISR(void)
 {
+  OS_ISREnter();
   uint8_t status = I2C0_S;
   static uint8_t iCount = 0; //counts the number of interrupts occurred, indicates bytes read.
 
@@ -326,14 +331,14 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
       switch (NumBytes)
       {
 	case (SND_LAST_BYTE):
-					    I2C0_C1 |= I2C_C1_TXAK_MASK;
+	I2C0_C1 |= I2C_C1_TXAK_MASK;
 	//Decrement the number of bytes to be read
 	NumBytes++;
 	//Read data and store in received data location
 	ReceivedData[iCount] = I2C0_D;
 	break;
 	case (LAST_BYTE):
-					    stop();
+	stop();
 	//Decrement number of bytes to be read
 	NumBytes--;
 	//Read data and store in received data location
@@ -342,14 +347,15 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 	iCount++;
 	break;
 	case (COMPLETE):
-					    //Reset the interrupt counter
-					    iCount = 0;
+	//Reset the interrupt counter
+	iCount = 0;
 	//IntRead can be called again
 	OKtoRead = true;
 	//interrupts off
 
+	OS_SemaphoreSignal(I2CSemaphore);
 	//Initiate callback function
-	ReadCompleteCallbackGlobal(ReadCompleteUserArgumentsGlobal);
+	//ReadCompleteCallbackGlobal(ReadCompleteUserArgumentsGlobal);
 	break;
 	default:
 	  //Decrement number of bytes to be read
@@ -362,6 +368,7 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
       }
     }
   }
+  OS_ISRExit();
 }
 /*!
  ** @}

@@ -9,7 +9,7 @@
 /*!
  *  @addtogroup accel_module Accel module documentation
  *  @{
-*/
+ */
 
 // Accelerometer functions
 #include "accel.h"
@@ -27,6 +27,8 @@
 #include "CPU.h"
 #include "PE_types.h"
 #include "types.h"
+#include "OS.h"
+
 
 #define MMA8451Q_WHO_AM_I 0x0Du
 #define MMA8451Q_WHO_AM_I_VALUE 0x1Au
@@ -40,10 +42,10 @@
 void actualAccelReadDataBack(void * nothing);
 
 static const TI2CModule I2C_ACCEL_MODULE = {
-		.primarySlaveAddress = 0x1D,
-		.baudRate = 100000,
-		.readCompleteCallbackFunction = actualAccelReadDataBack,
-		.readCompleteCallbackArguments = 0
+    .primarySlaveAddress = 0x1D,
+    .baudRate = 100000,
+    .readCompleteCallbackFunction = actualAccelReadDataBack,
+    .readCompleteCallbackArguments = 0
 };
 
 
@@ -227,16 +229,16 @@ static TAccelMode CurrentMode;
  */
 void standbyMode(bool standby)
 {
-	if (standby)
-	{
-		CTRL_REG1_ACTIVE = 0;
-		I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1);
-	}
-	else
-	{
-		CTRL_REG1_ACTIVE = 1;
-		I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1);
-	}
+  if (standby)
+  {
+    CTRL_REG1_ACTIVE = 0;
+    I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1);
+  }
+  else
+  {
+    CTRL_REG1_ACTIVE = 1;
+    I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1);
+  }
 }
 
 
@@ -248,54 +250,56 @@ void standbyMode(bool standby)
 
 bool Accel_Init(const TAccelSetup* const accelSetup)
 {
-	AccelModuleSetup = *accelSetup;
-	CurrentMode = ACCEL_POLL; //By default
+  AccelSemaphore = OS_SemaphoreCreate(0);
 
-	DataCallback = accelSetup-> dataReadyCallbackFunction;
-	DataCallbackArgument=accelSetup->dataReadyCallbackArguments;
+  AccelModuleSetup = *accelSetup;
+  CurrentMode = ACCEL_POLL; //By default
 
-	ReadCallback = accelSetup->readCompleteCallbackFunction;
-	ReadCallbackArgument = accelSetup->readCompleteCallbackArguments;
+  DataCallback = accelSetup-> dataReadyCallbackFunction;
+  DataCallbackArgument=accelSetup->dataReadyCallbackArguments;
 
-	//Initialize I2C
-	I2C_Init(&I2C_ACCEL_MODULE, accelSetup->moduleClk);
+  ReadCallback = accelSetup->readCompleteCallbackFunction;
+  ReadCallbackArgument = accelSetup->readCompleteCallbackArguments;
 
-	standbyMode(true); //Standby Mode Activate
+  //Initialize I2C
+  I2C_Init(&I2C_ACCEL_MODULE, accelSetup->moduleClk);
 
-	uint8_t aaaaa;//0x1Au
-	I2C_PollRead(MMA8451Q_WHO_AM_I, &aaaaa, 1);
+  standbyMode(true); //Standby Mode Activate
 
-	CTRL_REG1_DR = DATE_RATE_1_56_HZ;
-	CTRL_REG1_F_READ = 1; 										//8 bit precision
-	CTRL_REG1_LNOISE = 0; 										//Set to full dynamic range mode
-	CTRL_REG1_ASLP_RATE = 0; //SLEEP_MODE_RATE_1_56_HZ;
-	I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1); 	//Write to the register
+  uint8_t aaaaa;//0x1Au
+  I2C_PollRead(MMA8451Q_WHO_AM_I, &aaaaa, 1);
 
-	CTRL_REG3_PP_OD = 0;
-	CTRL_REG3_IPOL = 1;
-	I2C_Write(ADDRESS_CTRL_REG3, CTRL_REG3); //Write to the register
+  CTRL_REG1_DR = DATE_RATE_1_56_HZ;
+  CTRL_REG1_F_READ = 1; 										//8 bit precision
+  CTRL_REG1_LNOISE = 0; 										//Set to full dynamic range mode
+  CTRL_REG1_ASLP_RATE = 0; //SLEEP_MODE_RATE_1_56_HZ;
+  I2C_Write(ADDRESS_CTRL_REG1, CTRL_REG1); 	//Write to the register
 
-	CTRL_REG4_INT_EN_DRDY = 0;
-	I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4); //Write to the register
+  CTRL_REG3_PP_OD = 0;
+  CTRL_REG3_IPOL = 1;
+  I2C_Write(ADDRESS_CTRL_REG3, CTRL_REG3); //Write to the register
 
-	CTRL_REG5_INT_CFG_DRDY = 1;
-	I2C_Write(ADDRESS_CTRL_REG5, CTRL_REG5);
+  CTRL_REG4_INT_EN_DRDY = 0;
+  I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4); //Write to the register
 
-	standbyMode(false); //Standby Mode Deactivate
+  CTRL_REG5_INT_CFG_DRDY = 1;
+  I2C_Write(ADDRESS_CTRL_REG5, CTRL_REG5);
 
-	SIM_SCGC5 |=  SIM_SCGC5_PORTB_MASK; //set portB as per lab requirements
+  standbyMode(false); //Standby Mode Deactivate
 
-	//set pins use pin 4
-	PORTB_PCR4 &= ~PORT_PCR_MUX_MASK; //clear any previously set bits for the PCR_MUX
-	PORTB_PCR4 |= PORT_PCR_MUX(1); //set pin 4
-	PORTB_PCR4 |= PORT_PCR_ISF_MASK; //set interrupt status flag pg 323
-	PORTB_PCR4 |= PORT_PCR_IRQC(10); //set interrupt configuration
+  SIM_SCGC5 |=  SIM_SCGC5_PORTB_MASK; //set portB as per lab requirements
 
-	//NVICS: IQR- Pin detect portB (88mod32) pg98 k70 manual
-	NVICICPR2 = (1<<24);
-	NVICISER2 = (1<<24);
+  //set pins use pin 4
+  PORTB_PCR4 &= ~PORT_PCR_MUX_MASK; //clear any previously set bits for the PCR_MUX
+  PORTB_PCR4 |= PORT_PCR_MUX(1); //set pin 4
+  PORTB_PCR4 |= PORT_PCR_ISF_MASK; //set interrupt status flag pg 323
+  PORTB_PCR4 |= PORT_PCR_IRQC(10); //set interrupt configuration
 
-	return true;
+  //NVICS: IQR- Pin detect portB (88mod32) pg98 k70 manual
+  NVICICPR2 = (1<<24);
+  NVICISER2 = (1<<24);
+
+  return true;
 }
 
 /*!
@@ -303,7 +307,7 @@ bool Accel_Init(const TAccelSetup* const accelSetup)
  */
 TAccelMode Accel_GetMode()
 {
-	return CurrentMode;
+  return CurrentMode;
 }
 
 /*! @brief Reads X, Y and Z accelerations.
@@ -311,16 +315,16 @@ TAccelMode Accel_GetMode()
  */
 void Accel_ReadXYZ(uint8_t data[3])
 {
-	//I2C_SelectSlaveDevice(0x1d);
+  //I2C_SelectSlaveDevice(0x1d);
 
-	if (CurrentMode == ACCEL_POLL)
-	{
-		I2C_PollRead(ADDRESS_OUT_X_MSB, data, 3);
-	}
-	else if (CurrentMode == ACCEL_INT)
-	{
-		I2C_IntRead(ADDRESS_OUT_X_MSB, data, 3);
-	}
+  if (CurrentMode == ACCEL_POLL)
+  {
+    I2C_PollRead(ADDRESS_OUT_X_MSB, data, 3);
+  }
+  else if (CurrentMode == ACCEL_INT)
+  {
+    I2C_IntRead(ADDRESS_OUT_X_MSB, data, 3);
+  }
 }
 
 /*! @brief actualAccelReadDataBack
@@ -329,10 +333,10 @@ void Accel_ReadXYZ(uint8_t data[3])
 
 void actualAccelReadDataBack(void * nothing)
 {
-	if(AccelModuleSetup.readCompleteCallbackFunction != 0)
-	{
-		AccelModuleSetup.readCompleteCallbackFunction(AccelModuleSetup.readCompleteCallbackArguments);
-	}
+  if(AccelModuleSetup.readCompleteCallbackFunction != 0)
+  {
+    AccelModuleSetup.readCompleteCallbackFunction(AccelModuleSetup.readCompleteCallbackArguments);
+  }
 }
 
 /*! @brief Set the mode of the accelerometer.
@@ -340,35 +344,39 @@ void actualAccelReadDataBack(void * nothing)
  */
 void Accel_SetMode(const TAccelMode mode)
 {
-	CurrentMode = mode;
+  CurrentMode = mode;
 
-	if (mode == ACCEL_POLL)
-	{
-		CTRL_REG4_INT_EN_DRDY = 0; //Data ready interrupt disabled
-		I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4);
-	}
-	else
-	{
-		CTRL_REG4_INT_EN_DRDY = 1; //Data ready interrupt enabled
-		I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4);
-	}
+  if (mode == ACCEL_POLL)
+  {
+    CTRL_REG4_INT_EN_DRDY = 0; //Data ready interrupt disabled
+    I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4);
+  }
+  else
+  {
+    CTRL_REG4_INT_EN_DRDY = 1; //Data ready interrupt enabled
+    I2C_Write(ADDRESS_CTRL_REG4, CTRL_REG4);
+  }
 }
 
 
 void __attribute__ ((interrupt)) AccelDataReady_ISR(void)
 {
-	if (!(PORTB_PCR7 & PORT_PCR_ISF_MASK))
-	{
-		return;
-	}
+  OS_ISREnter();
+  if (!(PORTB_PCR7 & PORT_PCR_ISF_MASK))
+  {
+    return;
+  }
 
-	PORTB_PCR4 |= PORT_PCR_ISF_MASK; 			//Clear interrupt
+  PORTB_PCR4 |= PORT_PCR_ISF_MASK; //Clear interrupt
+  OS_SemaphoreSignal(AccelSemaphore);
 
-	if (CurrentMode == ACCEL_INT)
-	{
-		(DataCallback)(DataCallbackArgument);	//Initiate Callback
-	}
+  OS_ISRExit();
+
+//  if (CurrentMode == ACCEL_INT)
+//  {
+//    (DataCallback)(DataCallbackArgument);	//Initiate Callback
+//  }
 }
 /*!
  * @}
-*/
+ */
