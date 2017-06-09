@@ -18,7 +18,7 @@
 #include "types.h"
 #include "OS.h"
 
-OS_ECB *PITSemaphore;
+OS_ECB *PITSemaphore; //Semaphore for PIT Thread
 
 /*! @brief Sets up the PIT before first use.
  *

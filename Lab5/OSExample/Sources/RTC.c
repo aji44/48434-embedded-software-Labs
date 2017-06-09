@@ -31,7 +31,7 @@ static void (*RTCCallback)(void *); //pointer to userCallback function
  */
 bool RTC_Init(void (*userFunction)(void*), void* userArguments)
 {
-  RTCSemaphore = OS_SemaphoreCreate(0);
+  RTCSemaphore = OS_SemaphoreCreate(0); //Create RTC Semaphore
 
   RTCArguments = userArguments; //Globally accessible (userArguments)
   RTCCallback = userFunction; //Globally accessible (userFunction)
@@ -134,7 +134,7 @@ void RTC_Get(uint8_t* const hours, uint8_t* const minutes, uint8_t* const second
 void __attribute__ ((interrupt)) RTC_ISR(void)
 {
   OS_ISREnter();
-  OS_SemaphoreSignal(RTCSemaphore);
+  OS_SemaphoreSignal(RTCSemaphore); //Signal Semaphore
   OS_ISRExit();
 
 //  if (RTCCallback)

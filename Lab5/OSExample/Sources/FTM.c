@@ -29,7 +29,7 @@ static void* FTMArguments[NO_OF_CHANNELS]; //pointer to userArguments function
  */
 bool FTM_Init()
 {
-  FTM0Semaphore = OS_SemaphoreCreate(0);
+  FTM0Semaphore = OS_SemaphoreCreate(0); //Create FTM0 Semaphore
 
   SIM_SCGC6 |= SIM_SCGC6_FTM0_MASK;  	// pg 356/2275 k70 -Enable clock gate
   //FTM_SCx = Status and Control -contains the overflow status flag and control bits used to configure the interrupt enable
@@ -158,7 +158,7 @@ void __attribute__ ((interrupt)) FTM0_ISR(void)
       //Disable interrupt
       FTM0_CnSC(channelNb) &= ~FTM_CnSC_CHIE_MASK;
 
-      OS_SemaphoreSignal(FTM0Semaphore);
+      OS_SemaphoreSignal(FTM0Semaphore); //Signal FTM Semaphore
 
       //Callback function
 //      if (FTMCallback[channelNb])

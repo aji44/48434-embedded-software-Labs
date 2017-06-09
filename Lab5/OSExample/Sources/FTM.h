@@ -18,7 +18,7 @@
 #include "types.h"
 #include "OS.h"
 
-OS_ECB *FTM0Semaphore;
+OS_ECB *FTM0Semaphore; //Semaphore for FTM Thread
 
 typedef enum
 {

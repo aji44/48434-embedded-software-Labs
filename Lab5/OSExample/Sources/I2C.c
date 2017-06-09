@@ -55,7 +55,7 @@ bool waitForAck(void)
 {
   int timeOut = 100000;
 
-  while ((I2C0_S & I2C_S_IICIF_MASK) == 0 || timeOut > 0)
+  while ((I2C0_S & I2C_S_IICIF_MASK) == 0 && timeOut > 0) // ||
   {
     timeOut--;
   }
@@ -95,11 +95,17 @@ void sendDeviceAddress(void)
 
 }
 
+/*!
+ * @brief send Register Address
+ */
 void sendRegisterAddress(const uint8_t registerAddress)
 {
   I2C0_D = registerAddress; //send slave register address
 }
 
+/*!
+ * @brief Wait til idle
+ */
 void waitTilIdle(void)
 {
   //page 1872 k70 manual
@@ -118,7 +124,7 @@ void waitTilIdle(void)
 bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
 {
 
-  I2CSemaphore = OS_SemaphoreCreate(0);
+  I2CSemaphore = OS_SemaphoreCreate(0); //Create Semaphore for I2C Thread
 
   ReadCompleteUserArgumentsGlobal = aI2CModule->readCompleteCallbackArguments;
   // userArguments made globally(private) accessible
@@ -171,17 +177,7 @@ bool I2C_Init(const TI2CModule* const aI2CModule, const uint32_t moduleClk)
   //12c programmable input glitch filter registers
   I2C0_FLT = I2C_FLT_FLT(0x00);
 
-  //	I2C0_C1 &= ~I2C_C1_MST_MASK;  	//Set to slave mode
-  //	I2C0_C1 &= ~I2C_C1_WUEN_MASK; 	//set wakeup enable
-  //	I2C0_C1 &= ~I2C_C1_DMAEN_MASK; 	// DMA signaling disabled
-  //	I2C0_C1 |= I2C_C1_IICIE_MASK;		// Enable interrupt
-
   I2C0_C1 = 0;
-  //	I2C0_C2 &= ~I2C_C2_GCAEN_MASK;	//GCAE disabled
-  //	I2C0_C2 &= ~I2C_C2_ADEXT_MASK;	//7 bit address scheme for the slave address
-  //	I2C0_C2 &= ~I2C_C2_HDRS_MASK;		//Set to Normal drive mode
-  //	I2C0_C2 &= ~I2C_C2_SBRC_MASK;		//Set for Slave baudrate to master baudrate
-  //	I2C0_C2 &= ~I2C_C2_RMEN_MASK;		//Range mode disabled
 
   I2C0_S = I2C_S_IICIF_MASK; //Clear interrupts
 
@@ -212,8 +208,13 @@ void I2C_SelectSlaveDevice(const uint8_t slaveAddress)
  */
 void I2C_Write(const uint8_t registerAddress, const uint8_t data)
 {
+
   waitTilIdle();
   //	I2C0_C1 |= (I2C_C1_TX_MASK); //Set to transmit mode
+
+  // Wait for all bytes to write
+  OS_SemaphoreWait(I2CSemaphore, 0);
+
   start(); //we set to transmit mode here when we start
   sendDeviceAddress();
   waitForAck();
@@ -224,6 +225,10 @@ void I2C_Write(const uint8_t registerAddress, const uint8_t data)
   //I2C0_C1 &= ~(I2C_C1_TX_MASK); //Receive mode selected
   waitForAck();
   stop();
+
+  // Signal all bytes are written
+  OS_SemaphoreSignal(I2CSemaphore);
+
   // waitTilIdle();
 }
 
@@ -353,7 +358,7 @@ void __attribute__ ((interrupt)) I2C_ISR(void)
 	OKtoRead = true;
 	//interrupts off
 
-	OS_SemaphoreSignal(I2CSemaphore);
+	OS_SemaphoreSignal(I2CSemaphore); //Signal Semaphore
 	//Initiate callback function
 	//ReadCompleteCallbackGlobal(ReadCompleteUserArgumentsGlobal);
 	break;

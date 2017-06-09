@@ -19,7 +19,7 @@
 #include "types.h"
 #include "OS.h"
 
-OS_ECB *PacketPutSemaphore;
+OS_ECB *PacketPutSemaphore; //Semaphore for Packet Put
 
 // Packet structure
 #define PACKET_NB_BYTES 5

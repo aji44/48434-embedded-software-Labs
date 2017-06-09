@@ -42,8 +42,18 @@ void UART_InChar(uint8_t * const dataPtr);
  */
 void UART_OutChar(const uint8_t data);
 
+/*! @brief The thread which handles the receiving of data
+ *
+ *  @param data
+ *  @note Assumes that UART_Init has been called.
+ */
 void ReceiveThread(void *data);
 
+/*! @brief The thread which handles the transmission of data
+ *
+ *  @param data
+ *  @note Assumes that UART_Init has been called.
+ */
 void TransmitThread(void *data);
 
 /*! @brief Poll the UART status register to try and receive and/or transmit one character.

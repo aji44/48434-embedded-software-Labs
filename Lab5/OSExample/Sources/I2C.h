@@ -18,7 +18,7 @@
 #include "types.h"
 #include"OS.h"
 
-OS_ECB *I2CSemaphore;
+OS_ECB *I2CSemaphore; //Semaphore for I2C Thread
 
 typedef struct
 {

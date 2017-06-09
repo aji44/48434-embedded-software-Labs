@@ -33,7 +33,7 @@ static void (*PITCallback)(void *); //pointer to userCallback function
 bool PIT_Init(const uint32_t moduleClk, void (*userFunction)(void*), void* userArguments)
 {
 
-  PITSemaphore = OS_SemaphoreCreate(0);
+  PITSemaphore = OS_SemaphoreCreate(0); //Create PIT Semaphore
 
   PITArguments = userArguments; //Globally accessible (userArguments)
   PITCallback = userFunction; //Globally accessible (userFunction)
@@ -112,8 +112,8 @@ void PIT_Enable(const bool enable)
 void __attribute__ ((interrupt)) PIT_ISR(void)
 {
   OS_ISREnter();
-  PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
-  OS_SemaphoreSignal(PITSemaphore);
+  PIT_TFLG0 |= PIT_TFLG_TIF_MASK; //Acknowledge interrupt
+  OS_SemaphoreSignal(PITSemaphore); //Signal PIT Semaphore
   OS_ISRExit();
 
 //  if (PITCallback)

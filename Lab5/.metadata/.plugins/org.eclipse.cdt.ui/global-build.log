@@ -9018,3 +9018,1329 @@ arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0
 arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
 'Finished building target: OSExample.elf'
 ' '
+08:43:21 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+08:43:35 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:04:14 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:04:37 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:09:32 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:47:12 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:49:27 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:51:32 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:55:33 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:57:56 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+09:59:10 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+10:06:18 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '
+10:09:56 **** Incremental Build of configuration Debug for project OSExample ****
+make all 
+'Building file: ../Sources/Events.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+'Finished building: ../Sources/Events.c'
+' '
+'Building file: ../Sources/FIFO.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FIFO.d" -MT"Sources/FIFO.o" -c -o "Sources/FIFO.o" "../Sources/FIFO.c"
+'Finished building: ../Sources/FIFO.c'
+' '
+'Building file: ../Sources/FTM.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/FTM.d" -MT"Sources/FTM.o" -c -o "Sources/FTM.o" "../Sources/FTM.c"
+'Finished building: ../Sources/FTM.c'
+' '
+'Building file: ../Sources/Flash.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/Flash.d" -MT"Sources/Flash.o" -c -o "Sources/Flash.o" "../Sources/Flash.c"
+'Finished building: ../Sources/Flash.c'
+' '
+'Building file: ../Sources/I2C.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/I2C.d" -MT"Sources/I2C.o" -c -o "Sources/I2C.o" "../Sources/I2C.c"
+'Finished building: ../Sources/I2C.c'
+' '
+'Building file: ../Sources/LEDs.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/LEDs.d" -MT"Sources/LEDs.o" -c -o "Sources/LEDs.o" "../Sources/LEDs.c"
+'Finished building: ../Sources/LEDs.c'
+' '
+'Building file: ../Sources/PIT.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/PIT.d" -MT"Sources/PIT.o" -c -o "Sources/PIT.o" "../Sources/PIT.c"
+'Finished building: ../Sources/PIT.c'
+' '
+'Building file: ../Sources/RTC.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/RTC.d" -MT"Sources/RTC.o" -c -o "Sources/RTC.o" "../Sources/RTC.c"
+'Finished building: ../Sources/RTC.c'
+' '
+'Building file: ../Sources/UART.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/UART.d" -MT"Sources/UART.o" -c -o "Sources/UART.o" "../Sources/UART.c"
+'Finished building: ../Sources/UART.c'
+' '
+'Building file: ../Sources/accel.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/accel.d" -MT"Sources/accel.o" -c -o "Sources/accel.o" "../Sources/accel.c"
+'Finished building: ../Sources/accel.c'
+' '
+'Building file: ../Sources/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+'Finished building: ../Sources/main.c'
+' '
+'Building file: ../Sources/main_ORIGINAL.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/main_ORIGINAL.d" -MT"Sources/main_ORIGINAL.o" -c -o "Sources/main_ORIGINAL.o" "../Sources/main_ORIGINAL.c"
+'Finished building: ../Sources/main_ORIGINAL.c'
+' '
+'Building file: ../Sources/median.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/median.d" -MT"Sources/median.o" -c -o "Sources/median.o" "../Sources/median.c"
+'Finished building: ../Sources/median.c'
+' '
+'Building file: ../Sources/packet.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Sources/packet.d" -MT"Sources/packet.o" -c -o "Sources/packet.o" "../Sources/packet.c"
+'Finished building: ../Sources/packet.c'
+' '
+'Building file: ../Project_Settings/Startup_Code/startup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Project_Settings/Startup_Code/startup.d" -MT"Project_Settings/Startup_Code/startup.o" -c -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.c"
+'Finished building: ../Project_Settings/Startup_Code/startup.c'
+' '
+'Building file: ../Generated_Code/Cpu.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Cpu.d" -MT"Generated_Code/Cpu.o" -c -o "Generated_Code/Cpu.o" "../Generated_Code/Cpu.c"
+'Finished building: ../Generated_Code/Cpu.c'
+' '
+'Building file: ../Generated_Code/PE_LDD.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/PE_LDD.d" -MT"Generated_Code/PE_LDD.o" -c -o "Generated_Code/PE_LDD.o" "../Generated_Code/PE_LDD.c"
+'Finished building: ../Generated_Code/PE_LDD.c'
+' '
+'Building file: ../Generated_Code/Vectors.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors.d" -MT"Generated_Code/Vectors.o" -c -o "Generated_Code/Vectors.o" "../Generated_Code/Vectors.c"
+'Finished building: ../Generated_Code/Vectors.c'
+' '
+'Building file: ../Generated_Code/Vectors_Backup.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:\Users\12195032\Documents\Lab5\OSExample\Library" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/IO_Map" -I"C:/Users/12195032/Documents/Lab5/OSExample/Sources" -I"C:/Users/12195032/Documents/Lab5/OSExample/Generated_Code" -I"C:/Users/12195032/Documents/Lab5/OSExample/Static_Code/PDD" -std=c99 -MMD -MP -MF"Generated_Code/Vectors_Backup.d" -MT"Generated_Code/Vectors_Backup.o" -c -o "Generated_Code/Vectors_Backup.o" "../Generated_Code/Vectors_Backup.c"
+'Finished building: ../Generated_Code/Vectors_Backup.c'
+' '
+'Building target: OSExample.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:/Users/12195032/Documents/Lab5/OSExample/Project_Settings/Linker_Files/ProcessorExpert.ld" -Xlinker --gc-sections -L"C:\Users\12195032\Documents\Lab5\OSExample\Library" -Wl,-Map,"OSExample.map" -specs=nano.specs -specs=nosys.specs -o "OSExample.elf"  ./Sources/Events.o ./Sources/FIFO.o ./Sources/FTM.o ./Sources/Flash.o ./Sources/I2C.o ./Sources/LEDs.o ./Sources/PIT.o ./Sources/RTC.o ./Sources/UART.o ./Sources/accel.o ./Sources/main.o ./Sources/main_ORIGINAL.o ./Sources/median.o ./Sources/packet.o  ./Project_Settings/Startup_Code/startup.o  ./Generated_Code/Cpu.o ./Generated_Code/PE_LDD.o ./Generated_Code/Vectors.o ./Generated_Code/Vectors_Backup.o   -lOS
+'Finished building target: OSExample.elf'
+' '

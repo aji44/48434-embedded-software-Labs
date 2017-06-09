@@ -105,20 +105,20 @@ static uint8_t AccTimerRunningFlag = 0;
 
 //TFTMChannel configuration for FTM timer
 TFTMChannel packetTimer = {
-    0, 															//channel
-    CPU_MCGFF_CLK_HZ_CONFIG_0,			//delay count
-    TIMER_FUNCTION_OUTPUT_COMPARE,	//timer function
-    TIMER_OUTPUT_HIGH,							//ioType
-    FTM0Callback,										//User function
-    (void*) 0												//User arguments
+  0, 															//channel
+  CPU_MCGFF_CLK_HZ_CONFIG_0,			//delay count
+  TIMER_FUNCTION_OUTPUT_COMPARE,	//timer function
+  TIMER_OUTPUT_HIGH,							//ioType
+  FTM0Callback,										//User function
+  (void*) 0												//User arguments
 };
 
 const static TAccelSetup ACCEL_SETUP = {
-    .moduleClk = CPU_BUS_CLK_HZ,
-    .dataReadyCallbackFunction = &HandleMedianData,
-    .dataReadyCallbackArguments = 0,
-    .readCompleteCallbackFunction = &HandleMedianData,
-    .readCompleteCallbackArguments = 0,
+  .moduleClk = CPU_BUS_CLK_HZ,
+  .dataReadyCallbackFunction = &HandleMedianData,
+  .dataReadyCallbackArguments = 0,
+  .readCompleteCallbackFunction = &HandleMedianData,
+  .readCompleteCallbackArguments = 0,
 };
 
 /****************************************PRIVATE FUNCTION DEFINITION***************************************/
@@ -169,6 +169,9 @@ void HandleMedianData()
   }
 }
 
+/*!
+ * @brief Initialise the initial functions
+ */
 void TowerInit(void)
 {
   bool packetStatus = Packet_Init(BAUD_RATE, MODULE_CLOCK);
@@ -183,24 +186,31 @@ void TowerInit(void)
 
   bool AccelStatus = Accel_Init(&ACCEL_SETUP);
 
-  if (packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus && AccelStatus) //&& AccelStatus
+  if (packetStatus && flashStatus && ledStatus && PITStatus && RTCStatus && FTMStatus && AccelStatus)
   {
     LEDs_On(LED_ORANGE);	//Tower was initialized correctly
   }
 }
 
+/*!
+ * @brief Runs tower init and delete thread
+ */
 void InitThread(void* data)
 {
   OS_ERROR error;
 
   for (;;)
   {
+    // Wait on Init Semaphore
     OS_SemaphoreWait(InitSemaphore, 0);
     TowerInit();	//Initialize tower peripheral modules
     error = OS_ThreadDelete(0);
   }
 }
 
+/*!
+ * @brief Runs packet thread
+ */
 void PacketThread(void* data)
 {
   Packet_Put(TOWER_STARTUP_COMM, TOWER_STARTUP_PAR1, TOWER_STARTUP_PAR2, TOWER_STARTUP_PAR3);
@@ -219,27 +229,36 @@ void PacketThread(void* data)
   }
 }
 
+/*!
+ * @brief Runs pit thread
+ */
 void PITThread(void* data)
 {
   for (;;)
   {
+    //Wait on PIT Semaphire
     OS_SemaphoreWait(PITSemaphore, 0);
 
     LEDs_Toggle(LED_GREEN);
     //The code stops working with the following code.
     if (Accel_GetMode() == ACCEL_POLL)
     {
-      Accel_ReadXYZ(AccReadData);
-      //HandleMedianData();
-      Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
+      //TODO: ASYNC I2C
+//      Accel_ReadXYZ(AccReadData);
+//      //HandleMedianData();
+//      Packet_Put(0x10, AccReadData[0], AccReadData[1], AccReadData[2]);
     }
   }
 }
 
+/*!
+ * @brief Runs accel thread
+ */
 void AccelThread(void* data)
 {
   for (;;)
   {
+    //Wait on Accel Semaphore
     OS_SemaphoreWait(AccelSemaphore, 0);
     Accel_ReadXYZ(AccReadData);
     //HandleMedianData();
@@ -249,10 +268,14 @@ void AccelThread(void* data)
   }
 }
 
+/*!
+ * @brief Runs RTC thread
+ */
 void RTCThread(void* data)
 {
   for (;;)
   {
+    //Wait on RTC Semaphore
     OS_SemaphoreWait(RTCSemaphore, 0);
 
     uint8_t h, m ,s;
@@ -262,19 +285,27 @@ void RTCThread(void* data)
   }
 }
 
+/*!
+ * @brief Runs FTM0 thread
+ */
 void FTM0Thread(void *data)
 {
   for (;;)
   {
+    //Wait on the FTM0 Semaphore
     OS_SemaphoreWait(FTM0Semaphore, 0);
     LEDs_Off(LED_BLUE);
   }
 }
 
+/*!
+ * @brief Runs I2C thread
+ */
 void I2CThread(void *data)
 {
   for (;;)
   {
+    //Wait on the I2C Semaphore
     OS_SemaphoreWait(I2CSemaphore, 0);
     HandleMedianData();
   }
@@ -296,20 +327,23 @@ int main(void)
 
   OS_Init(CPU_CORE_CLK_HZ, false);
 
-  //Create Initialisation Semaphore
+  // Create Initialisation Semaphore
   InitSemaphore = OS_SemaphoreCreate(1);
 
-  //Create threads
+  // Create threads
   error = OS_ThreadCreate(InitThread, NULL, &InitThreadStack[THREAD_STACK_SIZE-1], 0);
   error = OS_ThreadCreate(ReceiveThread, NULL, &ReceiveThreadStack[THREAD_STACK_SIZE-1], 1);
   error = OS_ThreadCreate(TransmitThread, NULL, &TransmitThreadStack[THREAD_STACK_SIZE-1], 2);
-  error = OS_ThreadCreate(PacketThread, NULL, &PacketThreadStack[THREAD_STACK_SIZE-1], 6);
   error = OS_ThreadCreate(PITThread, NULL, &PITThreadStack[THREAD_STACK_SIZE-1], 3);
   error = OS_ThreadCreate(RTCThread, NULL, &RTCThreadStack[THREAD_STACK_SIZE-1], 4);
   error = OS_ThreadCreate(FTM0Thread, NULL, &FTM0ThreadStack[THREAD_STACK_SIZE-1], 5);
+  error = OS_ThreadCreate(PacketThread, NULL, &PacketThreadStack[THREAD_STACK_SIZE-1], 6);
   error = OS_ThreadCreate(AccelThread, NULL, &AccelThreadStack[THREAD_STACK_SIZE-1], 7);
   error = OS_ThreadCreate(I2CThread, NULL, &I2CThreadStack[THREAD_STACK_SIZE-1], 8);
+
+  // Start threads
   OS_Start();
+
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
   #ifdef PEX_RTOS_START

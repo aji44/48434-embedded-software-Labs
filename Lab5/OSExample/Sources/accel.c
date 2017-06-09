@@ -250,7 +250,7 @@ void standbyMode(bool standby)
 
 bool Accel_Init(const TAccelSetup* const accelSetup)
 {
-  AccelSemaphore = OS_SemaphoreCreate(0);
+  AccelSemaphore = OS_SemaphoreCreate(0); //Create Accel semaphore
 
   AccelModuleSetup = *accelSetup;
   CurrentMode = ACCEL_POLL; //By default
@@ -368,7 +368,7 @@ void __attribute__ ((interrupt)) AccelDataReady_ISR(void)
   }
 
   PORTB_PCR4 |= PORT_PCR_ISF_MASK; //Clear interrupt
-  OS_SemaphoreSignal(AccelSemaphore);
+  OS_SemaphoreSignal(AccelSemaphore); //Signal Accel Semaphore
 
   OS_ISRExit();
 

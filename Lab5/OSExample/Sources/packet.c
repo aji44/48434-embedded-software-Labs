@@ -86,7 +86,7 @@ bool DataToFlash(void)
  */
 bool Packet_Init(const uint32_t baudRate, const uint32_t moduleClk)
 {
-  PacketPutSemaphore = OS_SemaphoreCreate(1);
+  PacketPutSemaphore = OS_SemaphoreCreate(1); //Create Packet Semaphore
 
   return (UART_Init(baudRate, moduleClk) && DataToFlash());
 }
@@ -172,7 +172,7 @@ bool Packet_Get(void) {
  */
 void Packet_Put(const uint8_t command, const uint8_t parameter1, const uint8_t parameter2, const uint8_t parameter3)
 {
-  OS_SemaphoreWait(PacketPutSemaphore, 0);
+  OS_SemaphoreWait(PacketPutSemaphore, 0); //Wait on Packet Put Semaphore
 
   UART_OutChar(command); //Place Command byte in TxFIFO
   UART_OutChar(parameter1); //Place Parameter1 byte in TxFIFO
@@ -180,7 +180,7 @@ void Packet_Put(const uint8_t command, const uint8_t parameter1, const uint8_t p
   UART_OutChar(parameter3); //Place Parameter3 byte in TxFIFO
   UART_OutChar(command ^ parameter1 ^ parameter2 ^ parameter3); //Place Checksum byte in TxFIFO
 
-  OS_SemaphoreSignal(PacketPutSemaphore);
+  OS_SemaphoreSignal(PacketPutSemaphore); //Signal Packet Put Semaphore
 }
 
 /*! @brief Handles the stored packet

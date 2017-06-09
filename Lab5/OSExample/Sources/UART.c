@@ -21,13 +21,12 @@
 #include "UART.h"
 #include "Cpu.h"
 #include "packet.h"
-//#include "Semaphores.h"
 
 /****************************************GLOBAL VARS*****************************************************/
 static TFIFO RxFIFO;
 static TFIFO TxFIFO;
-OS_ECB *RxSemaphore;
-OS_ECB *TxSemaphore;
+OS_ECB *RxSemaphore; //Receive semaphore
+OS_ECB *TxSemaphore; //Transmit semaphore
 
 /****************************************PUBLIC FUNCTION DEFINITION***************************************/
 
@@ -39,7 +38,6 @@ OS_ECB *TxSemaphore;
  */
 bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
 {
-  //EnterCritical();
   // Create semaphores for Receive and Transmit threads
   TxSemaphore = OS_SemaphoreCreate(0);
   RxSemaphore = OS_SemaphoreCreate(0);
@@ -72,9 +70,8 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
   UART2_C4 |= UART_C4_BRFA_MASK;		//Prepare the register
   UART2_C4 &= brfa;				//Set the BaudRate Fine Adjust value
 
-  UART2_C2 |= UART_C2_TIE_MASK;
+  UART2_C2 |= UART_C2_TIE_MASK;  //Transmit interrupt Enable
   UART2_C2 |= UART_C2_RIE_MASK;  //Receive interrupt Enable
-  //UART2_C2 |= UART_C2_TCIE_MASK; ////Transmission Complete interrupt requests enabled
 
   UART2_C2 |= UART_C2_TE_MASK;		//Enables UART transmitter
   UART2_C2 |= UART_C2_RE_MASK;		//Enables UART receiver
@@ -85,7 +82,6 @@ bool UART_Init(const uint32_t baudRate, const uint32_t moduleClk)
   NVICICPR1 = (1 << (49 % 32));
   NVICISER1 = (1 << (49 % 32));
 
-  //ExitCritical();
   return true;
 }
 
@@ -112,6 +108,11 @@ void UART_OutChar(const uint8_t data)
   FIFO_Put(&TxFIFO, data); //Place the value stored in data into the TxFIFO
 }
 
+/*! @brief The thread which handles the receiving of data
+ *
+ *  @param data
+ *  @note Assumes that UART_Init has been called.
+ */
 void ReceiveThread(void *data)
 {
   for(;;)
@@ -124,6 +125,11 @@ void ReceiveThread(void *data)
   }
 }
 
+/*! @brief The thread which handles the transmission of data
+ *
+ *  @param data
+ *  @note Assumes that UART_Init has been called.
+ */
 void TransmitThread(void *data)
 {
   uint8_t txData;
@@ -139,7 +145,6 @@ void TransmitThread(void *data)
     UART2_C2 |= UART_C2_TIE_MASK; //Enable hardware to tell me it can transmit again
   }
 }
-
 
 
 /*! @brief Interrupt service routine for the UART.
@@ -168,30 +173,6 @@ void __attribute__ ((interrupt)) UART_ISR(void)
     }
   }
   OS_ISRExit();
-
-
-//  //notify RTOS of start of ISR
-//  OS_ISREnter();
-//  static uint8_t txData;
-//
-//  if (UART2_C2 & UART_C2_RIE_MASK)
-//  {
-//    if (UART2_S1 & UART_S1_RDRF_MASK)
-//    {
-//      //FIFO_Put(&RxFIFO, UART2_D);
-//      OS_SemaphoreSignal(RxSemaphore);
-//      UART2_C2 &= ~UART_C2_RIE_MASK;
-//    }
-//  }
-//  if (UART2_C2 & UART_C2_TCIE_MASK)
-//  {
-//    if(UART2_S1 & UART_S1_TC_MASK)
-//    {
-//      OS_SemaphoreSignal(TxSemaphore);
-//      UART2_C2 &= ~UART_C2_TCIE_MASK;
-//    }
-//  }
-//  OS_ISRExit();
 }
 
 /*!

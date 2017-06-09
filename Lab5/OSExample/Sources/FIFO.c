@@ -27,9 +27,9 @@ void FIFO_Init(TFIFO * const FIFO)
   FIFO->Start = 0;
   FIFO->End = 0;
   FIFO->NbBytes = 0;
-  FIFO->BufferAccess = OS_SemaphoreCreate(1);
-  FIFO->SpaceAvailable = OS_SemaphoreCreate(FIFO_SIZE);
-  FIFO->ItemsAvailable = OS_SemaphoreCreate(0);
+  FIFO->BufferAccess = OS_SemaphoreCreate(1); //Create Semaphore (1 to indicate it is not being used)
+  FIFO->SpaceAvailable = OS_SemaphoreCreate(FIFO_SIZE); //Create Semaphore which maintains space available in FIFO
+  FIFO->ItemsAvailable = OS_SemaphoreCreate(0); //Create Semaphore to wait on space available
 }
 
 /*! @brief Put one character into the FIFO.
@@ -63,16 +63,16 @@ void FIFO_Put(TFIFO * const FIFO, const uint8_t data)
  */
 void FIFO_Get(TFIFO * const FIFO, uint8_t * const dataPtr)
 {
-  OS_SemaphoreWait(FIFO->ItemsAvailable, 0);
-  OS_SemaphoreWait(FIFO->BufferAccess, 0);
+  OS_SemaphoreWait(FIFO->ItemsAvailable, 0); //Wait on items available
+  OS_SemaphoreWait(FIFO->BufferAccess, 0); //Wait on exclusive access
 
   *dataPtr = FIFO->Buffer[FIFO->Start]; //Data = Array[Start]
   FIFO->Start++; //Moves to the next element in the array
   FIFO->NbBytes--;
   if (FIFO->Start == FIFO_SIZE-1) FIFO->Start = 0;
 
-  OS_SemaphoreSignal(FIFO->BufferAccess);
-  OS_SemaphoreSignal(FIFO->SpaceAvailable);
+  OS_SemaphoreSignal(FIFO->BufferAccess); //Signal no exclusive access taking place
+  OS_SemaphoreSignal(FIFO->SpaceAvailable); //Signal space available in FIFO
 }
 
 

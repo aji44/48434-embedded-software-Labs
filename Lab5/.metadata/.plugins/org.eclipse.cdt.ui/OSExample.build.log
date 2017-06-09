@@ -1,4 +1,4 @@
-14:27:52 **** Incremental Build of configuration Debug for project OSExample ****
+10:09:56 **** Incremental Build of configuration Debug for project OSExample ****
 make all 
 'Building file: ../Sources/Events.c'
 'Invoking: Cross ARM C Compiler'
@@ -101,5 +101,5 @@ arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0
 'Finished building target: OSExample.elf'
 ' '
 
-14:27:59 Build Finished (took 7s.35ms)
+10:10:04 Build Finished (took 8s.112ms)
 

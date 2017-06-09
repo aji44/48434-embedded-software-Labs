@@ -19,7 +19,7 @@
 #include "types.h"
 #include "OS.h"
 
-OS_ECB *AccelSemaphore;
+OS_ECB *AccelSemaphore; //Semaphore for accel thread
 
 typedef enum
 {
