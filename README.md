@@ -37,7 +37,7 @@
 ## Lab5:
 
   * Please refer to the Lab5 PDF
-  * Status          : Incomplete
+  * Status          : Complete
   * Mark            : 7/8
   * Processor       : MK70FN1M0VMJ12
   * Microcontroller : Freescale Tower
